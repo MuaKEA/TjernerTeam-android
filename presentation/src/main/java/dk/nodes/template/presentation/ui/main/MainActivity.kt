@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.ui.Login.FacebookActivity
 import dk.nodes.template.presentation.ui.Login.LoginActivity
 import dk.nodes.template.presentation.ui.base.BaseActivity
 
@@ -23,7 +24,7 @@ class MainActivity : BaseActivity() {
 
 
 
-        startActivity(Intent(this,LoginActivity::class.java))
+        startActivity(Intent(this,FacebookActivity::class.java))
 
     }
 
