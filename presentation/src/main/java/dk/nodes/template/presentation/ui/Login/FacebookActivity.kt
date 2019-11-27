@@ -1,32 +1,16 @@
 package dk.nodes.template.presentation.ui.Login
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.facebook.CallbackManager
+import androidx.appcompat.app.AppCompatActivity
+import com.facebook.*
+import com.facebook.login.LoginResult
+import com.squareup.picasso.Picasso
 import dk.nodes.template.presentation.R
 import kotlinx.android.synthetic.main.activity_facebook.*
-import java.util.*
-import com.facebook.FacebookException
-import com.facebook.AccessToken
-import com.facebook.login.LoginResult
-import com.facebook.FacebookCallback
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.content.Intent
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import org.json.JSONException
-import com.facebook.GraphResponse
-import org.json.JSONObject
-import com.facebook.GraphRequest
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import com.squareup.picasso.Picasso
 import timber.log.Timber
 import java.util.*
-
 
 
 class FacebookActivity : AppCompatActivity() {
@@ -39,11 +23,8 @@ class FacebookActivity : AppCompatActivity() {
         setContentView(R.layout.activity_facebook)
 
 
-        var displayName = display_name
-        var emailID = email
-        var displayImage = image_view
         var loginButton = login_button
-         loginButton.setReadPermissions(Arrays.asList("email", "public_profile","id"));
+         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
 
 
         // Creating CallbackManager
@@ -78,14 +59,15 @@ class FacebookActivity : AppCompatActivity() {
         val request = GraphRequest.newMeRequest(accessToken) { `object`, response ->
             //OnCompleted is invoked once the GraphRequest is successful
             try {
-                val name = `object`.getString("name")
+                var name = `object`.getString("name")
                 val emails = `object`.getString("email")
-//                val id = `object`.getString("id")
-              Timber.e(name)
                 val image = `object`.getJSONObject("picture").getJSONObject("data").getString("url")
+                val id =  `object`.getString("id")
+                Picasso.get().load(image).into(image_view)
+                facebookId_txt.setText(id)
+                Timber.e(id  + " " )
                 display_name.setText(name)
                 email.setText(emails.toString())
-             //   Timber.e(id)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
