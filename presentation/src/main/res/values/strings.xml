@@ -18,6 +18,8 @@
     <string name="tab_text_7">Now Playing</string>
     <string name="tab_text_8">Saved</string>
     <string name="tab_text_9">Horror</string>
+    <string name="test">Test</string>
+    <string name="fetch_shift">Fetch shift</string>
 
 
 </resources>
