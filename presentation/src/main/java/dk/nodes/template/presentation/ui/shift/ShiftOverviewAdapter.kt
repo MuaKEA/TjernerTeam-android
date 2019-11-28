@@ -24,6 +24,12 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : Re
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.customerName?.text = shifts[position].customerName
+        holder.eventDate?.text = shifts[position].eventDate.toString()
+        holder.salary?.text = "DKK " + shifts[position].salary.toString()
+        holder.employee_type?.text = shifts[position].employeeType?.toUpperCase()
+        holder.eventDuration?.text = shifts[position].eventStart + " - " + shifts[position].eventEnd
+        holder.address?.text = shifts[position].address
+        holder.eventDescription?.text = shifts[position].eventDescription
         holder.root.setOnClickListener {
             onItemClickedListener?.invoke(shifts.get(position))
         }
@@ -41,4 +47,10 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : Re
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val root = view.customer_name
     val customerName = view.customer_name
+    val eventDate = view.event_date
+    val salary = view.salary
+    val employee_type = view.employee_type
+    val eventDuration = view.event_duration
+    val address = view.address
+    val eventDescription = view.event_description
 }

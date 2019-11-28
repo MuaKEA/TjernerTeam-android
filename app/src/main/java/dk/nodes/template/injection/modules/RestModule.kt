@@ -46,7 +46,7 @@ class RestModule {
     @Provides
     @Named("NAME_BASE_URL")
     fun provideBaseUrlString(): String {
-        return "https://b855a474.ngrok.io"
+        return "https://2678c9b2.ngrok.io"
     }
     @Provides
     @Named("NAME_Weather_BASE_URL")
