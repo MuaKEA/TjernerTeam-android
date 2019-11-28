@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.main
+package dk.nodes.template.presentation.ui.shift
 
 import dk.nodes.nstack.kotlin.models.AppUpdate
 import dk.nodes.nstack.kotlin.models.Message
@@ -7,7 +7,8 @@ import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.util.SingleEvent
 import dk.nodes.template.presentation.util.ViewError
 
-data class MainActivityViewState(
+data class ShiftViewState (
+
         val errorMessage: SingleEvent<String>? = null,
         val isLoading: Boolean = false,
         val nstackMessage: Message? = null,
@@ -17,5 +18,4 @@ data class MainActivityViewState(
         val Shift: Shift? = null,
         val shiftOverviewList : ArrayList<Shift>? = null
 
-
-        )
+)

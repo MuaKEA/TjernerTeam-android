@@ -5,6 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application>
+        <activity android:name=".ui.shift.ShiftOverviewFragment"></activity>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+
+
+
         <activity android:name=".ui.Login.AuthenticatedActivity"></activity>
 
         <meta-data
@@ -28,10 +36,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Login.LoginActivity" />
-        <activity
-            android:name="dk.nodes.template.presentation.ui.main.MainActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+
     </application>
+
+
+
+
+
 
 </manifest>

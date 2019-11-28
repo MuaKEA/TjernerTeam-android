@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">presentation</string>
-    <string name="Home">Home</string>
-    <string name="Discover">Discover</string>
-    <string name="Saved">Saved</string>
+    <string name="Notification">Notification</string>
+    <string name="chat">Chat</string>
+    <string name="faq">FAQ</string>
+    <string name="end_job">Afslut Job</string>
+    <string name="profile">Profil</string>
 
     <string name="facebook_app_id">432891317343221</string>
     <string name="fb_login_protocol_scheme">fb432891317343221</string>
@@ -21,6 +23,8 @@
     <string name="tab_text_7">Now Playing</string>
     <string name="tab_text_8">Saved</string>
     <string name="tab_text_9">Horror</string>
+    <string name="test">Test</string>
+    <string name="fetch_shift">Fetch shift</string>
 
 
 </resources>
