@@ -2,11 +2,13 @@ package dk.nodes.template.presentation.ui.Login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.squareup.picasso.Picasso
 import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_facebook.*
 import org.json.JSONException
 import timber.log.Timber
@@ -68,6 +70,13 @@ class FacebookActivity : AppCompatActivity() {
                 Timber.e(id  + " " )
                 display_name.setText(name)
                 email.setText(emails.toString())
+                Log.d("tupac" , "1")
+              var s =  Intent(this, CustomTabActivity ::class.java)
+               s.putExtra("name",name);
+                s.putExtra("email",emails)
+                s.putExtra("id",id)
+                startActivity(s)
+
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
@@ -76,9 +85,10 @@ class FacebookActivity : AppCompatActivity() {
         val parameters = Bundle()
         parameters.putString("fields", "id,name,email,picture.width(200)")
         request.parameters = parameters
+        Log.d("tupac" , "2")
 
         if(parameters != null){
-            Timber.e(parameters.get("fields").toString())
+           Log.d("tupac" , parameters.get("fields").toString())
 
 
         }
@@ -91,6 +101,7 @@ class FacebookActivity : AppCompatActivity() {
             override fun onSuccess(loginResult: LoginResult) {
                 val accessToken = loginResult.accessToken
                 useLoginInformation(accessToken)
+                Log.d("tupac" , "3")
 
             }
 
