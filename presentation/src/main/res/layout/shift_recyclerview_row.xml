@@ -7,16 +7,142 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
-        android:layout_height="70dp"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/customer_name"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/employee_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/event_description"
+                app:layout_constraintTop_toBottomOf="@+id/address"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/salary"
+                android:layout_width="180dp"
+                android:layout_height="15dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|start"
+                app:layout_constraintStart_toEndOf="@+id/salary_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/event_date_weekday"
+                android:layout_width="47dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|bottom"
+                android:textColor="#B53737"
+                app:layout_constraintBottom_toTopOf="@+id/event_date_monthday"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/event_date_monthday"
+                android:layout_width="47dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/event_date_month"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/event_date_month"
+                android:layout_width="47dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|top"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/event_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|start"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/event_date_weekday"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="302dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:fontFamily="sans-serif"
+                android:gravity="center|start"
+                app:layout_constraintStart_toEndOf="@+id/event_date_weekday"
+                app:layout_constraintTop_toBottomOf="@+id/customer_name" />
+
+            <TextView
+                android:id="@+id/event_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|start"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/event_date_weekday"
+                app:layout_constraintTop_toBottomOf="@+id/address" />
+
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="302dp"
+                android:layout_height="17dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|start"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/event_date_weekday"
+                app:layout_constraintTop_toBottomOf="@+id/salary" />
+
+            <!--Credits: <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
+            <ImageView
+                android:id="@+id/salary_icon"
+                android:layout_width="24dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toEndOf="@+id/event_duration"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/money_bag" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

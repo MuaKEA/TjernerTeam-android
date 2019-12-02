@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dk.nodes.template.models.Shift
+import dk.nodes.template.presentation.R
 import kotlinx.android.synthetic.main.shift_recyclerview_row.view.*
 import timber.log.Timber
 
@@ -23,7 +24,28 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : Re
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        val dateWeekDay = shifts[position].eventDate.toString().substring(0,3).toUpperCase()
+        val dateMonth = shifts[position].eventDate.toString().substring(4,7).toUpperCase()
+        val dateMonthDay = shifts[position].eventDate.toString().substring(8,10)
+
         holder.customerName?.text = shifts[position].customerName
+        holder.eventDateWeekDay?.text = dateWeekDay
+        holder.eventDateMonthDay?.text = dateMonthDay
+        holder.eventDateMonth?.text = dateMonth
+        holder.salary?.text = "DKK " + shifts[position].salary.toString()
+        holder.employee_type?.text = shifts[position].employeeType?.toUpperCase()
+
+        if (holder.employee_type.text == "TJENER") {
+            holder.employee_type?.setBackgroundResource(R.drawable.waiter_rounded_corners)
+        } else {
+            holder.employee_type?.setBackgroundResource(R.drawable.bartender_rounded_corners)
+        }
+
+
+        holder.eventDuration?.text = shifts[position].eventStart + " - " + shifts[position].eventEnd
+        holder.address?.text = shifts[position].address
+        holder.eventDescription?.text = shifts[position].eventDescription
         holder.root.setOnClickListener {
             onItemClickedListener?.invoke(shifts.get(position))
         }
@@ -41,4 +63,12 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : Re
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val root = view.customer_name
     val customerName = view.customer_name
+    val eventDateWeekDay = view.event_date_weekday
+    val eventDateMonthDay = view.event_date_monthday
+    val eventDateMonth = view.event_date_month
+    val salary = view.salary
+    val employee_type = view.employee_type
+    val eventDuration = view.event_duration
+    val address = view.address
+    val eventDescription = view.event_description
 }

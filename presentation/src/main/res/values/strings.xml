@@ -25,6 +25,10 @@
     <string name="tab_text_9">Horror</string>
     <string name="test">Test</string>
     <string name="fetch_shift">Fetch shift</string>
+    <string name="job_oversigt">Job oversigt</string>
+    <string name="ans_g_nemt_freelance_arbejde_i_hele_hotel_og_resturationsbrancen_over_hele_danmark">Ansøg nemt freelance arbejde i hele hotel og \nresturationsbrancen over hele Danmark</string>
+    <string name="jobs_du_kan_s_ge">JOBS DU KAN SØGE</string>
+    <string name="obs_er_jobbet_der_ikke_s_er_den_allerede_besat">OBS: Er jobbet der ikke, så er den allerede besat</string>
 
 
 </resources>

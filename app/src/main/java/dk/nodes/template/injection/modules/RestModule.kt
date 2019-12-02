@@ -7,7 +7,6 @@ import dagger.Provides
 import dk.nodes.nstack.kotlin.providers.NMetaInterceptor
 import dk.nodes.template.BuildConfig
 import dk.nodes.template.network.Api
-import dk.nodes.template.network.FaceBookService
 import dk.nodes.template.network.ShiftService
 import dk.nodes.template.network.util.BufferedSourceConverterFactory
 import dk.nodes.template.network.util.DateDeserializer
@@ -47,7 +46,7 @@ class RestModule {
     @Provides
     @Named("NAME_BASE_URL")
     fun provideBaseUrlString(): String {
-        return "https://9d5e6c80.ngrok.io/"
+        return "https://9b48a3ce.ngrok.io"
     }
     @Provides
     @Named("NAME_Weather_BASE_URL")
@@ -117,12 +116,12 @@ class RestModule {
     fun provideShiftService(retrofit: Retrofit): ShiftService {
         return retrofit.create<ShiftService>(ShiftService::class.java)
     }
-
-    @Provides
-    @Singleton
-    fun provideMovieService(retrofit: Retrofit): FaceBookService {
-        return retrofit.create<FaceBookService>(FaceBookService::class.java)
-    }
+//
+//    @Provides
+//    @Singleton
+//    fun provideMovieService(retrofit: Retrofit): MovieService {
+//        return retrofit.create<MovieService>(MovieService::class.java)
+//    }
 
     @Provides
     @Singleton
