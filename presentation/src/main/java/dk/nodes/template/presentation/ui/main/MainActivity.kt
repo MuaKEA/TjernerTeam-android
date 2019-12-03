@@ -54,11 +54,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
 
-
-
-
-
-
         bottomNavigation_Main.setOnNavigationItemSelectedListener(this)
 
 

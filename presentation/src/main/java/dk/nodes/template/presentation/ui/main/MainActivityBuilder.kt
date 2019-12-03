@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import dk.nodes.template.presentation.injection.ViewModelKey
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
+import dk.nodes.template.presentation.ui.shift.shiftDetailsActivity
 
 
 @Module
@@ -24,7 +25,8 @@ internal abstract class MainActivityBuilder {
         ]
     )
     abstract fun ShiftOverviewFragment(): ShiftOverviewFragment
-
+    @ContributesAndroidInjector
+    internal abstract fun shiftDetailserActivity(): shiftDetailsActivity
 
 
 

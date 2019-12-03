@@ -3,13 +3,13 @@
     package="dk.nodes.template.presentation">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application>
       
 
 
         <activity android:name=".ui.Login.AuthenticatedActivity"></activity>
         <activity android:name=".ui.Login.CustomTabActivity"></activity>
+        <activity android:name=".ui.shift.shiftDetailsActivity"></activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

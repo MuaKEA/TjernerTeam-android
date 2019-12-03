@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_frame"
         app:layout_constraintVertical_bias="0.7"
-        app:menu="@menu/menu_mainactivitytoppart" />
+        app:menu="@menu/shift_menu" />
 
 
 
