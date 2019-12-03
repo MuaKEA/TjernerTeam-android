@@ -1,7 +1,6 @@
 package dk.nodes.template.presentation.ui.shift
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,10 @@ import dk.nodes.template.presentation.R
 import kotlinx.android.synthetic.main.shift_recyclerview_row.view.*
 import timber.log.Timber
 import java.time.LocalDate
-import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : RecyclerView.Adapter<ViewHolder>() {
+class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : RecyclerView.Adapter<ViewHolder>() {
     var onItemClickedListener: ((shift: Shift) -> Unit?)? = null
     val shifts: ArrayList<Shift> = ArrayList()
 
@@ -31,8 +29,8 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : Re
 
         val date = LocalDate.parse(shifts[position].eventDate)
 
-        val dateWeekDay = date.dayOfWeek.toString().substring(0,3).toUpperCase()
-        val dateMonth = date.month.toString().substring(0,3).toUpperCase()
+        val dateWeekDay = date.dayOfWeek.toString().substring(0, 3).toUpperCase()
+        val dateMonth = date.month.toString().substring(0, 3).toUpperCase()
         val dateMonthDay = date.dayOfMonth.toString()
 
         holder.customerName?.text = shifts[position].customerName

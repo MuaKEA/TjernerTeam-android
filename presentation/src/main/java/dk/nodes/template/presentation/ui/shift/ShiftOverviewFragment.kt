@@ -79,11 +79,8 @@ private val viewModel by viewModel<MainActivityViewModel>()
     private fun handleShift(state: MainActivityViewState) {
         state.let {
 
-            state.shiftOverviewList?.let { it -> adapter?.addShifts(it) }
+            state.shiftOverviewList?.let { shiftOverview -> adapter?.addShifts(shiftOverview) }
             adapter?.notifyDataSetChanged()
-            Timber.e("Adapter item count: %s", adapter?.itemCount)
-
-            Timber.e( state.shiftOverviewList.toString())
             updateRecyclerView()
         }
     }
