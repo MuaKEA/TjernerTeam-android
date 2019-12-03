@@ -13,7 +13,7 @@ data class Shift(
         @SerializedName("eventName")
         var eventName : String?,
         @SerializedName("eventDate")
-        var eventDate : Date?,
+        var eventDate : String?,
         @SerializedName("eventStart")
         var eventStart : String?,
         @SerializedName("eventEnd")
