@@ -6,12 +6,12 @@
 
 
         <item
-            android:id="@+id/job_info"
+            android:id="@+id/navigation_job_info"
             android:title="@string/job_info" />
 
         <item
-            android:id="@+id/message"
-            android:title="@string/beskeder" />
+            android:id="@+id/navigation_message"
+            android:title="@string/beskeder"/>
 
 
 

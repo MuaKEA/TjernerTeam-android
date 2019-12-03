@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
                 if(shownMenu == item.itemId) return false
         when (item.itemId) {
-            R.id.navigation_profile ->
-                startActivity(Intent(this, FacebookActivity :: class.java))
-
+            R.id.navigation_profile -> {
+                startActivity(Intent(this, FacebookActivity::class.java))
+            }
 
 
             R.id.notification->
