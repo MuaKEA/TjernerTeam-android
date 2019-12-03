@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
@@ -36,8 +37,11 @@ private val viewModel by viewModel<MainActivityViewModel>()
             handleShift(state)
         }
 
+        val swipeLayout = swiperefresh as SwipeRefreshLayout
+        swipeLayout.setOnRefreshListener {
+            refreshShifts()
+        }
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
        return inflater.inflate(R.layout.fragment_shift_overview, container, false)
@@ -67,6 +71,9 @@ private val viewModel by viewModel<MainActivityViewModel>()
 
     private fun refreshShifts() {
         viewModel.fetchShifts()
+        if (swiperefresh.isRefreshing) {
+            swiperefresh.isRefreshing = false
+        }
     }
 
     private fun handleShift(state: MainActivityViewState) {
