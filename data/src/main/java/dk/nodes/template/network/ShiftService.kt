@@ -8,6 +8,6 @@ import retrofit2.http.Query
 import javax.inject.Inject
 
 interface ShiftService {
-         @GET("/getshifts")
+         @GET("/getAllShifts")
          fun getActiveShifts() : Call<GetShiftsWrapper>
 }
