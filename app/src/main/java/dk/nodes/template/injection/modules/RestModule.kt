@@ -7,6 +7,7 @@ import dagger.Provides
 import dk.nodes.nstack.kotlin.providers.NMetaInterceptor
 import dk.nodes.template.BuildConfig
 import dk.nodes.template.network.Api
+import dk.nodes.template.network.FaceBookService
 import dk.nodes.template.network.ShiftService
 import dk.nodes.template.network.util.BufferedSourceConverterFactory
 import dk.nodes.template.network.util.DateDeserializer
@@ -115,6 +116,11 @@ class RestModule {
     @Provides
     fun provideShiftService(retrofit: Retrofit): ShiftService {
         return retrofit.create<ShiftService>(ShiftService::class.java)
+    }
+
+    @Provides
+    fun provideFacebookService(retrofit: Retrofit): FaceBookService {
+        return retrofit.create<FaceBookService>(FaceBookService::class.java)
     }
 //
 //    @Provides
