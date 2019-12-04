@@ -1,7 +1,6 @@
 package dk.nodes.template.presentation.ui.shift
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import dk.nodes.template.models.Shift
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
@@ -20,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_shift_overview.*
 import timber.log.Timber
 
 class ShiftOverviewFragment : BaseFragment() {
-    private val viewModel by viewModel<MainActivityViewModel>()
+private val viewModel by viewModel<MainActivityViewModel>()
 
     private var mainContext: Context? = null
     private var adapter: ShiftOverviewAdapter? = null
@@ -36,14 +35,16 @@ class ShiftOverviewFragment : BaseFragment() {
         viewModel.viewState.observeNonNull(this){
             state->
             handleShift(state)
-            handleSemilarShifts(state)
         }
 
+        val swipeLayout = swiperefresh as SwipeRefreshLayout
+        swipeLayout.setOnRefreshListener {
+            refreshShifts()
+        }
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_shift_overview, container, false)
+       return inflater.inflate(R.layout.fragment_shift_overview, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -70,16 +71,16 @@ class ShiftOverviewFragment : BaseFragment() {
 
     private fun refreshShifts() {
         viewModel.fetchShifts()
+        if (swiperefresh.isRefreshing) {
+            swiperefresh.isRefreshing = false
+        }
     }
 
     private fun handleShift(state: MainActivityViewState) {
         state.let {
 
-            state.shiftOverviewList?.let { it -> adapter?.addShifts(it) }
+            state.shiftOverviewList?.let { shiftOverview -> adapter?.addShifts(shiftOverview) }
             adapter?.notifyDataSetChanged()
-            Timber.e("Adapter item count: %s", adapter?.itemCount)
-
-            Timber.e( state.shiftOverviewList.toString())
             updateRecyclerView()
         }
     }
@@ -90,30 +91,12 @@ class ShiftOverviewFragment : BaseFragment() {
         adapter?.notifyDataSetChanged()
     }
 
-
     private fun addItemOnclick() {
-        adapter?.onItemClickedListener = { shift ->
-            val intent = Intent(mainContext, shiftDetailsActivity::class.java)
-            intent.putExtra("shift", shift)
-            startActivity(intent)
-
-        }
-
-    }
-
-    private fun handleSemilarShifts(viewState: MainActivityViewState){
-        viewState.let { fetchRecommended->
-            fetchRecommended.shiftOverviewList?.let {adapter?.addShifts(it) }
-
-            addItemOnclick()
-            Timber.e(fetchRecommended.toString())
-            updateRecyclerView()
-            adapter?.notifyDataSetChanged()
+        adapter?.onItemClickedListener = {shift ->
+            // todo
+            // new activity
         }
     }
 
-    private fun onCreate(){
-
-    }
 
 }
