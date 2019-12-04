@@ -5,6 +5,8 @@
     <string name="faq">FAQ</string>
     <string name="end_job">Afslut Job</string>
     <string name="profile">Profil</string>
+    <string name="job_info">Job Info</string>
+    <string name="beskeder">Beskeder</string>
 
     <string name="facebook_app_id">432891317343221</string>
     <string name="fb_login_protocol_scheme">fb432891317343221</string>
