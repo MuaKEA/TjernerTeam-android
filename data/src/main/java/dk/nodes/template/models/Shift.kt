@@ -25,5 +25,4 @@ data class Shift(
         @SerializedName("eventDescription")
         var eventDescription : String?,
         @SerializedName("dressCode")
-        var dressCode : String?
-        )
+        var dressCode : String?)
