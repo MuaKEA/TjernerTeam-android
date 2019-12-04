@@ -16,6 +16,4 @@ data class MainActivityViewState(
         val viewError: SingleEvent<ViewError>? = null,
         val Shift: Shift? = null,
         val shiftOverviewList : ArrayList<Shift>? = null
-
-
         )

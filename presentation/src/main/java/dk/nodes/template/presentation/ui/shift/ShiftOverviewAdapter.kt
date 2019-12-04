@@ -68,7 +68,7 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val eventDateMonth = view.event_date_month
     val salary = view.salary
     val employee_type = view.employee_type
-    val eventDuration = view.event_duration
-    val address = view.address
+    val eventDuration = view.costumer_name
+    val address = view.address_by
     val eventDescription = view.event_description
 }

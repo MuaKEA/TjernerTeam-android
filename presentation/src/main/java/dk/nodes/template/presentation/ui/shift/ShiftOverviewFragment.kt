@@ -7,12 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.ui.base.BaseActivity
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
@@ -21,7 +18,6 @@ import timber.log.Timber
 
 class ShiftOverviewFragment : BaseFragment() {
     private val viewModel by viewModel<MainActivityViewModel>()
-
     private var mainContext: Context? = null
     private var adapter: ShiftOverviewAdapter? = null
 
@@ -110,10 +106,6 @@ class ShiftOverviewFragment : BaseFragment() {
             updateRecyclerView()
             adapter?.notifyDataSetChanged()
         }
-    }
-
-    private fun onCreate(){
-
     }
 
 }

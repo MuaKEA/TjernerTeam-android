@@ -1,14 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.shift.Job_fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/salary_icon"
+                android:layout_width="57dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/money_bag"
+                app:layout_constraintEnd_toStartOf="@+id/salary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_icon" />
+
+            <TextView
+                android:id="@+id/costumer_name"
+                android:layout_width="227dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="154dp"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/address_by"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/address_by"
+                android:layout_width="227dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="154dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/costumer_name" />
+
+            <TextView
+                android:id="@+id/event_date_monthday2"
+                android:layout_width="57dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/event_date_month2"
+                app:layout_constraintStart_toEndOf="@+id/event_date_weekday2"
+                app:layout_constraintTop_toBottomOf="@+id/address_by" />
+
+            <TextView
+                android:id="@+id/event_date_weekday2"
+                android:layout_width="57dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|bottom"
+                android:textColor="#B53737"
+                app:layout_constraintEnd_toStartOf="@+id/event_date_monthday2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/date_icon"
+                app:layout_constraintTop_toBottomOf="@+id/address_by" />
+
+            <TextView
+                android:id="@+id/event_date_month2"
+                android:layout_width="57dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center|top"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/event_date_monthday2"
+                app:layout_constraintTop_toBottomOf="@+id/address_by" />
+
+            <ImageView
+                android:id="@+id/date_icon"
+                android:layout_width="57dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/calender512"
+                app:layout_constraintEnd_toStartOf="@+id/event_date_monthday2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_by" />
+
+            <TextView
+                android:id="@+id/salary"
+                android:layout_width="85dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/udbetales"
+                app:layout_constraintStart_toEndOf="@+id/salary_icon"
+                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday2" />
+
+            <TextView
+                android:id="@+id/udbetales"
+                android:layout_width="85dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toEndOf="@+id/salary"
+                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday2" />
+
+            <TextView
+                android:id="@+id/event_type"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="42dp"
+                app:layout_constraintEnd_toStartOf="@+id/employee_type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/salary_icon" />
+
+            <TextView
+                android:id="@+id/employee_type"
+                android:layout_width="75dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="216dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toTopOf="@+id/event_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/event_type" />
+
+            <TextView
+                android:id="@+id/event_description"
+                android:layout_width="227dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="154dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_type" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="227dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="154dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_description" />
+
+            <TextView
+                android:id="@+id/paaklaedning"
+                android:layout_width="80dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="301dp"
+                android:text="@string/paaklaedning"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address" />
+
+            <TextView
+                android:id="@+id/dress_code"
+                android:layout_width="128dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="145dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/paaklaedning" />
+
+            <TextView
+                android:id="@+id/personalemad_text"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="156dp"
+                android:text="@string/personalemad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/paaklaedning"
+                app:layout_constraintTop_toBottomOf="@+id/address" />
+
+            <TextView
+                android:id="@+id/personalemad"
+                android:layout_width="92dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="156dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dress_code"
+                app:layout_constraintTop_toBottomOf="@+id/personalemad_text" />
+
+            <TextView
+                android:id="@+id/hvor"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="346dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/hvor"
+                app:layout_constraintBottom_toTopOf="@+id/address"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_description" />
+
+            <TextView
+                android:id="@+id/overarbejde"
+                android:layout_width="80dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/overarbejde"
+                app:layout_constraintEnd_toStartOf="@+id/overarbejde"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dress_code"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/transport"
+                android:layout_width="119dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="155dp"
+                android:text="@string/transport_tillaeg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/overarbejde"
+                app:layout_constraintTop_toBottomOf="@+id/dress_code" />
+
+            <TextView
+                android:id="@+id/overarbejde_felt"
+                android:layout_width="100dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/transport_tillæg_felt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overarbejde" />
+
+            <TextView
+                android:id="@+id/transport_tillæg_felt"
+                android:layout_width="119dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/overarbejde_felt"
+                app:layout_constraintTop_toBottomOf="@+id/transport"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>
