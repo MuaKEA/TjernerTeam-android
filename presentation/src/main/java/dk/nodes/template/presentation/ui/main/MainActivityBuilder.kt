@@ -24,6 +24,9 @@ internal abstract class MainActivityBuilder {
             SampleBuilder::class
         ]
     )
+    abstract fun MainActivity(): MainActivity
+
+    @ContributesAndroidInjector
     abstract fun ShiftOverviewFragment(): ShiftOverviewFragment
     @ContributesAndroidInjector
     internal abstract fun shiftDetailserActivity(): shiftDetailsActivity
