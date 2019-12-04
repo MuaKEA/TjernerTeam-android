@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import dk.nodes.template.presentation.injection.ViewModelKey
+import dk.nodes.template.presentation.ui.chat.ChatFragment
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
 
@@ -27,6 +28,9 @@ internal abstract class MainActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun ShiftOverviewFragment(): ShiftOverviewFragment
+
+    @ContributesAndroidInjector
+    abstract fun ChatFragment(): ChatFragment
 
 
 
