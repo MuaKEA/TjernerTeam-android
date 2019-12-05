@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dk.nodes.template.models.Shift
 
 import dk.nodes.template.presentation.R
 
@@ -14,11 +15,19 @@ import dk.nodes.template.presentation.R
 class Job_fragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
-
+    private var shift: Shift? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
+        arguments?.let {
+            shift = it.getParcelable("shift")
+        }
+
+
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,7 +40,11 @@ class Job_fragment : Fragment() {
         listener?.onFragmentInteraction(uri)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+
+    }
 
     override fun onDetach() {
         super.onDetach()
@@ -57,10 +70,12 @@ class Job_fragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(shift: Shift) =
                 Job_fragment().apply {
+                    arguments = Bundle().apply {
+                        arguments?.putParcelable("shift", shift)
+                    }
 
                 }
-
     }
 }

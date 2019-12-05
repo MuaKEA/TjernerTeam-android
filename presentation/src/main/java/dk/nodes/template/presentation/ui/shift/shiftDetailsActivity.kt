@@ -6,18 +6,19 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.facebook.CallbackManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.Login.FacebookActivity
 import dk.nodes.template.presentation.ui.base.BaseActivity
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_shift_details_activity.*
+import net.hockeyapp.android.metrics.model.User
 
 class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val viewModel by viewModel<MainActivityViewModel>()
     lateinit var Jobfragment: Fragment
     lateinit var message_fragment: Fragment
-
-
+    var shift: Shift ? = null
     private var shownMenu: Int = 0
 
 
@@ -26,9 +27,16 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shift_details_activity)
 
+        var bundle :Bundle ?=intent.extras
+
+        if(bundle  != null){
+
+            shift =bundle.getParcelable<Shift>("shift") as Shift
+
+        }
 
         top_shiftoverview_menu.setOnNavigationItemSelectedListener(this)
-        Jobfragment = Job_fragment.newInstance()
+        Jobfragment = Job_fragment.newInstance(shift!!)
         message_fragment = Message_fragment.newInstance()
         supportFragmentManager.beginTransaction()
                 .add(R.id.shift_frame, Jobfragment, "1")
@@ -36,6 +44,7 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
                 .show(message_fragment)
                 .hide(Jobfragment)
                 .commit()
+
 
     }
 
@@ -63,7 +72,6 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
 
         return false
     }
-
 
 
 }
