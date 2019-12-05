@@ -9,9 +9,11 @@ import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import kotlinx.android.synthetic.main.shift_recyclerview_row.view.*
 import timber.log.Timber
+import java.time.LocalDate
+import kotlin.collections.ArrayList
 
 
-class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : RecyclerView.Adapter<ViewHolder>() {
+class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : RecyclerView.Adapter<ViewHolder>() {
     var onItemClickedListener: ((shift: Shift) -> Unit?)? = null
     val shifts: ArrayList<Shift> = ArrayList()
 
@@ -25,15 +27,19 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : Re
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val dateWeekDay = shifts[position].eventDate.toString().substring(0,3).toUpperCase()
-        val dateMonth = shifts[position].eventDate.toString().substring(4,7).toUpperCase()
-        val dateMonthDay = shifts[position].eventDate.toString().substring(8,10)
+        val date = LocalDate.parse(shifts[position].eventDate)
+
+        val dateWeekDay = date.dayOfWeek.toString().substring(0, 3).toUpperCase()
+        val dateMonth = date.month.toString().substring(0, 3).toUpperCase()
+        val dateMonthDay = date.dayOfMonth.toString()
 
         holder.customerName?.text = shifts[position].customerName
         holder.eventDateWeekDay?.text = dateWeekDay
         holder.eventDateMonthDay?.text = dateMonthDay
         holder.eventDateMonth?.text = dateMonth
-        holder.salary?.text = "DKK " + shifts[position].salary.toString()
+
+        //accepted by head developer
+        holder.salary?.text = "DKK " + shifts[position].salary?.toBigDecimal()?.setScale(2).toString()
         holder.employee_type?.text = shifts[position].employeeType?.toUpperCase()
 
         if (holder.employee_type.text == "TJENER") {
@@ -41,7 +47,6 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow : Int) : Re
         } else {
             holder.employee_type?.setBackgroundResource(R.drawable.bartender_rounded_corners)
         }
-
 
         holder.eventDuration?.text = shifts[position].eventStart + " - " + shifts[position].eventEnd
         holder.address?.text = shifts[position].address
