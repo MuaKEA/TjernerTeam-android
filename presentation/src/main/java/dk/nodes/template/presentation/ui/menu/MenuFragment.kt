@@ -1,39 +1,48 @@
-package dk.nodes.template.presentation.ui.chat
+package dk.nodes.template.presentation.ui.menu
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import androidx.browser.customtabs.CustomTabsIntent
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_chat.*
-import timber.log.Timber
+import kotlinx.android.synthetic.main.fragment_menu.*
 
-class ChatFragment : BaseFragment() {
+class MenuFragment : BaseFragment() {
 
     private var mainContext: Context? = null
-    private lateinit var webView: WebView
+    //private lateinit var webView: WebView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Timber.e("Created ChatFragmentView")
+        chat_btn.setOnClickListener {
+            val builder = CustomTabsIntent.Builder()
+            val customTabsIntent = builder.build()
+            customTabsIntent.launchUrl(mainContext, Uri.parse("https://m.facebook.com/thomas.tjenerteamet"))
+        }
 
-        webView = web_view
+        faq_btn.setOnClickListener {
+            val builder = CustomTabsIntent.Builder()
+            val customTabsIntent = builder.build()
+            customTabsIntent.launchUrl(mainContext, Uri.parse("http://www.tjenerteamet.dk/faq-app.html"))
+        }
+
+        /*webView = web_view
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 view?.loadUrl(url)
                 return true
             }
         }
-        webView.loadUrl("https://m.facebook.com/thomas.tjenerteamet")
+        webView.loadUrl("https://m.facebook.com/thomas.tjenerteamet")*/
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        return inflater.inflate(R.layout.fragment_menu, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -44,8 +53,7 @@ class ChatFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance() =
-                ChatFragment().apply {
-
+                MenuFragment().apply {
                 }
     }
 
