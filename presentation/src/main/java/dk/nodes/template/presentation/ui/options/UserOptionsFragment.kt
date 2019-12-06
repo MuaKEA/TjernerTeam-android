@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.menu
+package dk.nodes.template.presentation.ui.options
 
 import android.content.Context
 import android.net.Uri
@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_menu.*
+import kotlinx.android.synthetic.main.fragment_user_options.*
 
-class MenuFragment : BaseFragment() {
+class UserOptionsFragment : BaseFragment() {
 
     private var mainContext: Context? = null
-    //private lateinit var webView: WebView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,19 +29,10 @@ class MenuFragment : BaseFragment() {
             val customTabsIntent = builder.build()
             customTabsIntent.launchUrl(mainContext, Uri.parse("http://www.tjenerteamet.dk/faq-app.html"))
         }
-
-        /*webView = web_view
-        webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                view?.loadUrl(url)
-                return true
-            }
-        }
-        webView.loadUrl("https://m.facebook.com/thomas.tjenerteamet")*/
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_menu, container, false)
+        return inflater.inflate(R.layout.fragment_user_options, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -53,7 +43,7 @@ class MenuFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance() =
-                MenuFragment().apply {
+                UserOptionsFragment().apply {
                 }
     }
 

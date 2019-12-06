@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import dk.nodes.template.presentation.injection.ViewModelKey
-import dk.nodes.template.presentation.ui.menu.MenuFragment
+import dk.nodes.template.presentation.ui.options.UserOptionsFragment
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
 
@@ -30,7 +30,7 @@ internal abstract class MainActivityBuilder {
     abstract fun ShiftOverviewFragment(): ShiftOverviewFragment
 
     @ContributesAndroidInjector
-    abstract fun MenuFragment(): MenuFragment
+    abstract fun UserOptionsFragment(): UserOptionsFragment
 
 
 

@@ -15,7 +15,7 @@
         app:cardBackgroundColor="@color/custom_gold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faq_title">
+        app:layout_constraintTop_toBottomOf="@+id/faq_title_txt">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,12 +30,12 @@
                 android:layout_marginBottom="15dp"
                 android:contentDescription="@string/faq"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/faq"
+                app:layout_constraintEnd_toStartOf="@+id/faq_txt"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_help_outline_black_24dp" />
 
             <TextView
-                android:id="@+id/faq"
+                android:id="@+id/faq_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -61,7 +61,7 @@
         app:cardBackgroundColor="@color/custom_gold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chat_title">
+        app:layout_constraintTop_toBottomOf="@+id/chat_title_txt">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -76,12 +76,12 @@
                 android:layout_marginBottom="15dp"
                 android:contentDescription="@string/chat"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/chat"
+                app:layout_constraintEnd_toStartOf="@+id/chat_txt"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_chat_black_24dp" />
 
             <TextView
-                android:id="@+id/chat"
+                android:id="@+id/chat_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -98,7 +98,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/chat_title"
+        android:id="@+id/chat_title_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -107,10 +107,10 @@
         android:text="@string/har_du_behov_for_at_kontakte_os"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title_txt" />
 
     <TextView
-        android:id="@+id/faq_title"
+        android:id="@+id/faq_title_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -122,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@+id/chat_btn" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/title_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"

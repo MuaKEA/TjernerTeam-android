@@ -9,7 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
-import dk.nodes.template.presentation.ui.menu.MenuFragment
+import dk.nodes.template.presentation.ui.options.UserOptionsFragment
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,7 +20,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
     private var shownMenu: Int = 0
     lateinit var shiftOverviewFragment: Fragment
-    lateinit var menuFragment: Fragment
+    lateinit var userOptionsFragment : Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,14 +48,14 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
 
         shiftOverviewFragment = ShiftOverviewFragment.newInstance()
-        menuFragment = MenuFragment.newInstance()
+        userOptionsFragment = UserOptionsFragment.newInstance()
 
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.main_frame, shiftOverviewFragment, "1")
-                .add(R.id.main_frame, menuFragment, "2")
+                .add(R.id.main_frame, userOptionsFragment, "2")
                 .show(shiftOverviewFragment)
-                .hide(menuFragment)
+                .hide(userOptionsFragment)
                 .commit()
     }
 
@@ -67,11 +67,11 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             R.id.available_jobs -> {
                 supportFragmentManager.beginTransaction()
                         .show(shiftOverviewFragment)
-                        .hide(menuFragment).commit()
+                        .hide(userOptionsFragment).commit()
             }
             R.id.other_options -> {
                 supportFragmentManager.beginTransaction()
-                        .show(menuFragment)
+                        .show(userOptionsFragment)
                         .hide(shiftOverviewFragment)
                         .commit()
             }
