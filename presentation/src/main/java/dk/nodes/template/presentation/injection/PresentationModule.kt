@@ -8,7 +8,7 @@ import dk.nodes.template.presentation.ui.splash.SplashBuilder
 @Module(includes = [
     MainActivityBuilder::class,
     SplashBuilder::class,
-            LoginBuilder::class
+    LoginBuilder::class
 
 ])
 class PresentationModule

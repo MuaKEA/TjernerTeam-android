@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import dk.nodes.template.presentation.injection.ViewModelKey
+import dk.nodes.template.presentation.ui.options.UserOptionsFragment
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
 
@@ -23,10 +24,13 @@ internal abstract class MainActivityBuilder {
             SampleBuilder::class
         ]
     )
-    internal abstract fun mainActivity(): MainActivity
+    abstract fun MainActivity(): MainActivity
 
     @ContributesAndroidInjector
     abstract fun ShiftOverviewFragment(): ShiftOverviewFragment
+
+    @ContributesAndroidInjector
+    abstract fun UserOptionsFragment(): UserOptionsFragment
 
 
 

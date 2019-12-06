@@ -3,9 +3,9 @@
     package="dk.nodes.template.presentation">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application>
         <activity android:name=".ui.shift.ShiftOverviewFragment"></activity>
+        <activity android:name=".ui.options.UserOptionsFragment"></activity>
         <activity
             android:name=".ui.main.MainActivity"
             android:configChanges="orientation"
