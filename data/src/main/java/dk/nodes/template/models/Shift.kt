@@ -8,92 +8,105 @@ import java.util.*
 
 data class Shift(
         @SerializedName("address")
-        var address : String?,
-        @SerializedName("city")
-        var city : String?,
+        var address: String?,
         @SerializedName("salary")
-        var salary : Double?,
-        @SerializedName("employee_type")
-        var employeeType : String?,
-        @SerializedName("event_name")
-        var eventName : String?,
-        @SerializedName("event_date")
-        var eventDate : String?,
-        @SerializedName("start_time")
-        var startTime : String?,
-        @SerializedName("end_time")
-        var endTime : String?,
-        @SerializedName("customer_name")
-        var customerName : String?,
-        @SerializedName("number_of_employees")
-        var numberOfEmployees : Int?,
-        @SerializedName("event_description")
-        var eventDescription : String?,
-        @SerializedName("dress_code")
-        var dressCode : String?,
-        @SerializedName("staff_food")
-        var staffFood : String?,
-        @SerializedName("transport_supplements")
-        var transportSupplements : Boolean?,
-        @SerializedName("post_code")
-        var postcode : Int?,
+        var salary: Double?,
+        @SerializedName("employeeType")
+        var employeeType: String?,
+        @SerializedName("eventName")
+        var eventName: String?,
+        @SerializedName("eventDate")
+        var eventDate: String?,
+        @SerializedName("eventStart")
+        var eventStart: String?,
+        @SerializedName("eventEnd")
+        var eventEnd: String?,
+        @SerializedName("customerName")
+        var customerName: String?,
+        @SerializedName("numberOfEmployees")
+        var numberOfEmployees: Int?,
+        @SerializedName("eventDescription")
+        var eventDescription: String?,
+        @SerializedName("dressCode")
+        var dressCode: String?,
+        @SerializedName("paymentDate")
+        var paymentDate: String?,
+        @SerializedName("startTime")
+        var startTime: String?,
+        @SerializedName("endTime")
+        var endTime: String?,
+        @SerializedName("staffFood")
+        var staffFood: String?,
+        @SerializedName("transportSupplements")
+        var transportSupplements: String?,
         @SerializedName("overtime")
-        var overtime : Int?,
-        @SerializedName("payment_date")
-        var paymentDate : String?
-) :Parcelable{
-        constructor(parcel: Parcel) : this(
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readValue(Double::class.java.classLoader) as? Double,
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readValue(Int::class.java.classLoader) as? Int,
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readString(),
-                parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
-                parcel.readValue(Int::class.java.classLoader) as? Int,
-                parcel.readValue(Int::class.java.classLoader) as? Int,
-                parcel.readString()){
+        var overtime: String?,
+        @SerializedName("city")
+        var city: String?,
+        @SerializedName("postCodes")
+        var postCode: PostCode?) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readValue(Double::class.java.classLoader) as? Double,
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readValue(Int::class.java.classLoader) as? Int,
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readParcelable(PostCode::class.java.classLoader)) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(address)
+        parcel.writeValue(salary)
+        parcel.writeString(employeeType)
+        parcel.writeString(eventName)
+        parcel.writeString(eventDate)
+        parcel.writeString(eventStart)
+        parcel.writeString(eventEnd)
+        parcel.writeString(customerName)
+        parcel.writeValue(numberOfEmployees)
+        parcel.writeString(eventDescription)
+        parcel.writeString(dressCode)
+        parcel.writeString(paymentDate)
+        parcel.writeString(startTime)
+        parcel.writeString(endTime)
+        parcel.writeString(staffFood)
+        parcel.writeString(transportSupplements)
+        parcel.writeString(overtime)
+        parcel.writeString(city)
+        parcel.writeParcelable(postCode, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Shift> {
+        override fun createFromParcel(parcel: Parcel): Shift {
+            return Shift(parcel)
         }
 
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-                parcel.writeString(address)
-                parcel.writeString(city)
-                parcel.writeValue(salary)
-                parcel.writeString(employeeType)
-                parcel.writeString(eventName)
-                parcel.writeString(eventDate)
-                parcel.writeString(startTime)
-                parcel.writeString(endTime)
-                parcel.writeString(customerName)
-                parcel.writeValue(numberOfEmployees)
-                parcel.writeString(eventDescription)
-                parcel.writeString(dressCode)
-                parcel.writeString(staffFood)
-                parcel.writeValue(transportSupplements)
-                parcel.writeValue(postcode)
-                parcel.writeValue(overtime)
-                parcel.writeValue(paymentDate)
-
+        override fun newArray(size: Int): Array<Shift?> {
+            return arrayOfNulls(size)
         }
+    }
 
-        override fun describeContents(): Int {
-                return 0
-        }
 
-        companion object CREATOR : Parcelable.Creator<Shift> {
-                override fun createFromParcel(parcel: Parcel): Shift {
-                        return Shift(parcel)
-                }
-
-                override fun newArray(size: Int): Array<Shift?> {
-                        return arrayOfNulls(size)
-                }
-        }
 }
+
+
+
+
+

@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
@@ -32,11 +33,11 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
         var bundle: Bundle? = intent.extras
 
-        /*if (bundle != null) {
+        if (bundle?.getParcelable<FacebookUser?>("user") != null) {
 
-            val user: FacebookUser = (bundle.getParcelable<FacebookUser?>("user") as FacebookUser?)!!
-            viewModel.saveUser(user)
-        }*/
+            val user: FacebookUser? = (bundle.getParcelable<FacebookUser?>("user") as FacebookUser?)
+            user?.let { viewModel.saveUser(it) }
+        }
 
 
 
