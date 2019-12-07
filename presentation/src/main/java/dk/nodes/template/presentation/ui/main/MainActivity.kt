@@ -34,10 +34,10 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
         var bundle: Bundle? = intent.extras
 
-        if (bundle != null) {
+        if (bundle?.getParcelable<FacebookUser?>("user") != null) {
 
-            val user: FacebookUser = (bundle.getParcelable<FacebookUser?>("user") as FacebookUser?)!!
-            viewModel.saveUser(user)
+            val user: FacebookUser? = (bundle.getParcelable<FacebookUser?>("user") as FacebookUser?)
+            user?.let { viewModel.saveUser(it) }
         }
 
 

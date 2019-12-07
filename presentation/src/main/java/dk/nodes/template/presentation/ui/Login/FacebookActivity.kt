@@ -1,14 +1,15 @@
 package dk.nodes.template.presentation.ui.Login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
-import com.facebook.FacebookActivity
+import com.facebook.internal.WebDialog
 import com.facebook.login.LoginResult
-import com.squareup.picasso.Picasso
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.main.MainActivity
@@ -28,6 +29,20 @@ class FacebookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_facebook)
 
+        FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+
+                    // Get new Instance ID token
+                    val token = task.result?.token
+                    Log.d("tupac",token)
+                    // Log and toast
+                })
+
+
+
         val accessToken = AccessToken.getCurrentAccessToken()
         mainActivityIntent = Intent(this, MainActivity::class.java)
 
@@ -46,8 +61,6 @@ class FacebookActivity : AppCompatActivity() {
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Timber.e(loginResult.toString())
-                Log.d("testo", "1")
-
                 // Retrieving access token using the LoginResult
                 val accessToken = loginResult.accessToken
                 useLoginInformation(accessToken)
@@ -107,12 +120,12 @@ class FacebookActivity : AppCompatActivity() {
             override fun onSuccess(loginResult: LoginResult) {
                 val accessToken = loginResult.accessToken
 
+                Log.d("tupac", "3")
 
 
                 useLoginInformation(accessToken)
                 startActivity(mainActivityIntent)
 
-                Log.d("tupac", "3")
 
             }
 
