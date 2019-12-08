@@ -22,6 +22,7 @@ import com.facebook.AccessToken
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.facebook.login.LoginManager
+import com.squareup.picasso.Picasso
 import dk.nodes.template.models.Shift
 
 
@@ -42,23 +43,15 @@ class FacebookActivity : AppCompatActivity() {
                         return@OnCompleteListener
                     }
 
-                    // Get new Instance ID token
                     val token = task.result?.token
-                    Log.d("tupac",token)
-                    // Log and toast
                 })
 
 
 
-        val accessToken = AccessToken.getCurrentAccessToken()
 
         Timber.e("Intent information: " + intent.getParcelableExtra("shift"))
         shiftDetailsActivityIntent = Intent(this, shiftDetailsActivity::class.java)
 
-        /*if (accessToken != null) {
-            shiftDetailsActivityIntent.putExtra("id", accessToken.userId)
-            startActivity(shiftDetailsActivityIntent)
-        }*/
 
 
         var loginButton = login_button
@@ -93,7 +86,6 @@ class FacebookActivity : AppCompatActivity() {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager.onActivityResult(requestCode, resultCode, data)
-        Log.d("tupac", "0")
 
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -108,7 +100,6 @@ class FacebookActivity : AppCompatActivity() {
                 val emails = `object`.getString("email")
                 val image = `object`.getJSONObject("picture").getJSONObject("data").getString("url")
                 val id = `object`.getString("id")
-
                 shiftDetailsActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
                 shiftDetailsActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null))
 
