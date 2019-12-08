@@ -41,8 +41,7 @@
             android:name="net.hockeyapp.android.appIdentifier"
             android:value="${HOCKEYAPP_APP_ID}" />
 
-        <activity android:name="dk.nodes.template.presentation.ui.Login.FacebookActivity"
-            android:theme="@style/NoToolbarAppTheme">
+        <activity android:name="dk.nodes.template.presentation.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

@@ -10,6 +10,8 @@
         android:layout_width="350dp"
         android:layout_height="match_parent"
         android:layout_margin="1dp"
+        android:clickable="true"
+        android:id="@+id/shift_cardview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

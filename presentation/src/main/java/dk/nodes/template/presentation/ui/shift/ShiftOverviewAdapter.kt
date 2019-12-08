@@ -65,7 +65,7 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
 
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val root = view.customer_name
+    val root = view.shift_cardview
     val customerName = view.customer_name
     val eventDateWeekDay = view.event_date_weekday
     val eventDateMonthDay = view.event_date_monthday

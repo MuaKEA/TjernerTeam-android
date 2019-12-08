@@ -3,8 +3,6 @@ package dk.nodes.template.models
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDate
-import java.util.*
 
 data class Shift(
         @SerializedName("address")
@@ -17,10 +15,6 @@ data class Shift(
         var eventName: String?,
         @SerializedName("eventDate")
         var eventDate: String?,
-        @SerializedName("eventStart")
-        var eventStart: String?,
-        @SerializedName("eventEnd")
-        var eventEnd: String?,
         @SerializedName("customerName")
         var customerName: String?,
         @SerializedName("numberOfEmployees")
@@ -52,8 +46,6 @@ data class Shift(
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
             parcel.readValue(Int::class.java.classLoader) as? Int,
             parcel.readString(),
             parcel.readString(),
@@ -73,8 +65,6 @@ data class Shift(
         parcel.writeString(employeeType)
         parcel.writeString(eventName)
         parcel.writeString(eventDate)
-        parcel.writeString(eventStart)
-        parcel.writeString(eventEnd)
         parcel.writeString(customerName)
         parcel.writeValue(numberOfEmployees)
         parcel.writeString(eventDescription)

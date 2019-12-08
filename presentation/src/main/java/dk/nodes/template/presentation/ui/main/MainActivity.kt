@@ -31,7 +31,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
 
-        var bundle: Bundle? = intent.extras
+        /*var bundle: Bundle? = intent.extras
 
         if (bundle?.getParcelable<FacebookUser?>("user") != null) {
 
@@ -43,7 +43,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
         viewModel.viewState.observeNonNull(this) { state ->
             handleErrors(state)
-        }
+        }*/
 
         bottomNavigation_Main.setOnNavigationItemSelectedListener(this)
 
@@ -84,11 +84,11 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     }
 
 
-private fun handleErrors(state: MainActivityViewState) {
+/*private fun handleErrors(state: MainActivityViewState) {
     state.viewError?.let {
         Toast.makeText(this, "something went wrong", Toast.LENGTH_LONG).show()
     }
-}
+}*/
 }
 
 

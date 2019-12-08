@@ -9,6 +9,7 @@ import dk.nodes.template.presentation.injection.ViewModelKey
 import dk.nodes.template.presentation.ui.options.UserOptionsFragment
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
+import dk.nodes.template.presentation.ui.shift.shiftDetailsActivity
 
 
 @Module
@@ -28,6 +29,9 @@ internal abstract class MainActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun ShiftOverviewFragment(): ShiftOverviewFragment
+
+    @ContributesAndroidInjector
+    abstract fun shiftDetailsActivity(): shiftDetailsActivity
 
     @ContributesAndroidInjector
     abstract fun UserOptionsFragment(): UserOptionsFragment
