@@ -44,44 +44,24 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
         }
 
         val shift = intent.getParcelableExtra<Shift>("shift")
+        Jobfragment = Job_fragment.newInstance(shift)
 
         Timber.e("Facebook intent information: " + intent.getParcelableExtra<Shift>("shift") + "Shift address: " + shift.address)
 
 
-        val date = LocalDate.parse(shift.eventDate)
 
-        val dateWeekDay = date.dayOfWeek.toString().substring(0, 3).toUpperCase()
-        val dateMonth = date.month.toString().substring(0, 3).toUpperCase()
-        val dateMonthDay = date.dayOfMonth.toString()
-
-        costumer_name?.text = "hallo"
-        address_city?.text = shift.city
-        event_date_month2?.text = dateMonth
-        event_date_monthday2?.text = dateMonthDay
-        event_date_weekday2?.text = dateWeekDay
-        salary2?.text = shift.salary.toString()
-        paymentDate?.text = shift.paymentDate
-        event_type?.text = shift.eventName
-        employee_type2?.text = shift.employeeType
-        event_description2?.text = shift.eventDescription
-        address2?.text = shift.address
-        dress_code?.text = shift.dressCode
-        staffFood?.text = shift.staffFood
-        overtime?.text = shift.overtime
-        transport?.text = shift.transportSupplements
 
         viewModel.viewState.observeNonNull(this) { state ->
             handleErrors(state)
         }
 
         top_shiftoverview_menu.setOnNavigationItemSelectedListener(this)
-        Jobfragment = Job_fragment.newInstance()
         message_fragment = Message_fragment.newInstance()
         supportFragmentManager.beginTransaction()
                 .add(R.id.shift_frame, Jobfragment, "1")
                 .add(R.id.shift_frame,message_fragment,"2")
-                .show(message_fragment)
-                .hide(Jobfragment)
+                .show(Jobfragment)
+                .hide(message_fragment)
                 .commit()
 
     }
