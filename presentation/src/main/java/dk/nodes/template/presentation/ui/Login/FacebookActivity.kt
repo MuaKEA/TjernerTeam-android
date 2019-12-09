@@ -1,114 +1,106 @@
 package dk.nodes.template.presentation.ui.Login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.facebook.login.LoginResult
-import com.squareup.picasso.Picasso
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.ui.main.MainActivity
+import dk.nodes.template.presentation.ui.shift.shiftDetailsActivity
 import kotlinx.android.synthetic.main.activity_facebook.*
 import org.json.JSONException
 import timber.log.Timber
 import java.util.*
+import com.facebook.AccessToken
+import com.facebook.login.LoginManager
+import dk.nodes.template.models.Shift
 
 
 class FacebookActivity : AppCompatActivity() {
 
     val callbackManager = CallbackManager.Factory.create()
-    lateinit var mainActivityIntent :Intent
+    lateinit var shiftDetailsActivityIntent: Intent
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_facebook)
-        mainActivityIntent = Intent(this,MainActivity::class.java)
+        updateWithToken(AccessToken.getCurrentAccessToken())
 
-        var loginButton = login_button
-         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
+        FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+                })
 
+        shiftDetailsActivityIntent = Intent(this, shiftDetailsActivity::class.java)
 
-        // Creating CallbackManager
-        // Registering CallbackManager with the LoginButton
+        val loginButton = login_button
+        loginButton.setReadPermissions(Arrays.asList("email", "public_profile"))
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-               Timber.e(loginResult.toString())
-
-                // Retrieving access token using the LoginResult
+                Timber.e(loginResult.toString())
                 val accessToken = loginResult.accessToken
                 useLoginInformation(accessToken)
             }
 
             override fun onCancel() {}
             override fun onError(error: FacebookException) {}
+
+
         })
-
-
 
 
     }
 
-    public override fun onActivityResult(requestCode: Int, resulrCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resulrCode, data)
-        super.onActivityResult(requestCode, resulrCode, data)
+    private fun updateWithToken(currentAccessToken: AccessToken?) {
+
+        if (currentAccessToken != null) {
+            LoginManager.getInstance().logOut()
+        }
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+
+        super.onActivityResult(requestCode, resultCode, data)
 
 
     }
 
     private fun useLoginInformation(accessToken: AccessToken) {
-        /**
-         * Creating the GraphRequest to fetch user details
-         * 1st Param - AccessToken
-         * 2nd Param - Callback (which will be invoked once the request is successful)
-         */
         val request = GraphRequest.newMeRequest(accessToken) { `object`, response ->
-            //OnCompleted is invoked once the GraphRequest is successful
             try {
-                var name = `object`.getString("name")
+                val name = `object`.getString("name")
                 val emails = `object`.getString("email")
-                val image = `object`.getJSONObject("picture").getJSONObject("data").getString("url")
-                val id =  `object`.getString("id")
+                val id = `object`.getString("id")
+                shiftDetailsActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
+                shiftDetailsActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null))
 
-                Log.d("tupac" , "1")
-                mainActivityIntent.putExtra("name",name);
-                mainActivityIntent.putExtra("email",emails)
-                mainActivityIntent.putExtra("id",id)
-                startActivity(mainActivityIntent)
+                startActivity(shiftDetailsActivityIntent)
+                finish()
 
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
         }
-        // We set parameters to the GraphRequest using a Bundle.
+
         val parameters = Bundle()
         parameters.putString("fields", "id,name,email,picture.width(200)")
         request.parameters = parameters
-        Log.d("facebook" , "2")
-
-        if(parameters != null){
-           Log.d("tupac" , parameters.get("fields").toString())
-
-
-        }
-
 
         request.executeAsync()
-
 
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 val accessToken = loginResult.accessToken
 
-
-
                 useLoginInformation(accessToken)
-                startActivity(mainActivityIntent)
-
-                Log.d("tupac" , "3")
-
+                startActivity(shiftDetailsActivityIntent)
             }
 
             override fun onCancel() {}
@@ -117,7 +109,4 @@ class FacebookActivity : AppCompatActivity() {
 
 
     }
-
-
-
 }

@@ -2,21 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/notification"
+        android:id="@+id/available_jobs"
         android:icon="@drawable/ic_star_black_24dp"
-        android:title="@string/Notification" />
-
-    <item
-        android:id="@+id/Chat"
-        android:icon="@drawable/ic_chat_black_24dp"
-        android:title="@string/chat" />
-
-
-    <item
-        android:id="@+id/navigation_faq"
-        android:icon="@drawable/ic_help_outline_black_24dp"
-        android:title="@string/faq" />
-
+        android:title="@string/available" />
 
     <item
         android:id="@+id/navigation_endjob"
@@ -27,6 +15,11 @@
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_account_box_black_24dp"
         android:title="@string/profile" />
+
+    <item
+        android:id="@+id/other_options"
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:title="@string/other_options" />
 
 </menu>
 

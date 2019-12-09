@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">presentation</string>
-    <string name="Notification">Notification</string>
-    <string name="chat">Chat</string>
-    <string name="faq">FAQ</string>
+    <string name="available">Ledige jobs</string>
+    <string name="chat">Chat med os</string>
+    <string name="faq">Læs FAQ</string>
     <string name="end_job">Afslut Job</string>
     <string name="profile">Profil</string>
     <string name="job_info">Job Info</string>
@@ -33,12 +33,25 @@
     <string name="jobs_du_kan_s_ge">JOBS DU KAN SØGE</string>
     <string name="obs_er_jobbet_der_ikke_s_er_den_allerede_besat">OBS: Er jobbet der ikke, så er den allerede besat</string>
     <string name="mustLogin_txt">For at bruge appen, skal du logge ind via. Facebook</string>
+    <string name="other_options">Mere</string>
+    <string name="har_du_behov_for_at_kontakte_os">Har du behov for at kontakte os</string>
+    <string name="her_finder_du_svar_p_ofte_stillede_sp_rgsm_l">Her finder du svar på ofte stillede spørgsmål</string>
+    <string name="mere">Mere</string>
+    <string name="logo">Logo</string>
     <string name="overarbejde">Overarbejde</string>
     <string name="hvor">Hvor</string>
     <string name="personalemad">Personalemad</string>
     <string name="p_kl_dning">Påklædning</string>
-    <string name="paaklaedning" />
     <string name="transport_tillaeg">Transport Tillaeg</string>
+    <string name="ans_g_job">Ansøg Job</string>
+    <string name="slash">/</string>
+    <string name="hyphen">-</string>
+    <string name="intet_tillaeg">Intet tillæg</string>
+    <string name="tillaeg">Ja</string>
+    <string name="moneybagicon">moneybagicon</string>
+    <string name="tjenerteamet_logo">tjenerteamet logo</string>
+    <string name="calender_icon">calender icon</string>
+    <string name="udbetales">Udbetales</string>
 
 
 </resources>

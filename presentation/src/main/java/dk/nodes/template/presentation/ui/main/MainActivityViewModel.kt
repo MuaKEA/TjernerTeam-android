@@ -2,6 +2,7 @@ package dk.nodes.template.presentation.ui.main
 
 import androidx.lifecycle.viewModelScope
 import dk.nodes.template.domain.interactors.*
+import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.extensions.asResult
 import dk.nodes.template.presentation.nstack.NStackPresenter
@@ -15,7 +16,9 @@ import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(
         private val nStackPresenter: NStackPresenter,
-        private val fetchShiftsInteractor: FetchShiftsInteractor
+        private val fetchShiftsInteractor: FetchShiftsInteractor,
+        private val saveUserProgileInteractor: SaveUserProfileInteractor
+
 
 
 
@@ -43,7 +46,23 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
+    fun saveUser(facebookUser: FacebookUser) =  viewModelScope.launch {
 
+        val result = withContext(Dispatchers.IO) { saveUserProgileInteractor.asResult().invoke(facebookUser)}
+        state = saveFacebookUserResualt(result)
+
+    }
+
+    private fun saveFacebookUserResualt(result: CompleteResult<Unit>): MainActivityViewState {
+        return when (result) {
+            is Fail -> state.copy(
+                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
+                    isLoading = false
+            )
+            else -> (MainActivityViewState())
+        }
+
+    }
 
     }
 
