@@ -42,8 +42,16 @@
     <string name="hvor">Hvor</string>
     <string name="personalemad">Personalemad</string>
     <string name="p_kl_dning">Påklædning</string>
-    <string name="paaklaedning" />
     <string name="transport_tillaeg">Transport Tillaeg</string>
+    <string name="ans_g_job">Ansøg Job</string>
+    <string name="slash">/</string>
+    <string name="hyphen">-</string>
+    <string name="intet_tillaeg">Intet tillæg</string>
+    <string name="tillaeg">Ja</string>
+    <string name="moneybagicon">moneybagicon</string>
+    <string name="tjenerteamet_logo">tjenerteamet logo</string>
+    <string name="calender_icon">calender icon</string>
+    <string name="udbetales">Udbetales</string>
 
 
 </resources>

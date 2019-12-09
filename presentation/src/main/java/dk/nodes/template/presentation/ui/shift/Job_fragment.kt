@@ -10,6 +10,7 @@ import dk.nodes.template.models.Shift
 
 import dk.nodes.template.presentation.R
 import kotlinx.android.synthetic.main.fragment_job_fragment.*
+import kotlinx.android.synthetic.main.shift_recyclerview_row.*
 import java.time.LocalDate
 
 private const val shiftArg = "shift"
@@ -44,17 +45,17 @@ class Job_fragment : Fragment() {
 
         val date = LocalDate.parse(shift?.eventDate)
 
-        val dateWeekDay = date.dayOfWeek.toString().substring(0, 3).toUpperCase()
-        val dateMonth = date.month.toString().substring(0, 3).toUpperCase()
+        val dateWeekDay = date.dayOfWeek.toString().substring(0, 3) + "."
+        val dateMonth = date.monthValue.toString()
         val dateMonthDay = date.dayOfMonth.toString()
 
 
-        costumer_name?.text = "hallo"
+        costumer_name?.text = shift?.customerName
         address_city?.text = shift?.city
         event_date_month2?.text = dateMonth
         event_date_monthday2?.text = dateMonthDay
         event_date_weekday2?.text = dateWeekDay
-        salary2?.text = shift?.salary.toString()
+        salary2?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
         paymentDate?.text = shift?.paymentDate
         event_type?.text = shift?.eventName
         employee_type2?.text = shift?.employeeType
@@ -63,7 +64,14 @@ class Job_fragment : Fragment() {
         dress_code?.text = shift?.dressCode
         staffFood?.text = shift?.staffFood
         overtime?.text = shift?.overtime
-        transport?.text = shift?.transportSupplements
+        event_duration_txt?.text = shift?.startTime + " - " + shift?.endTime
+
+        transport?.text = shift?.transportSupplements.toString()
+        if (transport.text == "true"){
+            transport.text = getString(R.string.tillaeg)
+        } else {
+            transport.text = getString(R.string.intet_tillaeg)
+        }
 
 
     }

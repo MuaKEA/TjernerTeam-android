@@ -1,25 +1,18 @@
 package dk.nodes.template.presentation.ui.shift
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.facebook.CallbackManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.ui.Login.FacebookActivity
 import dk.nodes.template.presentation.ui.base.BaseActivity
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
 import kotlinx.android.synthetic.main.activity_shift_details_activity.*
-import kotlinx.android.synthetic.main.fragment_job_fragment.*
-import kotlinx.android.synthetic.main.shift_recyclerview_row.*
 import timber.log.Timber
-import java.time.LocalDate
 
 class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val viewModel by viewModel<MainActivityViewModel>()
@@ -35,21 +28,16 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shift_details_activity)
 
-        var bundle: Bundle? = intent.extras
+        val bundle: Bundle? = intent.extras
 
         if (bundle?.getParcelable<FacebookUser?>("user") != null) {
 
-            val user: FacebookUser? = (bundle.getParcelable<FacebookUser?>("user") as FacebookUser?)
+            val user: FacebookUser? = (bundle.getParcelable<FacebookUser?>("user"))
             user?.let { viewModel.saveUser(it) }
         }
 
         val shift = intent.getParcelableExtra<Shift>("shift")
         Jobfragment = Job_fragment.newInstance(shift)
-
-        Timber.e("Facebook intent information: " + intent.getParcelableExtra<Shift>("shift") + "Shift address: " + shift.address)
-
-
-
 
         viewModel.viewState.observeNonNull(this) { state ->
             handleErrors(state)
@@ -88,12 +76,12 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
         shownMenu = item.itemId
 
 
-        return false
+        return true
     }
 
     private fun handleErrors(state: MainActivityViewState) {
         state.viewError?.let {
-            Toast.makeText(this, "something went wrong", Toast.LENGTH_LONG).show()
+            Timber.e("Something went wrong")
         }
     }
 

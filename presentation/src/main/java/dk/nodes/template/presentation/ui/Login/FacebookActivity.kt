@@ -2,27 +2,20 @@ package dk.nodes.template.presentation.ui.Login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
-import com.facebook.internal.WebDialog
 import com.facebook.login.LoginResult
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.ui.base.BaseActivity
 import dk.nodes.template.presentation.ui.shift.shiftDetailsActivity
 import kotlinx.android.synthetic.main.activity_facebook.*
 import org.json.JSONException
 import timber.log.Timber
 import java.util.*
 import com.facebook.AccessToken
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.facebook.login.LoginManager
-import com.squareup.picasso.Picasso
 import dk.nodes.template.models.Shift
 
 
@@ -42,28 +35,15 @@ class FacebookActivity : AppCompatActivity() {
                     if (!task.isSuccessful) {
                         return@OnCompleteListener
                     }
-
-                    val token = task.result?.token
                 })
 
-
-
-
-        Timber.e("Intent information: " + intent.getParcelableExtra("shift"))
         shiftDetailsActivityIntent = Intent(this, shiftDetailsActivity::class.java)
 
-
-
-        var loginButton = login_button
-        loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
-
-
-        // Creating CallbackManager
-        // Registering CallbackManager with the LoginButton
+        val loginButton = login_button
+        loginButton.setReadPermissions(Arrays.asList("email", "public_profile"))
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 Timber.e(loginResult.toString())
-                // Retrieving access token using the LoginResult
                 val accessToken = loginResult.accessToken
                 useLoginInformation(accessToken)
             }
@@ -94,11 +74,9 @@ class FacebookActivity : AppCompatActivity() {
 
     private fun useLoginInformation(accessToken: AccessToken) {
         val request = GraphRequest.newMeRequest(accessToken) { `object`, response ->
-            //OnCompleted is invoked once the GraphRequest is successful
             try {
-                var name = `object`.getString("name")
+                val name = `object`.getString("name")
                 val emails = `object`.getString("email")
-                val image = `object`.getJSONObject("picture").getJSONObject("data").getString("url")
                 val id = `object`.getString("id")
                 shiftDetailsActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
                 shiftDetailsActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null))
@@ -110,26 +88,16 @@ class FacebookActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
-        // We set parameters to the GraphRequest using a Bundle.
+
         val parameters = Bundle()
         parameters.putString("fields", "id,name,email,picture.width(200)")
         request.parameters = parameters
-        Log.d("testo", "2")
-
-        if (parameters != null) {
-            Log.d("tupac", parameters.get("fields").toString())
-
-
-        }
-
 
         request.executeAsync()
 
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 val accessToken = loginResult.accessToken
-
-                Log.d("tupac", "3")
 
                 useLoginInformation(accessToken)
                 startActivity(shiftDetailsActivityIntent)

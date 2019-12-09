@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shift_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -56,7 +55,6 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center|bottom"
                 android:textColor="#B53737"
-                app:layout_constraintBottom_toTopOf="@+id/event_date_monthday"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +69,9 @@
                 android:textSize="23sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/event_date_month"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_date_weekday"
+                app:layout_constraintVertical_bias="0.35000002" />
 
             <TextView
                 android:id="@+id/event_date_month"
@@ -100,7 +100,7 @@
             <TextView
                 android:id="@+id/address"
                 android:layout_width="302dp"
-                android:layout_height="18dp"
+                android:layout_height="19dp"
                 android:layout_gravity="center_horizontal|bottom"
                 android:fontFamily="sans-serif"
                 android:gravity="center|start"
@@ -123,7 +123,7 @@
             <TextView
                 android:id="@+id/customer_name"
                 android:layout_width="302dp"
-                android:layout_height="17dp"
+                android:layout_height="19dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center|start"
                 android:textSize="15sp"
@@ -140,6 +140,7 @@
                 android:layout_height="15dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
+                android:contentDescription="@string/moneybagicon"
                 app:layout_constraintStart_toEndOf="@+id/event_duration"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/money_bag" />
