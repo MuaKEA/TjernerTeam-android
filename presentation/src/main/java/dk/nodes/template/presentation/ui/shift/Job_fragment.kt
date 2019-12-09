@@ -10,7 +10,6 @@ import dk.nodes.template.models.Shift
 
 import dk.nodes.template.presentation.R
 import kotlinx.android.synthetic.main.fragment_job_fragment.*
-import kotlinx.android.synthetic.main.shift_recyclerview_row.*
 import java.time.LocalDate
 
 private const val shiftArg = "shift"
@@ -55,22 +54,22 @@ class Job_fragment : Fragment() {
         event_date_month2?.text = dateMonth
         event_date_monthday2?.text = dateMonthDay
         event_date_weekday2?.text = dateWeekDay
-        salary2?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
-        paymentDate?.text = shift?.paymentDate
-        event_type?.text = shift?.eventName
-        employee_type2?.text = shift?.employeeType
-        event_description2?.text = shift?.eventDescription
-        address2?.text = shift?.address
-        dress_code?.text = shift?.dressCode
-        staffFood?.text = shift?.staffFood
-        overtime?.text = shift?.overtime
+        salary_field?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
+        payment_day_field?.text = shift?.paymentDate
+        event_type_field_shift?.text = shift?.eventName
+        employee_type_field_shift?.text = shift?.employeeType
+        event_description_field_shift?.text = shift?.eventDescription
+        address_field?.text = shift?.address
+        dress_code_field?.text = shift?.dressCode
+        staffFood_field?.text = shift?.staffFood
+        overtime_field?.text = shift?.overtime
         event_duration_txt?.text = shift?.startTime + " - " + shift?.endTime
 
-        transport?.text = shift?.transportSupplements.toString()
-        if (transport.text == "true"){
-            transport.text = getString(R.string.tillaeg)
+        transport_field?.text = shift?.transportSupplements.toString()
+        if (transport_field.text == "true"){
+            transport_field.text = getString(R.string.tillaeg)
         } else {
-            transport.text = getString(R.string.intet_tillaeg)
+            transport_field.text = getString(R.string.intet_tillaeg)
         }
 
 

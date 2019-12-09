@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
+import kotlinx.android.synthetic.main.fragment_job_fragment.view.*
 import kotlinx.android.synthetic.main.shift_recyclerview_row.view.*
 import timber.log.Timber
 import java.time.LocalDate
@@ -71,8 +72,8 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val eventDateMonthDay = view.event_date_monthday
     val eventDateMonth = view.event_date_month
     val salary = view.salary
-    val employee_type = view.employee_type
+    val employee_type = view.employee_type_field_shift
     val eventDuration = view.costumer_name
-    val address = view.address_by
-    val eventDescription = view.event_description
+    val address = view.address_txt
+    val eventDescription = view.event_description_field_shift
 }

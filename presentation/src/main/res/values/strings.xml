@@ -38,12 +38,12 @@
     <string name="her_finder_du_svar_p_ofte_stillede_sp_rgsm_l">Her finder du svar på ofte stillede spørgsmål</string>
     <string name="mere">Mere</string>
     <string name="logo">Logo</string>
-    <string name="overarbejde">Overarbejde</string>
-    <string name="hvor">Hvor</string>
-    <string name="personalemad">Personalemad</string>
-    <string name="p_kl_dning">Påklædning</string>
-    <string name="transport_tillaeg">Transport Tillaeg</string>
-    <string name="ans_g_job">Ansøg Job</string>
+    <string name="overtime">Overarbejde</string>
+    <string name="where">Hvor</string>
+    <string name="staff_food">Personalemad</string>
+    <string name="dress_code">Påklædning</string>
+    <string name="transport_allowance">Transport Tillæg</string>
+    <string name="apply_btn">Ansøg Job</string>
     <string name="slash">/</string>
     <string name="hyphen">-</string>
     <string name="intet_tillaeg">Intet tillæg</string>
@@ -51,7 +51,7 @@
     <string name="moneybagicon">moneybagicon</string>
     <string name="tjenerteamet_logo">tjenerteamet logo</string>
     <string name="calender_icon">calender icon</string>
-    <string name="udbetales">Udbetales</string>
-
+    <string name="paid">Udbetales</string>
+    <string name="message">Du har ikke adgang. Du kan kun se beskeder for jobs som du er blevet booket til.</string>
 
 </resources>
