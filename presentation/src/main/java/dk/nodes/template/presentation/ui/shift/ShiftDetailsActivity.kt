@@ -14,7 +14,7 @@ import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_shift_details_activity.*
 import net.hockeyapp.android.metrics.model.User
 
-class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class ShiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val viewModel by viewModel<MainActivityViewModel>()
     lateinit var Jobfragment: Fragment
     lateinit var message_fragment: Fragment

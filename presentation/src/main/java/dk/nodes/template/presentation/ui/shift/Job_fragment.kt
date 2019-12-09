@@ -67,6 +67,8 @@ class Job_fragment : Fragment() {
         fun onFragmentInteraction(uri: Uri)
     }
 
+
+
     companion object {
 
         @JvmStatic
@@ -74,8 +76,12 @@ class Job_fragment : Fragment() {
                 Job_fragment().apply {
                     arguments = Bundle().apply {
                         arguments?.putParcelable("shift", shift)
+                        
                     }
 
                 }
-    }
+
+
+        }
+
 }

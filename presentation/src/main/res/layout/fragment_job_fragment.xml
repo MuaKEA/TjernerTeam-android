@@ -158,7 +158,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/event_type" />
             <TextView
-                android:layout_width="@+id/user.name"
+                android:layout_width="@+id/userA.name"
                 android:layout_height="227dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="4dp"
@@ -283,6 +283,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="150dp"
+                android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/overarbejde_felt"
                 app:layout_constraintTop_toBottomOf="@+id/transport"

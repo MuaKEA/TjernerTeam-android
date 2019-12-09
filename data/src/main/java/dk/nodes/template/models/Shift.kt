@@ -7,10 +7,15 @@ import java.time.LocalDate
 import java.util.*
 
 data class Shift(
+
         @SerializedName("address")
         var address : String?,
+        @SerializedName("overtime")
+        var overtime : Int?,
         @SerializedName("salary")
         var salary : Double?,
+        @SerializedName("staffFood")
+        var staffFood: String?,
         @SerializedName("employeeType")
         var employeeType : String?,
         @SerializedName("eventName")
@@ -29,10 +34,12 @@ data class Shift(
         var eventDescription : String?,
         @SerializedName("dressCode")
         var dressCode : String?
-) :Parcelable{
+): Parcelable {
         constructor(parcel: Parcel) : this(
                 parcel.readString(),
+                parcel.readValue(Int::class.java.classLoader) as? Int,
                 parcel.readValue(Double::class.java.classLoader) as? Double,
+                parcel.readString(),
                 parcel.readString(),
                 parcel.readString(),
                 parcel.readString(),
@@ -46,7 +53,9 @@ data class Shift(
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
                 parcel.writeString(address)
+                parcel.writeValue(overtime)
                 parcel.writeValue(salary)
+                parcel.writeString(staffFood)
                 parcel.writeString(employeeType)
                 parcel.writeString(eventName)
                 parcel.writeString(eventDate)
@@ -72,3 +81,6 @@ data class Shift(
                 }
         }
 }
+
+
+

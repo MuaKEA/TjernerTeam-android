@@ -8,12 +8,12 @@
     tools:ignore="MissingPrefix">
 
     <ProgressBar
-        android:id="@+id/postsProgressBar"
+        android:id="@+id/posts_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/postsTextView"
+        android:id="@+id/posts_text_view"
         android:text="rofl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

@@ -9,7 +9,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/topNavigation_Main"
+        android:id="@+id/top_navigation_Main"
         android:layout_width="0dp"
         android:layout_height="86dp"
         android:background="@color/hockeyapp_background_white"
@@ -36,7 +36,7 @@
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation_Main"
+        android:id="@+id/bottom_navigation_Main"
         android:layout_width="0dp"
         android:layout_height="86dp"
         android:background="@color/hockeyapp_background_white"
