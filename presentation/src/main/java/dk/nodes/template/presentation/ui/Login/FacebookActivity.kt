@@ -44,6 +44,7 @@ class FacebookActivity : AppCompatActivity() {
                     }
 
                     val token = task.result?.token
+                    Log.d("token",token.toString())
                 })
 
 
