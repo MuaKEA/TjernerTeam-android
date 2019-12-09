@@ -2,6 +2,7 @@ package dk.nodes.template.presentation.ui.shift
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,8 @@ class Job_fragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
+        val d: Any = Log.d("", 2.toString())
+
     }
 
     interface OnFragmentInteractionListener {
