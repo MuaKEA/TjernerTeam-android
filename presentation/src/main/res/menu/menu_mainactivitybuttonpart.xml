@@ -7,18 +7,6 @@
         android:title="@string/available" />
 
     <item
-        android:id="@+id/chat"
-        android:icon="@drawable/ic_chat_black_24dp"
-        android:title="@string/chat" />
-
-
-    <item
-        android:id="@+id/navigation_faq"
-        android:icon="@drawable/ic_help_outline_black_24dp"
-        android:title="@string/faq" />
-
-
-    <item
         android:id="@+id/navigation_endjob"
         android:icon="@drawable/ic_check_box_black_24dp"
         android:title="@string/end_job" />
@@ -27,6 +15,11 @@
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_account_box_black_24dp"
         android:title="@string/profile" />
+
+    <item
+        android:id="@+id/other_options"
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:title="@string/other_options" />
 
 </menu>
 
