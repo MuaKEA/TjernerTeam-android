@@ -4,46 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.shift.shiftDetailsActivity">
+    tools:context=".ui.shift.ShiftDetailsActivity"
+    android:windowSoftInputMode="adjustPan|adjustResize">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/top_shiftoverview_menu"
-        android:layout_width="401dp"
+        android:layout_width="0dp"
         android:layout_height="66dp"
-        android:layout_marginTop="27dp"
-        app:itemIconTint="@color/hockeyapp_text_black"
-        app:itemTextColor="@color/hockeyapp_text_black"
         android:background="@color/hockeyapp_background_white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:menu="@menu/shift_menu" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="329dp"
-        android:text="Tilbage"
+        app:itemIconTint="@color/custom_darkgray"
+        app:itemTextColor="@color/custom_darkgray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
+        app:menu="@menu/shift_menu" />
 
 
     <FrameLayout
         android:id="@+id/shift_frame"
         android:layout_width="411dp"
         android:layout_height="0dp"
-        android:layout_marginTop="132dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/top_shiftoverview_menu">
 
     </FrameLayout>
 

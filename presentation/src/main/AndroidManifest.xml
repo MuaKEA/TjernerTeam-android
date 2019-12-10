@@ -13,14 +13,15 @@
 
 
 
-        <activity android:name=".ui.Login.AuthenticatedActivity"></activity>
+        <activity android:name=".ui.login.AuthenticatedActivity"></activity>
+        <activity android:name=".ui.shift.ShiftDetailsActivity"></activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name="dk.nodes.template.presentation.ui.Login.FacebookActivity"
+            android:name="dk.nodes.template.presentation.ui.login.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
@@ -35,7 +36,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Login.LoginActivity" />
+        <activity android:name=".ui.login.LoginActivity" />
 
     </application>
 

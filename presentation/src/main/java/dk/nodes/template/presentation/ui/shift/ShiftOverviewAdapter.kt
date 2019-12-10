@@ -38,7 +38,6 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
         holder.eventDateMonthDay?.text = dateMonthDay
         holder.eventDateMonth?.text = dateMonth
 
-        //accepted by head developer
         holder.salary?.text = "DKK " + shifts[position].salary?.toBigDecimal()?.setScale(2).toString()
         holder.employee_type?.text = shifts[position].employeeType?.toUpperCase()
 
@@ -48,7 +47,7 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
             holder.employee_type?.setBackgroundResource(R.drawable.bartender_rounded_corners)
         }
 
-        holder.eventDuration?.text = shifts[position].eventStart + " - " + shifts[position].eventEnd
+        holder.eventDuration?.text = shifts[position].startTime + " - " + shifts[position].endTime
         holder.address?.text = shifts[position].address
         holder.eventDescription?.text = shifts[position].eventDescription
         holder.root.setOnClickListener {
@@ -66,7 +65,7 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
 
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val root = view.customer_name
+    val root = view.shift_cardview
     val customerName = view.customer_name
     val eventDateWeekDay = view.event_date_weekday
     val eventDateMonthDay = view.event_date_monthday

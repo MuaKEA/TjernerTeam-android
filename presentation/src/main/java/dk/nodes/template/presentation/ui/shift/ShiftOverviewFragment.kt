@@ -1,6 +1,7 @@
 package dk.nodes.template.presentation.ui.shift
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
+import dk.nodes.template.presentation.ui.login.FacebookActivity
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
@@ -20,6 +22,7 @@ private val viewModel by viewModel<MainActivityViewModel>()
 
     private var mainContext: Context? = null
     private var adapter: ShiftOverviewAdapter? = null
+    lateinit var shiftDetailsActivityIntent: Intent
 
 
 
@@ -28,6 +31,7 @@ private val viewModel by viewModel<MainActivityViewModel>()
 
         adapter = mainContext?.let { ShiftOverviewAdapter(it, R.layout.shift_recyclerview_row) }
         refreshShifts()
+        addItemOnclick()
 
         viewModel.viewState.observeNonNull(this){
             state->
@@ -90,8 +94,9 @@ private val viewModel by viewModel<MainActivityViewModel>()
 
     private fun addItemOnclick() {
         adapter?.onItemClickedListener = {shift ->
-            // todo
-            // new activity
+            shiftDetailsActivityIntent = Intent(mainContext, ShiftDetailsActivity::class.java)
+            shiftDetailsActivityIntent.putExtra("shift", shift)
+            startActivity(shiftDetailsActivityIntent)
         }
     }
 

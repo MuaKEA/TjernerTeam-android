@@ -10,13 +10,16 @@ import android.view.ViewGroup
 import dk.nodes.template.presentation.R
 
 
-class Job_fragment : Fragment() {
+
+
+
+class MessageFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_job_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_message, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -31,6 +34,7 @@ class Job_fragment : Fragment() {
         listener = null
     }
 
+
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
@@ -40,9 +44,9 @@ class Job_fragment : Fragment() {
 
         @JvmStatic
         fun newInstance() =
-                Job_fragment().apply {
+                MessageFragment().apply {
+
 
                 }
-
     }
 }

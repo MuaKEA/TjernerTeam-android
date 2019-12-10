@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.Login
+package dk.nodes.template.presentation.ui.login
 
 import dk.nodes.template.presentation.nstack.NStackPresenter
 import dk.nodes.template.presentation.ui.base.BaseViewModel

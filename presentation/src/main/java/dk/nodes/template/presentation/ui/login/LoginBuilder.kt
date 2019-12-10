@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.Login
+package dk.nodes.template.presentation.ui.login
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds
@@ -17,6 +17,4 @@ internal abstract class LoginBuilder {
 
     @ContributesAndroidInjector
     internal abstract fun LoginAcktivity(): LoginActivity
-
-
 }
