@@ -11,13 +11,13 @@ import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
-import kotlinx.android.synthetic.main.activity_shift_details_activity.*
+import kotlinx.android.synthetic.main.activity_shift_details.*
 import timber.log.Timber
 
-class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class ShiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val viewModel by viewModel<MainActivityViewModel>()
-    lateinit var Jobfragment: Fragment
-    lateinit var message_fragment: Fragment
+    lateinit var jobFragment: Fragment
+    lateinit var messageFragment: Fragment
 
 
     private var shownMenu: Int = 0
@@ -26,7 +26,7 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shift_details_activity)
+        setContentView(R.layout.activity_shift_details)
 
         val bundle: Bundle? = intent.extras
 
@@ -37,19 +37,19 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
         }
 
         val shift = intent.getParcelableExtra<Shift>("shift")
-        Jobfragment = Job_fragment.newInstance(shift)
+        jobFragment = JobFragment.newInstance(shift)
 
         viewModel.viewState.observeNonNull(this) { state ->
             handleErrors(state)
         }
 
         top_shiftoverview_menu.setOnNavigationItemSelectedListener(this)
-        message_fragment = Message_fragment.newInstance()
+        messageFragment = MessageFragment.newInstance()
         supportFragmentManager.beginTransaction()
-                .add(R.id.shift_frame, Jobfragment, "1")
-                .add(R.id.shift_frame,message_fragment,"2")
-                .show(Jobfragment)
-                .hide(message_fragment)
+                .add(R.id.shift_frame, jobFragment, "1")
+                .add(R.id.shift_frame,messageFragment,"2")
+                .show(jobFragment)
+                .hide(messageFragment)
                 .commit()
 
     }
@@ -60,16 +60,16 @@ class shiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
         when (item.itemId) {
             R.id.navigation_job_info -> {
                 supportFragmentManager.beginTransaction()
-                        .show(Jobfragment)
-                        .hide(message_fragment)
+                        .show(jobFragment)
+                        .hide(messageFragment)
                         .commit()
             }
 
 
             R.id.navigation_message-> {
                 supportFragmentManager.beginTransaction()
-                        .hide(Jobfragment)
-                        .show(message_fragment)
+                        .hide(jobFragment)
+                        .show(messageFragment)
                         .commit()
             }
         }

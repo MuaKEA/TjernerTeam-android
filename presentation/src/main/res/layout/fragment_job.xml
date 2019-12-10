@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.shift.Job_fragment">
+    tools:context=".ui.shift.JobFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/date_icon" />
 
             <TextView
-                android:id="@+id/costumer_name"
+                android:id="@+id/costumer_name_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -46,13 +46,13 @@
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/address_city"
+                app:layout_constraintBottom_toTopOf="@+id/address_city_txt"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/address_city"
+                android:id="@+id/address_city_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_gravity="center_horizontal|bottom"
@@ -64,11 +64,11 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/costumer_name"
+                app:layout_constraintStart_toEndOf="@+id/costumer_name_txt"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/event_date_monthday2"
+                android:id="@+id/event_date_monthday_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_gravity="center"
@@ -77,11 +77,11 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:textSize="23sp"
-                app:layout_constraintStart_toEndOf="@+id/event_date_weekday2"
-                app:layout_constraintTop_toBottomOf="@+id/costumer_name" />
+                app:layout_constraintStart_toEndOf="@+id/event_date_weekday_txt"
+                app:layout_constraintTop_toBottomOf="@+id/costumer_name_txt" />
 
             <TextView
-                android:id="@+id/event_date_weekday2"
+                android:id="@+id/event_date_weekday_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_gravity="center"
@@ -90,10 +90,10 @@
                 android:gravity="center"
                 android:textSize="23sp"
                 app:layout_constraintStart_toEndOf="@+id/date_icon"
-                app:layout_constraintTop_toBottomOf="@+id/costumer_name" />
+                app:layout_constraintTop_toBottomOf="@+id/costumer_name_txt" />
 
             <TextView
-                android:id="@+id/event_date_month2"
+                android:id="@+id/event_date_month_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_gravity="center_vertical"
@@ -102,7 +102,7 @@
                 android:gravity="center"
                 android:textSize="23sp"
                 app:layout_constraintStart_toEndOf="@+id/slash"
-                app:layout_constraintTop_toBottomOf="@+id/costumer_name" />
+                app:layout_constraintTop_toBottomOf="@+id/costumer_name_txt" />
 
             <ImageView
                 android:id="@+id/date_icon"
@@ -112,33 +112,33 @@
                 android:layout_marginTop="5dp"
                 android:contentDescription="@string/calender_icon"
                 android:src="@drawable/calender512"
-                app:layout_constraintEnd_toStartOf="@+id/event_date_monthday2"
+                app:layout_constraintEnd_toStartOf="@+id/event_date_monthday_txt"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/costumer_name" />
+                app:layout_constraintTop_toBottomOf="@+id/costumer_name_txt" />
 
             <TextView
-                android:id="@+id/salary2"
+                android:id="@+id/salary_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/salary_icon"
-                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday2" />
+                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday_txt" />
 
             <TextView
-                android:id="@+id/paymentDate"
+                android:id="@+id/payment_date_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/payment_date_txt"
-                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday2" />
+                app:layout_constraintStart_toEndOf="@+id/payment_date_title"
+                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday_txt" />
 
             <TextView
-                android:id="@+id/event_type"
+                android:id="@+id/event_type_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_marginStart="30dp"
@@ -149,7 +149,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/salary_icon" />
 
             <TextView
-                android:id="@+id/employee_type2"
+                android:id="@+id/employee_type_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="15dp"
@@ -160,11 +160,11 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/event_description2"
-                app:layout_constraintStart_toEndOf="@+id/event_type" />
+                app:layout_constraintBottom_toTopOf="@+id/event_description_txt"
+                app:layout_constraintStart_toEndOf="@+id/event_type_txt" />
 
             <TextView
-                android:id="@+id/event_description2"
+                android:id="@+id/event_description_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
                 android:layout_marginStart="30dp"
@@ -172,60 +172,60 @@
                 android:layout_marginEnd="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/event_type" />
+                app:layout_constraintTop_toBottomOf="@+id/event_type_txt" />
 
             <TextView
-                android:id="@+id/address2"
+                android:id="@+id/address_txt"
                 android:layout_width="128dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/event_description2" />
+                app:layout_constraintTop_toBottomOf="@+id/event_description_txt" />
 
             <TextView
-                android:id="@+id/paaklaedning"
+                android:id="@+id/dress_code_title"
                 android:layout_width="80dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="33dp"
                 android:text="@string/p_kl_dning"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/address2" />
+                app:layout_constraintTop_toBottomOf="@+id/address_txt" />
 
             <TextView
-                android:id="@+id/dress_code"
+                android:id="@+id/dress_code_txt"
                 android:layout_width="128dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="4dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/paaklaedning" />
+                app:layout_constraintTop_toBottomOf="@+id/dress_code_title" />
 
             <TextView
-                android:id="@+id/staffFood_text"
+                android:id="@+id/staff_food_title"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginStart="250dp"
                 android:layout_marginTop="33dp"
                 android:text="@string/personalemad"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/address2" />
+                app:layout_constraintTop_toBottomOf="@+id/address_txt" />
 
             <TextView
-                android:id="@+id/staffFood"
+                android:id="@+id/staff_food_txt"
                 android:layout_width="92dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="250dp"
                 android:layout_marginTop="4dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/staffFood_text" />
+                app:layout_constraintTop_toBottomOf="@+id/staff_food_title" />
 
             <TextView
-                android:id="@+id/address_text"
+                android:id="@+id/address_title"
                 android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -233,51 +233,51 @@
                 android:layout_marginEnd="346dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/hvor"
-                app:layout_constraintBottom_toTopOf="@+id/address2"
+                app:layout_constraintBottom_toTopOf="@+id/address_txt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/event_description2" />
+                app:layout_constraintTop_toBottomOf="@+id/event_description_txt" />
 
             <TextView
-                android:id="@+id/overtime_text"
+                android:id="@+id/overtime_title"
                 android:layout_width="80dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
                 android:text="@string/overarbejde"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dress_code"
+                app:layout_constraintTop_toBottomOf="@+id/dress_code_txt"
                 tools:ignore="NotSibling" />
 
             <TextView
-                android:id="@+id/transport_text"
+                android:id="@+id/transport_title"
                 android:layout_width="119dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="250dp"
                 android:layout_marginTop="40dp"
                 android:text="@string/transport_tillaeg"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dress_code" />
+                app:layout_constraintTop_toBottomOf="@+id/dress_code_txt" />
 
             <TextView
-                android:id="@+id/overtime"
+                android:id="@+id/overtime_txt"
                 android:layout_width="100dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="4dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/overtime_text" />
+                app:layout_constraintTop_toBottomOf="@+id/overtime_title" />
 
             <TextView
-                android:id="@+id/transport"
+                android:id="@+id/transport_txt"
                 android:layout_width="119dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="250dp"
                 android:layout_marginTop="4dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/transport_text"
+                app:layout_constraintTop_toBottomOf="@+id/transport_title"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -288,8 +288,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/hyphen"
-                app:layout_constraintStart_toEndOf="@+id/salary2"
-                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday2" />
+                app:layout_constraintStart_toEndOf="@+id/salary_txt"
+                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday_txt" />
 
             <Button
                 android:id="@+id/request_job_btn"
@@ -302,10 +302,10 @@
                 android:text="@string/ans_g_job"
                 android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/transport" />
+                app:layout_constraintTop_toBottomOf="@+id/transport_txt" />
 
             <TextView
-                android:id="@+id/payment_date_txt"
+                android:id="@+id/payment_date_title"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_marginStart="5dp"
@@ -313,7 +313,7 @@
                 android:gravity="center"
                 android:text="@string/udbetales"
                 app:layout_constraintStart_toEndOf="@+id/hyphen"
-                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday2" />
+                app:layout_constraintTop_toBottomOf="@+id/event_date_monthday_txt" />
 
             <TextView
                 android:id="@+id/slash"
@@ -323,8 +323,8 @@
                 android:gravity="center"
                 android:text="@string/slash"
                 android:textSize="23sp"
-                app:layout_constraintStart_toEndOf="@+id/event_date_monthday2"
-                app:layout_constraintTop_toBottomOf="@+id/costumer_name" />
+                app:layout_constraintStart_toEndOf="@+id/event_date_monthday_txt"
+                app:layout_constraintTop_toBottomOf="@+id/costumer_name_txt" />
 
             <TextView
                 android:id="@+id/event_duration_txt"
@@ -334,8 +334,8 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:textSize="23sp"
-                app:layout_constraintStart_toEndOf="@+id/event_date_month2"
-                app:layout_constraintTop_toBottomOf="@+id/costumer_name" />
+                app:layout_constraintStart_toEndOf="@+id/event_date_month_txt"
+                app:layout_constraintTop_toBottomOf="@+id/costumer_name_txt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

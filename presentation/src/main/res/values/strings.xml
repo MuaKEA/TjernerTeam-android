@@ -52,6 +52,10 @@
     <string name="tjenerteamet_logo">tjenerteamet logo</string>
     <string name="calender_icon">calender icon</string>
     <string name="udbetales">Udbetales</string>
+    <string name="login_sucess">Login success!</string>
+    <string name="logout">Logout</string>
+    <string name="button">Button</string>
+    <string name="message_fragment">message fragment</string>
 
 
 </resources>

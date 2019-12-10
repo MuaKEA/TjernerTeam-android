@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.Login
+package dk.nodes.template.presentation.ui.login
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds

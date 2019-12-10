@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.Login
+package dk.nodes.template.presentation.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
