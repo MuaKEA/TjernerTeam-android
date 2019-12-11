@@ -9,7 +9,7 @@ interface FaceBookService {
     fun saveFacebookUser(@Query("facebook_id") facebook_id: Long?,
                          @Query("name") name: String?,
                          @Query("email") email: String?,
-                        @Query("fmctoken") fmctoken : String?): Call<String>
+                        @Query("fcmToken") fcmToken : String?): Call<String>
 
 
 }

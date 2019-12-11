@@ -23,7 +23,7 @@ class FacebookActivity : AppCompatActivity() {
 
     val callbackManager = CallbackManager.Factory.create()
     lateinit var mainActivityIntent: Intent
-    lateinit var fmcToken : String
+    lateinit var fcmToken : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class FacebookActivity : AppCompatActivity() {
                     }
 
                     val token = task.result?.token
-                    fmcToken =token.toString()
+                    fcmToken =token.toString()
                 })
 
         mainActivityIntent = Intent(this, MainActivity::class.java)
@@ -83,7 +83,7 @@ class FacebookActivity : AppCompatActivity() {
                 val emails = `object`.getString("email")
                 val id = `object`.getString("id")
                 mainActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
-                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null,fmcToken))
+                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null,fcmToken))
 
                 startActivity(mainActivityIntent)
                 finish()
