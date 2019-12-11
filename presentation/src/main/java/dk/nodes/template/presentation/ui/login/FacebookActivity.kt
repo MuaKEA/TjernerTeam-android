@@ -23,7 +23,7 @@ class FacebookActivity : AppCompatActivity() {
 
     val callbackManager = CallbackManager.Factory.create()
     lateinit var mainActivityIntent: Intent
-    lateinit var fcmToken : String
+     var fcmToken : String ? =null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
