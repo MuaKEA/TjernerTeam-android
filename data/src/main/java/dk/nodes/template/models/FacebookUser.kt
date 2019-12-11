@@ -18,7 +18,9 @@ class FacebookUser(
         @SerializedName("phoneNumber")
         var phoneNumber : Long?,
         @SerializedName("postCode")
-        var postCode: Int?
+        var postCode: Int?,
+        @SerializedName("fmctoken")
+        var fmctoken : String?
 
 ) : Parcelable {
         constructor(parcel: Parcel) : this(
@@ -28,7 +30,8 @@ class FacebookUser(
                 parcel.readString(),
                 parcel.readString(),
                 parcel.readValue(Long::class.java.classLoader) as? Long,
-                parcel.readValue(Int::class.java.classLoader) as? Int) {
+                parcel.readValue(Int::class.java.classLoader) as? Int,
+                parcel.readString()) {
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -39,6 +42,7 @@ class FacebookUser(
                 parcel.writeString(city)
                 parcel.writeValue(phoneNumber)
                 parcel.writeValue(postCode)
+                parcel.writeString(fmctoken)
         }
 
         override fun describeContents(): Int {
