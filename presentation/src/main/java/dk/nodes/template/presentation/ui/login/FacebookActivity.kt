@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.Login
+package dk.nodes.template.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.ui.shift.shiftDetailsActivity
+import dk.nodes.template.presentation.ui.shift.ShiftDetailsActivity
 import kotlinx.android.synthetic.main.activity_facebook.*
 import org.json.JSONException
 import timber.log.Timber
@@ -17,12 +17,13 @@ import java.util.*
 import com.facebook.AccessToken
 import com.facebook.login.LoginManager
 import dk.nodes.template.models.Shift
+import dk.nodes.template.presentation.ui.main.MainActivity
 
 
 class FacebookActivity : AppCompatActivity() {
 
     val callbackManager = CallbackManager.Factory.create()
-    lateinit var shiftDetailsActivityIntent: Intent
+    lateinit var mainActivityIntent: Intent
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +38,9 @@ class FacebookActivity : AppCompatActivity() {
                     }
                 })
 
-        shiftDetailsActivityIntent = Intent(this, shiftDetailsActivity::class.java)
+        mainActivityIntent = Intent(this, MainActivity::class.java)
 
-        val loginButton = login_button
+        val loginButton = login_btn
         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"))
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
@@ -60,7 +61,7 @@ class FacebookActivity : AppCompatActivity() {
     private fun updateWithToken(currentAccessToken: AccessToken?) {
 
         if (currentAccessToken != null) {
-            LoginManager.getInstance().logOut()
+            useLoginInformation(currentAccessToken)
         }
     }
 
@@ -78,10 +79,10 @@ class FacebookActivity : AppCompatActivity() {
                 val name = `object`.getString("name")
                 val emails = `object`.getString("email")
                 val id = `object`.getString("id")
-                shiftDetailsActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
-                shiftDetailsActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null))
+                mainActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
+                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null))
 
-                startActivity(shiftDetailsActivityIntent)
+                startActivity(mainActivityIntent)
                 finish()
 
             } catch (e: JSONException) {
@@ -95,18 +96,16 @@ class FacebookActivity : AppCompatActivity() {
 
         request.executeAsync()
 
-        login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+        login_btn.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 val accessToken = loginResult.accessToken
 
                 useLoginInformation(accessToken)
-                startActivity(shiftDetailsActivityIntent)
+                startActivity(mainActivityIntent)
             }
 
             override fun onCancel() {}
             override fun onError(error: FacebookException) {}
         })
-
-
     }
 }

@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.Login
+package dk.nodes.template.presentation.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_login)
 
 
-    Login_btn.setOnClickListener(this)
+    login_btn.setOnClickListener(this)
 
 
 

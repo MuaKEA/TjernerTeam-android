@@ -1,6 +1,5 @@
 package dk.nodes.template.presentation.ui.shift
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,13 +13,13 @@ import dk.nodes.template.presentation.R
 
 
 
-class Message_fragment : Fragment() {
+class MessageFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_message_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_message, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -45,7 +44,7 @@ class Message_fragment : Fragment() {
 
         @JvmStatic
         fun newInstance() =
-                Message_fragment().apply {
+                MessageFragment().apply {
 
 
                 }

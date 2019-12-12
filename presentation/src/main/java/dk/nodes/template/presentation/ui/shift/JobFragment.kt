@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import dk.nodes.template.models.Shift
 
 import dk.nodes.template.presentation.R
-import kotlinx.android.synthetic.main.fragment_job_fragment.*
+import kotlinx.android.synthetic.main.fragment_job.*
 import java.time.LocalDate
 
 private const val shiftArg = "shift"
 
 
-class Job_fragment : Fragment() {
+class JobFragment : Fragment() {
 
     var shift: Shift? = null
 
@@ -23,10 +23,9 @@ class Job_fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_job_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_job, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
@@ -49,27 +48,27 @@ class Job_fragment : Fragment() {
         val dateMonthDay = date.dayOfMonth.toString()
 
 
-        costumer_name?.text = shift?.customerName
-        address_city?.text = shift?.city
-        event_date_month2?.text = dateMonth
-        event_date_monthday2?.text = dateMonthDay
-        event_date_weekday2?.text = dateWeekDay
-        salary_field?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
-        payment_day_field?.text = shift?.paymentDate
-        event_type_field_shift?.text = shift?.eventName
-        employee_type_field_shift?.text = shift?.employeeType
-        event_description_field_shift?.text = shift?.eventDescription
-        address_field?.text = shift?.address
-        dress_code_field?.text = shift?.dressCode
-        staffFood_field?.text = shift?.staffFood
-        overtime_field?.text = shift?.overtime
+        costumer_name_txt?.text = shift?.customerName
+        address_city_txt?.text = shift?.city
+        event_date_month_txt?.text = dateMonth
+        event_date_monthday_txt?.text = dateMonthDay
+        event_date_weekday_txt?.text = dateWeekDay
+        salary_txt?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
+        payment_date_txt?.text = shift?.paymentDate
+        event_type_txt?.text = shift?.eventName
+        employee_type_txt?.text = shift?.employeeType
+        event_description_txt?.text = shift?.eventDescription
+        address_txt?.text = shift?.address
+        dress_code_txt?.text = shift?.dressCode
+        staff_food_txt?.text = shift?.staffFood
+        overtime_txt?.text = shift?.overtime
         event_duration_txt?.text = shift?.startTime + " - " + shift?.endTime
 
-        transport_field?.text = shift?.transportSupplements.toString()
-        if (transport_field.text == "true"){
-            transport_field.text = getString(R.string.tillaeg)
+        transport_txt?.text = shift?.transportSupplements.toString()
+        if (transport_txt.text == "true"){
+            transport_txt.text = getString(R.string.tillaeg)
         } else {
-            transport_field.text = getString(R.string.intet_tillaeg)
+            transport_txt.text = getString(R.string.intet_tillaeg)
         }
 
 
@@ -89,7 +88,7 @@ class Job_fragment : Fragment() {
 
         @JvmStatic
         fun newInstance(shift: Shift) =
-                Job_fragment().apply {
+                JobFragment().apply {
                     arguments = Bundle().apply {
                         putParcelable(shiftArg, shift)
 

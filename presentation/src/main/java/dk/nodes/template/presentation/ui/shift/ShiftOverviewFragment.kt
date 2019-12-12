@@ -11,19 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.ui.Login.FacebookActivity
+import dk.nodes.template.presentation.ui.login.FacebookActivity
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
 import kotlinx.android.synthetic.main.fragment_shift_overview.*
-import timber.log.Timber
 
 class ShiftOverviewFragment : BaseFragment() {
 private val viewModel by viewModel<MainActivityViewModel>()
 
     private var mainContext: Context? = null
     private var adapter: ShiftOverviewAdapter? = null
-    lateinit var facebookActivityIntent: Intent
+    lateinit var shiftDetailsActivityIntent: Intent
 
 
 
@@ -95,9 +94,9 @@ private val viewModel by viewModel<MainActivityViewModel>()
 
     private fun addItemOnclick() {
         adapter?.onItemClickedListener = {shift ->
-            facebookActivityIntent = Intent(mainContext, FacebookActivity::class.java)
-            facebookActivityIntent.putExtra("shift", shift)
-            startActivity(facebookActivityIntent)
+            shiftDetailsActivityIntent = Intent(mainContext, ShiftDetailsActivity::class.java)
+            shiftDetailsActivityIntent.putExtra("shift", shift)
+            startActivity(shiftDetailsActivityIntent)
         }
     }
 
