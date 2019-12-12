@@ -2,6 +2,7 @@ package dk.nodes.template.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.facebook.login.LoginResult
@@ -9,13 +10,11 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.ui.shift.ShiftDetailsActivity
 import kotlinx.android.synthetic.main.activity_facebook.*
 import org.json.JSONException
 import timber.log.Timber
 import java.util.*
 import com.facebook.AccessToken
-import com.facebook.login.LoginManager
 import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.ui.main.MainActivity
 
@@ -24,6 +23,7 @@ class FacebookActivity : AppCompatActivity() {
 
     val callbackManager = CallbackManager.Factory.create()
     lateinit var mainActivityIntent: Intent
+     var fcmToken : String ? =null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +36,9 @@ class FacebookActivity : AppCompatActivity() {
                     if (!task.isSuccessful) {
                         return@OnCompleteListener
                     }
+
+                    val token = task.result?.token
+                    fcmToken =token.toString()
                 })
 
         mainActivityIntent = Intent(this, MainActivity::class.java)
@@ -80,7 +83,7 @@ class FacebookActivity : AppCompatActivity() {
                 val emails = `object`.getString("email")
                 val id = `object`.getString("id")
                 mainActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
-                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null))
+                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null,fcmToken))
 
                 startActivity(mainActivityIntent)
                 finish()

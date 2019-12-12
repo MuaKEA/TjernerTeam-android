@@ -10,8 +10,7 @@ class FacebookRespository @Inject constructor(
         private val api: FaceBookService) {
 
     suspend fun saveUser(User: FacebookUser) {
-            val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.address, User.phoneNumber,
-                    User.city, User.postCode).execute()
+            val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
 
         if (!response.isSuccessful) {
             Log.d("nameofname", response.code().toString())
