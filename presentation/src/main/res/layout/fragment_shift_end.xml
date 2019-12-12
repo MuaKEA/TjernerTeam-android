@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.shift.shiftEndFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="744dp"
+            android:scrollbarThumbHorizontal="@drawable/bartender_rounded_corners"
+            android:scrollbarThumbVertical="@drawable/bartender_rounded_corners">
+
+            <TextView
+                android:id="@+id/information_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="49dp"
+                android:background="#00DBD5D5"
+                android:padding="15dp"
+                android:text="@string/login_information"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+            <TextView
+                android:id="@+id/hello_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:padding="5dp"
+                android:text="@string/Hello_user_txt"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/user_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/information_txt" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="150dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="207dp"
+                android:layout_marginBottom="10dp"
+                android:padding="5dp"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/edit_profile_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hello_txt" />
+
+            <TextView
+                android:id="@+id/edit_icon"
+                android:layout_width="30dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:scrollbarThumbHorizontal="@android:drawable/ic_menu_edit"
+                app:layout_constraintEnd_toStartOf="@+id/edit_profile_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hello_txt" />
+
+            <TextView
+                android:id="@+id/edit_profile_btn"
+                android:layout_width="120dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="246dp"
+                android:padding="5dp"
+                android:text="@string/edit_profile_txt"
+                android:textColor="#1D42C4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_icon"
+                app:layout_constraintTop_toBottomOf="@+id/hello_txt" />
+
+            <TextView
+                android:id="@+id/more_informtion_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:text="@string/more_information_btn_txt"
+                android:textColor="#1D42C4"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+            <TextView
+                android:id="@+id/description_txt"
+                android:layout_width="73dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+                android:padding="5sp"
+                android:text="@string/description_txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/more_informtion_btn" />
+
+            <item
+                android:id="@+id/completed_shifts_btn"
+                android:layout_width="53dp"
+                android:layout_height="32dp"
+                android:icon="@drawable/ic_star_black_24dp"
+                android:title="@string/upcoming_shifts"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="86dp"
+                tools:layout_editor_absoluteY="623dp" />
+
+            <item
+                android:id="@+id/upcoming_shifts_btn"
+                android:layout_width="53dp"
+                android:layout_height="32dp"
+                android:icon="@drawable/ic_chat_black_24dp"
+                android:title="@string/completed_shifts"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="273dp"
+                tools:layout_editor_absoluteY="627dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="350dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="85dp"
+                android:background="#F3E2B2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+                <TextView
+                    android:id="@+id/get_more_shift_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="5dp"
+                    android:text="@string/get_more_shift_btn"
+                    android:textColor="#504636"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/add_experience_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/add_experience_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="28dp"
+                    android:padding="5dp"
+                    android:text="@string/add_experience_txt"
+                    android:textColor="#504636"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/slash_txt"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/slash_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:padding="5dp"
+                    android:text="@string/dash"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/add_experience_txt" />
+
+                <TextView
+                    android:id="@+id/get_more_shift_btn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp"
+                    android:padding="5dp"
+                    android:text="@string/get_more_shift_btn_2"
+                    android:textColor="#1D42C4"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/Arrow_icon"
+                    app:layout_constraintStart_toEndOf="@+id/slash_txt"
+                    app:layout_constraintTop_toTopOf="@+id/add_experience_txt" />
+
+                <TextView
+                    android:id="@+id/Arrow_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="22dp"
+                    android:scrollbarThumbHorizontal="@drawable/blue_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/get_more_shift_btn_2"
+                    app:layout_constraintTop_toTopOf="@+id/add_experience_txt" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/edit_profile_btn"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:id="@+id/my_ratings_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/my_ratings"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cancellations_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/jobs_taken_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/jobs_taken"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cancellations_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/cancellations_count" />
+
+                <TextView
+                    android:id="@+id/cancellations_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:text="@string/cancellations"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cancellations_txt"
+                    tools:ignore="NotSibling" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar_my_rating"
+                    android:layout_width="242dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="193dp"
+                    android:scaleX="0.3"
+                    android:scaleY="0.3"
+                    app:layout_constraintBottom_toTopOf="@+id/my_ratings_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/my_ratings_count" />
+
+                <TextView
+                    android:id="@+id/my_ratings_count"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10sp"
+                    android:text="@string/count"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/ratingBar_my_rating"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/jobs_taken_count"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="74dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="71dp"
+                    android:text="@string/count"
+                    android:padding="10sp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/cancellations_count"
+                    app:layout_constraintStart_toEndOf="@+id/my_ratings_count"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/cancellations_count"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="44dp"
+                    android:text="@string/count"
+                    android:padding="10sp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="50dp"
+                    app:layout_constraintBottom_toTopOf="@+id/jobs_taken_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/profile_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/moneybagicon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.927"
+                    app:layout_constraintStart_toEndOf="@+id/tjenerteamet_logo2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/tjenerteamet_logo2"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/tjenerteamet_logo"
+                    android:src="@drawable/tjenerteamet_logo"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

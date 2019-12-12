@@ -57,6 +57,24 @@
     <string name="button">Button</string>
     <string name="message_fragment">message fragment</string>
     <string name="end_shift_txt">Afslut Job</string>
+    <string name="login_information">Du er nu logget ind med din Facebook konto.</string>
+    <string name="edit_profile_txt">REDIGER PROFIL</string>
+    <string name="my_ratings">Mine ratings</string>
+    <string name="jobs_taken">Jobs taget</string>
+    <string name="cancellations">Aflysninger</string>
+    <string name="add_experience_txt">Tilføj erfaringer til din profil</string>
+    <string name="dash">-</string>
+    <string name="get_more_shift_btn">FÅ FLERE VAGTER</string>
+    <string name="get_more_shift_btn_2">START HER</string>
+    <string name="description_txt">Beskrivelse</string>
+    <string name="more_information_btn_txt">MERE INFORMATION</string>
+    <string name="Hello_user_txt">Hej</string>
+    <string name="count">0</string>
+    <string name="upcoming_shifts">KOMMENDE</string>
+    <string name="completed_shifts">AFSLUTTEDE</string>
+    <string name="completed_shift_txt">DINE AFSLUTTEDE VAGTER</string>
+    <string name="no_shift_txt">Ingen vagter pt.</string>
+    <string name="shifts_txt">VAGTER DU HAR FÅET</string>
 
 
 </resources>
