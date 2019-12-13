@@ -11,6 +11,7 @@ import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
 import dk.nodes.template.presentation.ui.options.UserOptionsFragment
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
+import dk.nodes.template.presentation.ui.shift.ShiftEndFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener{
@@ -19,6 +20,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     private var shownMenu: Int = 0
     lateinit var shiftOverviewFragment: Fragment
     lateinit var userOptionsFragment : Fragment
+    lateinit var shiftEndFragment : Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +46,16 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
         shiftOverviewFragment = ShiftOverviewFragment.newInstance()
         userOptionsFragment = UserOptionsFragment.newInstance()
+        shiftEndFragment = ShiftEndFragment.newInstance()
 
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.main_frame, shiftOverviewFragment, "1")
                 .add(R.id.main_frame, userOptionsFragment, "2")
+                .add(R.id.main_frame, shiftEndFragment, "3")
                 .show(shiftOverviewFragment)
                 .hide(userOptionsFragment)
-                .commit()
+                .hide(shiftEndFragment).commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem) : Boolean {
@@ -60,13 +64,20 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             R.id.available_jobs -> {
                 supportFragmentManager.beginTransaction()
                         .show(shiftOverviewFragment)
-                        .hide(userOptionsFragment).commit()
+                        .hide(userOptionsFragment)
+                        .hide(shiftEndFragment).commit()
             }
             R.id.other_options -> {
                 supportFragmentManager.beginTransaction()
                         .show(userOptionsFragment)
                         .hide(shiftOverviewFragment)
-                        .commit()
+                        .hide(shiftEndFragment).commit()
+            }
+            R.id.navigation_endjob -> {
+                supportFragmentManager.beginTransaction()
+                        .show(shiftEndFragment)
+                        .hide(shiftOverviewFragment)
+                        .hide(userOptionsFragment).commit()
             }
         }
         shownMenu = item.itemId

@@ -75,6 +75,7 @@
     <string name="completed_shift_txt">DINE AFSLUTTEDE VAGTER</string>
     <string name="no_shift_txt">Ingen vagter pt.</string>
     <string name="shifts_txt">VAGTER DU HAR FÅET</string>
+    <string name="message_txt">Du har ikke adgang. Du kan kun se beskeder for jobs som du er blevet booket til.</string>
 
 
 </resources>

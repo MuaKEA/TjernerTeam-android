@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.shift.shiftEndFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".ui.shift.ShiftEndFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -104,25 +102,37 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/more_informtion_btn" />
 
-            <item
-                android:id="@+id/completed_shifts_btn"
-                android:layout_width="53dp"
-                android:layout_height="32dp"
-                android:icon="@drawable/ic_star_black_24dp"
-                android:title="@string/upcoming_shifts"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="86dp"
-                tools:layout_editor_absoluteY="623dp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <item
-                android:id="@+id/upcoming_shifts_btn"
-                android:layout_width="53dp"
-                android:layout_height="32dp"
-                android:icon="@drawable/ic_chat_black_24dp"
-                android:title="@string/completed_shifts"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="273dp"
-                tools:layout_editor_absoluteY="627dp" />
+                <TextView
+                    android:id="@+id/profile_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/moneybagicon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.927"
+                    app:layout_constraintStart_toEndOf="@+id/tjenerteamet_logo2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/tjenerteamet_logo2"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/tjenerteamet_logo"
+                    android:src="@drawable/tjenerteamet_logo"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="350dp"
@@ -300,38 +310,6 @@
                     android:layout_marginBottom="50dp"
                     app:layout_constraintBottom_toTopOf="@+id/jobs_taken_txt"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/profile_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:contentDescription="@string/moneybagicon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.927"
-                    app:layout_constraintStart_toEndOf="@+id/tjenerteamet_logo2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/tjenerteamet_logo2"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:contentDescription="@string/tjenerteamet_logo"
-                    android:src="@drawable/tjenerteamet_logo"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

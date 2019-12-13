@@ -10,13 +10,13 @@ import android.view.ViewGroup
 import dk.nodes.template.presentation.R
 
 
-class MessageFragment : Fragment() {
+class CompletedShiftFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_message, container, false)
+        return inflater.inflate(R.layout.fragment_completed_shifts, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -41,7 +41,7 @@ class MessageFragment : Fragment() {
 
         @JvmStatic
         fun newInstance() =
-                MessageFragment().apply {
+                CompletedShiftFragment().apply {
 
 
                 }
