@@ -3,7 +3,6 @@ package dk.nodes.template.repositories
 import android.util.Log
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.network.FaceBookService
-import java.lang.NullPointerException
 import javax.inject.Inject
 
 class FacebookRespository @Inject constructor(
@@ -11,6 +10,14 @@ class FacebookRespository @Inject constructor(
 
     suspend fun saveUser(User: FacebookUser) {
             val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
+
+        if (!response.isSuccessful) {
+            Log.d("nameofname", response.code().toString())
+        }
+    }
+
+    suspend fun saveUserRequestedJob(userAndShiftId: Array<Long?>) {
+        val response = api.saveUserRequestedJob(userAndShiftId[0], userAndShiftId[1]).execute()
 
         if (!response.isSuccessful) {
             Log.d("nameofname", response.code().toString())

@@ -49,7 +49,7 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
 
         holder.eventDuration?.text = shifts[position].startTime + " - " + shifts[position].endTime
         holder.address?.text = shifts[position].address
-        holder.eventDescription?.text = shifts[position].eventDescription
+        holder.eventDescription?.text = shifts[position].eventName
         holder.root.setOnClickListener {
             onItemClickedListener?.invoke(shifts.get(position))
         }

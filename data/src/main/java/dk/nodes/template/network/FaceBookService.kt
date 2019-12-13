@@ -11,5 +11,7 @@ interface FaceBookService {
                          @Query("email") email: String?,
                         @Query("fcmtoken") fcmToken : String?): Call<String>
 
-
+    @POST("/saveUserRequestedJob")
+    fun saveUserRequestedJob(@Query("user_id") user_id: Long?,
+                             @Query("shift_id") shift_id: Long?): Call<String>
 }

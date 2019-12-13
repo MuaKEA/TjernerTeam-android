@@ -17,7 +17,8 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
         private val nStackPresenter: NStackPresenter,
         private val fetchShiftsInteractor: FetchShiftsInteractor,
-        private val saveUserProgileInteractor: SaveUserProfileInteractor
+        private val saveUserProfileInteractor: SaveUserProfileInteractor,
+        private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor
 
 
 
@@ -52,12 +53,12 @@ class MainActivityViewModel @Inject constructor(
 
     fun saveUser(facebookUser: FacebookUser) =  viewModelScope.launch {
 
-        val result = withContext(Dispatchers.IO) { saveUserProgileInteractor.asResult().invoke(facebookUser)}
-        state = saveFacebookUserResualt(result)
+        val result = withContext(Dispatchers.IO) { saveUserProfileInteractor.asResult().invoke(facebookUser)}
+        state = saveFacebookUserResult(result)
 
     }
 
-    private fun saveFacebookUserResualt(result: CompleteResult<Unit>): MainActivityViewState {
+    private fun saveFacebookUserResult(result: CompleteResult<Unit>): MainActivityViewState {
         return when (result) {
             is Fail -> state.copy(
                     viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
@@ -67,6 +68,24 @@ class MainActivityViewModel @Inject constructor(
         }
 
     }
+
+    fun saveUserRequestedJob(userId: Long, shiftId: Long?) =  viewModelScope.launch {
+        val userAndShiftIdArray = arrayOf(userId, shiftId)
+        withContext(Dispatchers.IO) { saveUserRequestedJobInteractor.asResult().invoke(userAndShiftIdArray) }
+        //state = saveUserRequestedJobResult(result)
+
+    }
+
+    /*private fun saveUserRequestedJobResult(result: CompleteResult<Unit>): MainActivityViewState {
+        return when (result) {
+            is Fail -> state.copy(
+                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
+                    isLoading = false
+            )
+            else -> (MainActivityViewState())
+        }
+
+    }*/
 
     }
 
