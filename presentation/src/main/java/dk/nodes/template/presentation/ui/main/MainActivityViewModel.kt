@@ -18,7 +18,8 @@ class MainActivityViewModel @Inject constructor(
         private val nStackPresenter: NStackPresenter,
         private val fetchShiftsInteractor: FetchShiftsInteractor,
         private val saveUserProfileInteractor: SaveUserProfileInteractor,
-        private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor
+        private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
+        private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor
 
 
 
@@ -72,20 +73,11 @@ class MainActivityViewModel @Inject constructor(
     fun saveUserRequestedJob(userId: Long, shiftId: Long?) =  viewModelScope.launch {
         val userAndShiftIdArray = arrayOf(userId, shiftId)
         withContext(Dispatchers.IO) { saveUserRequestedJobInteractor.asResult().invoke(userAndShiftIdArray) }
-        //state = saveUserRequestedJobResult(result)
-
     }
 
-    /*private fun saveUserRequestedJobResult(result: CompleteResult<Unit>): MainActivityViewState {
-        return when (result) {
-            is Fail -> state.copy(
-                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
-                    isLoading = false
-            )
-            else -> (MainActivityViewState())
-        }
-
-    }*/
-
+    fun cancelAssignedJob(userId: Long, shiftId: Long?) =  viewModelScope.launch {
+        val userAndShiftIdArray = arrayOf(userId, shiftId)
+        withContext(Dispatchers.IO) { cancelAssignedJobInteractor.asResult().invoke(userAndShiftIdArray) }
+    }
     }
 

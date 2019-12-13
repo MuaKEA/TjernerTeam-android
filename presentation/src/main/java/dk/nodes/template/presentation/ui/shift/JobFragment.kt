@@ -77,7 +77,6 @@ class JobFragment : BaseFragment() {
         }
 
         request_job_btn.setOnClickListener{
-            Timber.e("UserId: " + AccessToken.getCurrentAccessToken().userId + " ShiftId: " + shift?.id)
             viewModel.saveUserRequestedJob(AccessToken.getCurrentAccessToken().userId.toLong(), shift?.id)
         }
     }

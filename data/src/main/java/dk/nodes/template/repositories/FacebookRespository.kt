@@ -23,4 +23,12 @@ class FacebookRespository @Inject constructor(
             Log.d("nameofname", response.code().toString())
         }
     }
+
+    suspend fun cancelAssignedJob(userAndShiftId: Array<Long?>) {
+        val response = api.cancelAssignedJob(userAndShiftId[0], userAndShiftId[1]).execute()
+
+        if (!response.isSuccessful) {
+            Log.d("nameofname", response.code().toString())
+        }
+    }
 }
