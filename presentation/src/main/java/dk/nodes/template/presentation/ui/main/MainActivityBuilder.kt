@@ -10,6 +10,7 @@ import dk.nodes.template.presentation.ui.options.UserOptionsFragment
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
 import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
 import dk.nodes.template.presentation.ui.shift.ShiftDetailsActivity
+import dk.nodes.template.presentation.ui.shift.ShiftEndFragment
 
 
 @Module
@@ -35,6 +36,9 @@ internal abstract class MainActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun UserOptionsFragment(): UserOptionsFragment
+
+    @ContributesAndroidInjector
+    abstract fun ShiftEndFragment(): ShiftEndFragment
 
 
 

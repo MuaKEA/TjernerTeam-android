@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.shift.ShiftEndFragment">
+    tools:context=".ui.shift.ShiftFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,9 +26,11 @@
                 android:background="#00DBD5D5"
                 android:padding="15dp"
                 android:text="@string/login_information"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/hello_txt"
@@ -62,6 +64,9 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:scrollbarThumbHorizontal="@android:drawable/ic_menu_edit"
+                android:scrollbarThumbVertical="@android:drawable/ic_menu_edit"
+                android:scrollbarTrackVertical="@android:drawable/ic_menu_edit"
+                android:src="@android:drawable/ic_menu_edit"
                 app:layout_constraintEnd_toStartOf="@+id/edit_profile_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hello_txt" />
@@ -93,7 +98,7 @@
 
             <TextView
                 android:id="@+id/description_txt"
-                android:layout_width="73dp"
+                android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="5dp"
                 android:padding="5sp"
@@ -101,38 +106,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/more_informtion_btn" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/profile_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:contentDescription="@string/moneybagicon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.927"
-                    app:layout_constraintStart_toEndOf="@+id/tjenerteamet_logo2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/tjenerteamet_logo2"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:contentDescription="@string/tjenerteamet_logo"
-                    android:src="@drawable/tjenerteamet_logo"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="350dp"
@@ -198,7 +171,7 @@
                     android:layout_width="30dp"
                     android:layout_height="28dp"
                     android:layout_marginEnd="22dp"
-                    android:scrollbarThumbHorizontal="@drawable/blue_arrow"
+                    android:src="@drawable/blue_arrow"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/get_more_shift_btn_2"
                     app:layout_constraintTop_toTopOf="@+id/add_experience_txt" />

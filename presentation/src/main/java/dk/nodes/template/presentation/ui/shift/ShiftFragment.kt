@@ -1,4 +1,4 @@
-package dk.nodes.template.presentation.ui.shift
+package dk.nodes.template.presentation.ui.facebookUser
 
 import android.content.Context
 import android.net.Uri
@@ -8,11 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dk.nodes.template.models.FacebookUser
-import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
-import kotlinx.android.synthetic.main.fragment_job.*
 import kotlinx.android.synthetic.main.fragment_shift_end.*
-import net.hockeyapp.android.metrics.model.User
 
 import java.time.LocalDate
 
@@ -94,13 +91,14 @@ class ShiftFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(shift: Shift) =
+        fun newInstance(facebookUser: FacebookUser) =
                 ShiftFragment().apply {
                     arguments = Bundle().apply {
-                        putParcelable(shiftArg, shift)
+                        putParcelable(shiftArg, facebookUser)
 
                     }
 
                 }
     }
+
 }

@@ -31,23 +31,19 @@ class ShiftEndFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = mainContext?.let { ShiftOverviewAdapter(it, R.layout.fragment_shift_end) }
-        refreshShifts()
-        addItemOnclick()
+        //adapter = mainContext?.let { ShiftOverviewAdapter(it, R.layout.fragment_shift_end) }
 
         viewModel.viewState.observeNonNull(this){
-            state->
-            handleShift(state)
+            //state-> handleShift(state)
         }
 
-        val swipeLayout = swiperefresh as SwipeRefreshLayout
-        swipeLayout.setOnRefreshListener {
-            refreshShifts()
-        }
+        //val swipeLayout = swiperefresh as SwipeRefreshLayout
+        //swipeLayout.setOnRefreshListener {
+        //}
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_shift_overview, container, false)
+        return inflater.inflate(R.layout.fragment_shift_end, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -62,35 +58,6 @@ class ShiftEndFragment : BaseFragment() {
     }
 
 
-    private fun refreshShifts() {
-        viewModel.fetchShifts()
-        if (swiperefresh.isRefreshing) {
-            swiperefresh.isRefreshing = false
-        }
-    }
-
-    private fun handleShift(state: MainActivityViewState) {
-        state.let {
-
-            state.shiftOverviewList?.let { shiftOverview -> adapter?.addShifts(shiftOverview) }
-            adapter?.notifyDataSetChanged()
-            updateRecyclerView()
-        }
-    }
-
-    fun updateRecyclerView(){
-        rv_shift_overview.layoutManager = LinearLayoutManager(mainContext, LinearLayoutManager.VERTICAL,false)
-        rv_shift_overview.adapter = adapter
-        adapter?.notifyDataSetChanged()
-    }
-
-    private fun addItemOnclick() {
-        adapter?.onItemClickedListener = {shift ->
-            shiftDetailsActivityIntent = Intent(mainContext, ShiftDetailsActivity::class.java)
-            shiftDetailsActivityIntent.putExtra("shift", shift)
-            startActivity(shiftDetailsActivityIntent)
-        }
-    }
 
 
 
