@@ -12,7 +12,6 @@ class FacebookRespository @Inject constructor(
             val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
 
         if (!response.isSuccessful) {
-            Log.d("nameofname", response.code().toString())
         }
     }
 
@@ -20,7 +19,6 @@ class FacebookRespository @Inject constructor(
         val response = api.saveUserRequestedJob(userAndShiftId[0], userAndShiftId[1]).execute()
 
         if (!response.isSuccessful) {
-            Log.d("nameofname", response.code().toString())
         }
     }
 
@@ -28,7 +26,6 @@ class FacebookRespository @Inject constructor(
         val response = api.cancelAssignedJob(userAndShiftId[0], userAndShiftId[1]).execute()
 
         if (!response.isSuccessful) {
-            Log.d("nameofname", response.code().toString())
         }
     }
 }
