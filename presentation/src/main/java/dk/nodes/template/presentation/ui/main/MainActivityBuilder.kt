@@ -36,6 +36,9 @@ internal abstract class MainActivityBuilder {
     @ContributesAndroidInjector
     abstract fun UserOptionsFragment(): UserOptionsFragment
 
+   @ContributesAndroidInjector
+    abstract fun EditUserFragment(): EditUserFragment
+
 
 
 

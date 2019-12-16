@@ -37,15 +37,16 @@ class EditUserFragment : BaseFragment() {
             handleUser(state)
 
         }
-        viewModel.fetchUser(String)
+        viewModel.fetchUser("10215434751088611")
         }
-    }
+
 
     private fun handleUser(state: MainActivityViewState) {
         state.facebookUser?.let {
 
 
         }
+    }
 
 
         fun onButtonPressed(uri: Uri) {

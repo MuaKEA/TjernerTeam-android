@@ -11,10 +11,13 @@ interface FaceBookService {
     fun saveFacebookUser(@Query("facebook_id") facebook_id: Long?,
                          @Query("name") name: String?,
                          @Query("email") email: String?,
-                        @Query("fcmtoken") fcmToken : String?): Call<String>
+                         @Query("fcmtoken") fcmToken : String?): Call<String>
 
 
     @GET("/getUser")
     fun getFacebookUser(@Query("facebook_id") userName :String?): Call<FacebookUser>
+
+
+    
 
 }

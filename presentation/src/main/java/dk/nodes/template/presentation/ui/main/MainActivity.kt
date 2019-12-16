@@ -39,6 +39,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             handleErrors(state)
         }
 
+
         bottomnavigation_main.setOnNavigationItemSelectedListener(this)
 
 
@@ -77,7 +78,8 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
 private fun handleErrors(state: MainActivityViewState) {
     state.viewError?.let {
-        //Toast.makeText(this, "something went wrong", Toast.LENGTH_LONG).show()
+
+
     }
 }
 }
