@@ -5,6 +5,8 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Shift(
+        @SerializedName("id")
+        var id: Long?,
         @SerializedName("address")
         var address: String?,
         @SerializedName("salary")
@@ -40,6 +42,7 @@ data class Shift(
         @SerializedName("postCodes")
         var postCode: PostCode?) : Parcelable {
     constructor(parcel: Parcel) : this(
+            parcel.readValue(Long::class.java.classLoader) as? Long,
             parcel.readString(),
             parcel.readValue(Double::class.java.classLoader) as? Double,
             parcel.readString(),
@@ -60,6 +63,7 @@ data class Shift(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(id)
         parcel.writeString(address)
         parcel.writeValue(salary)
         parcel.writeString(employeeType)

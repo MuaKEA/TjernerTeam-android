@@ -6,23 +6,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.facebook.AccessToken
 import dk.nodes.template.models.Shift
 
 import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.ui.base.BaseFragment
+import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_job.*
+import timber.log.Timber
 import java.time.LocalDate
 
 private const val shiftArg = "shift"
 
 
-class JobFragment : Fragment() {
-
+class JobFragment : BaseFragment() {
+    private val viewModel by viewModel<MainActivityViewModel>()
     var shift: Shift? = null
 
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         return inflater.inflate(R.layout.fragment_job, container, false)
     }
 
@@ -71,7 +76,9 @@ class JobFragment : Fragment() {
             transport_txt.text = getString(R.string.intet_tillaeg)
         }
 
-
+        request_job_btn.setOnClickListener{
+            viewModel.saveUserRequestedJob(AccessToken.getCurrentAccessToken().userId.toLong(), shift?.id)
+        }
     }
 
     override fun onDetach() {
