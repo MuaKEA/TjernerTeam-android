@@ -17,7 +17,8 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
         private val nStackPresenter: NStackPresenter,
         private val fetchShiftsInteractor: FetchShiftsInteractor,
-        private val saveUserProgileInteractor: SaveUserProfileInteractor
+        private val saveUserProgileInteractor: SaveUserProfileInteractor,
+        private val fetchFacebookUserInteractor: FetchFacebookUserInteractor
 
 
 
@@ -67,6 +68,29 @@ class MainActivityViewModel @Inject constructor(
         }
 
     }
+    fun fetchUser(facebookId : String) =  viewModelScope.launch {
+
+        val result = withContext(Dispatchers.IO) { fetchFacebookUserInteractor.asResult().invoke(facebookId)}
+        state = fetchUser(result)
 
     }
+
+
+    private fun fetchUser(result: CompleteResult<FacebookUser>): MainActivityViewState {
+        return when (result) {
+
+            is Success -> state.copy(facebookUser = result.data)
+            is Loading<*> -> state.copy(isLoading = true)
+            is Fail -> state.copy(
+                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
+                    isLoading = false
+            )
+            else -> (MainActivityViewState())
+
+        }
+
+    }
+
+
+}
 
