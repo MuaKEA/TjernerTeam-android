@@ -38,6 +38,7 @@
         android:text="@string/job_oversigt"
         android:textSize="35sp"
         android:textStyle="bold"
+        android:textColor="@color/custom_darkgray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,6 +63,7 @@
         android:text="@string/jobs_du_kan_s_ge"
         android:textStyle="bold"
         android:textSize="15sp"
+        android:textColor="@color/custom_darkgray"
         app:layout_constraintBottom_toTopOf="@+id/search_description"
         app:layout_constraintStart_toStartOf="parent" />
 

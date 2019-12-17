@@ -2,19 +2,22 @@ package dk.nodes.template.presentation.ui.shift
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.facebook.AccessToken
 import dk.nodes.template.models.Shift
-
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_job.*
+import kotlinx.android.synthetic.main.shift_recyclerview_row.*
 import timber.log.Timber
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
+
 
 private const val shiftArg = "shift"
 
@@ -46,12 +49,13 @@ class JobFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val date = LocalDate.parse(shift?.eventDate)
+        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/MM/YYYY", Locale("da-DK"))
+        val paymentDateFormatter = DateTimeFormatter.ofPattern("DD/MM/YYYY")
+        val dateInDanish = LocalDate.parse(shift?.eventDate).format(eventDateFormatter)
 
-        val dateWeekDay = date.dayOfWeek.toString().substring(0, 3) + "."
-        val dateMonth = date.monthValue.toString()
-        val dateMonthDay = date.dayOfMonth.toString()
-
+        val dateWeekDay = dateInDanish.substring(0,1).toUpperCase() + dateInDanish.toString().substring(1, 3) + "."
+        val dateMonth = dateInDanish.toString().substring(10,12)
+        val dateMonthDay = dateInDanish.toString().substring(5,7)
 
         costumer_name_txt?.text = shift?.customerName
         address_city_txt?.text = shift?.city
@@ -59,9 +63,9 @@ class JobFragment : BaseFragment() {
         event_date_monthday_txt?.text = dateMonthDay
         event_date_weekday_txt?.text = dateWeekDay
         salary_txt?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
-        payment_date_txt?.text = shift?.paymentDate
+        payment_date_txt?.text = LocalDate.parse(shift?.paymentDate).format(paymentDateFormatter).toString()
         event_type_txt?.text = shift?.eventName
-        employee_type_txt?.text = shift?.employeeType
+        employee_type_txt?.text = shift?.employeeType.toString().toUpperCase()
         event_description_txt?.text = shift?.eventDescription
         address_txt?.text = shift?.address
         dress_code_txt?.text = shift?.dressCode
@@ -78,6 +82,8 @@ class JobFragment : BaseFragment() {
 
         request_job_btn.setOnClickListener{
             viewModel.saveUserRequestedJob(AccessToken.getCurrentAccessToken().userId.toLong(), shift?.id)
+            Toast.makeText(context, "Ansøgning er blevet sendt", Toast.LENGTH_LONG).show()
+            activity?.finish()
         }
     }
 
