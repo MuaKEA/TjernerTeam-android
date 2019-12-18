@@ -6,36 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.EditUserFragment">
 
-    <EditText
-        android:id="@+id/user_id"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Hello"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/user_name"
+        android:id="@+id/name_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/user_name"
-        app:layout_constraintEnd_toStartOf="@+id/user_name"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="103dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="250dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
@@ -43,75 +20,45 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/adress_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="49dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintStart_toStartOf="@+id/user_id"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintStart_toStartOf="@+id/name_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/name_edittext" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/city_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="57dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="@+id/adress_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/adress_edittext" />
+
+    <EditText
+        android:id="@+id/phoneNumb_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="@+id/city_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/city_edittext" />
+
+    <EditText
+        android:id="@+id/postCode_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
-
-    <EditText
-        android:id="@+id/editText10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="58dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="@+id/user_id"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
-
-    <EditText
-        android:id="@+id/editText11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="49dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="@+id/user_id"
-        app:layout_constraintTop_toBottomOf="@+id/editText10" />
-
-    <EditText
-        android:id="@+id/editText12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText11" />
-
-    <EditText
-        android:id="@+id/editText14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginBottom="37dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumb_edittext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

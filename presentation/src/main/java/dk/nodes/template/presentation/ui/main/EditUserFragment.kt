@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.edit_user_fragment.*
 class EditUserFragment : BaseFragment() {
     private val viewModel by viewModel<MainActivityViewModel>()
     private var listener: JobFragment.OnFragmentInteractionListener? = null
-    var facebookUser: FacebookUser? = null
+
     companion object {
         fun newInstance() = EditUserFragment()
     }
@@ -37,17 +37,18 @@ class EditUserFragment : BaseFragment() {
         viewModel.viewState.observeNonNull(this) { state ->
             handleUser(state)
 
-
         }
         viewModel.fetchUser("10215434751088611")
         }
 
 
     private fun handleUser(state: MainActivityViewState) {
-        viewState.facebookUser?.let { facebookUser ->
-            user_id?.text = facebookUser?.facebookId.toString()
-        }
-
+        state.facebookUser?.let { user ->
+        name_edittext.setText(user.fullName.toString())
+        adress_edittext.setText(user.fullName.toString())
+        city_edittext.setText(user.fullName.toString())
+        postCode_edittext.setText(user.fullName.toString())
+        phoneNumb_edittext.setText(user.phoneNumber.toString())
 
         }
     }
