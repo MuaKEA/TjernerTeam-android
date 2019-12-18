@@ -71,12 +71,12 @@ class MainActivityViewModel @Inject constructor(
     fun fetchUser(facebookId : String) =  viewModelScope.launch {
 
         val result = withContext(Dispatchers.IO) { fetchFacebookUserInteractor.asResult().invoke(facebookId)}
-        state = fetchUser(result)
+        state = fetchUsers(result)
 
     }
 
 
-    private fun fetchUser(result: CompleteResult<FacebookUser>): MainActivityViewState {
+    private fun fetchUsers(result: CompleteResult<FacebookUser>): MainActivityViewState {
         return when (result) {
 
             is Success -> state.copy(facebookUser = result.data)

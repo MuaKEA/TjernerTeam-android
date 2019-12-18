@@ -22,14 +22,16 @@ class FacebookRespository @Inject constructor(
 
         val response = api.getFacebookUser(facebookUser).execute()
 
-
-        if (!response.isSuccessful) {
+        if (response.isSuccessful) {
             user = response.body()
 
             if (user != null) {
+
                 return user
             }
         }
+        Log.d("shadush", user.toString())
+
         return user!!
 
     }

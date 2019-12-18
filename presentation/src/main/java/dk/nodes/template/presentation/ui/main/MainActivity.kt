@@ -50,8 +50,10 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         supportFragmentManager.beginTransaction()
                 .add(R.id.main_frame, shiftOverviewFragment, "1")
                 .add(R.id.main_frame, userOptionsFragment, "2")
+                .add(R.id.main_frame, editUserFragment, "3")
                 .show(shiftOverviewFragment)
                 .hide(userOptionsFragment)
+                .hide(editUserFragment)
                 .commit()
     }
 
@@ -61,19 +63,22 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             R.id.available_jobs -> {
                 supportFragmentManager.beginTransaction()
                         .show(shiftOverviewFragment)
-                        .hide(userOptionsFragment).commit()
+                        .hide(userOptionsFragment)
+                        .hide(editUserFragment).commit()
+
             }
             R.id.other_options -> {
                 supportFragmentManager.beginTransaction()
                         .show(userOptionsFragment)
                         .hide(shiftOverviewFragment)
+                        .hide(editUserFragment)
                         .commit()
             }
 
             R.id.navigation_profile -> {
                 supportFragmentManager.beginTransaction()
-                        .hide(shiftOverviewFragment)
                         .show(editUserFragment)
+                        .hide(shiftOverviewFragment)
                         .hide(userOptionsFragment)
                         .commit()
             }
