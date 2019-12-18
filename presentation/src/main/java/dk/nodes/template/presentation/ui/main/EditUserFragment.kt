@@ -15,11 +15,12 @@ import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.base.BaseFragment_MembersInjector
 import dk.nodes.template.presentation.ui.shift.JobFragment
 import dk.nodes.template.presentation.ui.shift.MessageFragment
+import kotlinx.android.synthetic.main.edit_user_fragment.*
 
 class EditUserFragment : BaseFragment() {
     private val viewModel by viewModel<MainActivityViewModel>()
     private var listener: JobFragment.OnFragmentInteractionListener? = null
-
+    var facebookUser: FacebookUser? = null
     companion object {
         fun newInstance() = EditUserFragment()
     }
@@ -36,13 +37,16 @@ class EditUserFragment : BaseFragment() {
         viewModel.viewState.observeNonNull(this) { state ->
             handleUser(state)
 
+
         }
         viewModel.fetchUser("10215434751088611")
         }
 
 
     private fun handleUser(state: MainActivityViewState) {
-        state.facebookUser?.let {
+        viewState.facebookUser?.let { facebookUser ->
+            user_id?.text = facebookUser?.facebookId.toString()
+        }
 
 
         }
