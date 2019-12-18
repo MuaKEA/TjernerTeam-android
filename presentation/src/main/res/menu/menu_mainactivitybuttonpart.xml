@@ -20,6 +20,5 @@
         android:id="@+id/other_options"
         android:icon="@drawable/ic_menu_black_24dp"
         android:title="@string/other_options" />
-
 </menu>
 

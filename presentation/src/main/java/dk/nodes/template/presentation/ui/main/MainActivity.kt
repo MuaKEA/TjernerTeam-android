@@ -19,7 +19,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     private var shownMenu: Int = 0
     lateinit var shiftOverviewFragment: Fragment
     lateinit var userOptionsFragment : Fragment
-
+    lateinit var editUserFragment: EditUserFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,7 +45,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
         shiftOverviewFragment = ShiftOverviewFragment.newInstance()
         userOptionsFragment = UserOptionsFragment.newInstance()
-
+        editUserFragment = EditUserFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.main_frame, shiftOverviewFragment, "1")
@@ -69,8 +69,16 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                         .hide(shiftOverviewFragment)
                         .commit()
             }
+
+            R.id.navigation_profile -> {
+                supportFragmentManager.beginTransaction()
+                        .hide(shiftOverviewFragment)
+                        .show(editUserFragment)
+                        .hide(userOptionsFragment)
+                        .commit()
+            }
         }
-        shownMenu = item.itemId
+            shownMenu = item.itemId
 
 
         return true

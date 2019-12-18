@@ -49,6 +49,8 @@ class EditUserFragment : BaseFragment() {
         city_edittext.setText(user.fullName.toString())
         postCode_edittext.setText(user.fullName.toString())
         phoneNumb_edittext.setText(user.phoneNumber.toString())
+        postCode_edittext.setText(user.postCode.toString())
+
 
         }
     }
