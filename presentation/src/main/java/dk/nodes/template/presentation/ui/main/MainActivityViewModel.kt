@@ -1,6 +1,7 @@
 package dk.nodes.template.presentation.ui.main
 
 import androidx.lifecycle.viewModelScope
+import com.facebook.AccessToken
 import dk.nodes.template.domain.interactors.*
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.models.Shift
@@ -46,8 +47,8 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun fetchShifts() =  viewModelScope.launch {
-
-        val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke() }
+        val userId = AccessToken.getCurrentAccessToken().userId.toLong()
+        val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke(userId) }
         state = fetchShiftResult(result)
 
     }
