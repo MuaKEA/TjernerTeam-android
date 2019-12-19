@@ -56,6 +56,8 @@
     <string name="logout">Logout</string>
     <string name="button">Button</string>
     <string name="message_fragment">message fragment</string>
+    <string name="notifications_indstillinger">notifications indstillinger</string>
+    <string name="snooze_notificationer">Snooze notificationer</string>
 
 
 </resources>

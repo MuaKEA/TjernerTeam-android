@@ -1,5 +1,7 @@
 package dk.nodes.template.presentation.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -18,11 +20,14 @@ import dk.nodes.template.presentation.ui.shift.JobFragment
 import dk.nodes.template.presentation.ui.shift.MessageFragment
 import kotlinx.android.synthetic.main.edit_user_fragment.*
 import timber.log.Timber
+import com.facebook.AccessToken
+import com.facebook.FacebookActivity
+
 
 class EditUserFragment : BaseFragment() {
     private val viewModel by viewModel<MainActivityViewModel>()
     private var listener: JobFragment.OnFragmentInteractionListener? = null
-
+    private lateinit var maincontext : Context
     companion object {
         fun newInstance() = EditUserFragment()
     }
@@ -37,7 +42,7 @@ class EditUserFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.fetchUser("10215434751088611")
+        viewModel.fetchUser(isLoggedIn())
 
 
         viewModel.viewState.observeNonNull(this) { state ->
@@ -46,7 +51,17 @@ class EditUserFragment : BaseFragment() {
 
         }
         }
+    fun isLoggedIn(): String {
+        val accessToken = AccessToken.getCurrentAccessToken()
+        if(accessToken != null) {
+            Log.d("shadush",accessToken.userId)
 
+            return accessToken.userId
+        }
+        var intent = Intent(maincontext,FacebookActivity::class.java)
+        startActivity(intent)
+        return ""
+    }
 
     private fun handleUser(state: MainActivityViewState) {
         state.facebookUser?.let { user ->
@@ -79,7 +94,8 @@ class EditUserFragment : BaseFragment() {
             fun onFragmentInteraction(uri: Uri)
         }
 
-
-
-
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        maincontext = context
+    }
 }
