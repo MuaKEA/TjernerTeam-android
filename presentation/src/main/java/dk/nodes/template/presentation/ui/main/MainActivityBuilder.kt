@@ -39,4 +39,10 @@ internal abstract class MainActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun JobFragment(): JobFragment
+   @ContributesAndroidInjector
+    abstract fun EditUserFragment(): EditUserFragment
+
+
+
+
 }

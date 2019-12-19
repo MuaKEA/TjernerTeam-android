@@ -9,7 +9,7 @@ class FacebookRespository @Inject constructor(
         private val api: FaceBookService) {
 
     suspend fun saveUser(User: FacebookUser) {
-            val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
+        val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
 
         if (!response.isSuccessful) {
         }
@@ -27,5 +27,24 @@ class FacebookRespository @Inject constructor(
 
         if (!response.isSuccessful) {
         }
+    }
+
+    fun getFacebookUser(facebookUser: String): FacebookUser {
+        var user: FacebookUser? = null
+
+        val response = api.getFacebookUser(facebookUser).execute()
+
+        if (response.isSuccessful) {
+            user = response.body()
+
+            if (user != null) {
+
+                return user
+            }
+        }
+        Log.d("shadush", user.toString())
+
+        return user!!
+
     }
 }

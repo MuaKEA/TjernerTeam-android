@@ -19,7 +19,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     private var shownMenu: Int = 0
     lateinit var shiftOverviewFragment: Fragment
     lateinit var userOptionsFragment : Fragment
-
+    lateinit var editUserFragment: EditUserFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,18 +39,21 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             handleErrors(state)
         }
 
+
         bottomnavigation_main.setOnNavigationItemSelectedListener(this)
 
 
         shiftOverviewFragment = ShiftOverviewFragment.newInstance()
         userOptionsFragment = UserOptionsFragment.newInstance()
-
+        editUserFragment = EditUserFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.main_frame, shiftOverviewFragment, "1")
                 .add(R.id.main_frame, userOptionsFragment, "2")
+                .add(R.id.main_frame, editUserFragment, "3")
                 .show(shiftOverviewFragment)
                 .hide(userOptionsFragment)
+                .hide(editUserFragment)
                 .commit()
     }
 
@@ -60,16 +63,27 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             R.id.available_jobs -> {
                 supportFragmentManager.beginTransaction()
                         .show(shiftOverviewFragment)
-                        .hide(userOptionsFragment).commit()
+                        .hide(userOptionsFragment)
+                        .hide(editUserFragment).commit()
+
             }
             R.id.other_options -> {
                 supportFragmentManager.beginTransaction()
                         .show(userOptionsFragment)
                         .hide(shiftOverviewFragment)
+                        .hide(editUserFragment)
+                        .commit()
+            }
+
+            R.id.navigation_profile -> {
+                supportFragmentManager.beginTransaction()
+                        .show(editUserFragment)
+                        .hide(shiftOverviewFragment)
+                        .hide(userOptionsFragment)
                         .commit()
             }
         }
-        shownMenu = item.itemId
+            shownMenu = item.itemId
 
 
         return true
@@ -77,7 +91,8 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
 private fun handleErrors(state: MainActivityViewState) {
     state.viewError?.let {
-        //Toast.makeText(this, "something went wrong", Toast.LENGTH_LONG).show()
+
+
     }
 }
 }
