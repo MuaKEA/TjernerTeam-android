@@ -18,21 +18,12 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
         private val nStackPresenter: NStackPresenter,
         private val fetchShiftsInteractor: FetchShiftsInteractor,
-        private val saveUserProfileInteractor: SaveUserProfileInteractor,
-        private val fetchFacebookUserInteractor: FetchFacebookUserInteractor
+        private val fetchFacebookUserInteractor: FetchFacebookUserInteractor,
         private val saveUserProfileInteractor: SaveUserProfileInteractor,
         private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
         private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor
-
-
-
-
 ) : BaseViewModel<MainActivityViewState>() {
     override val initState: MainActivityViewState = MainActivityViewState()
-
-
-
-
 
 
     private fun fetchShiftResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
@@ -59,8 +50,6 @@ class MainActivityViewModel @Inject constructor(
 
         val result = withContext(Dispatchers.IO) { saveUserProfileInteractor.asResult().invoke(facebookUser)}
         state = saveFacebookUserResult(result)
-        val result = withContext(Dispatchers.IO) { saveUserProfileInteractor.asResult().invoke(facebookUser)}
-        state = saveFacebookUserResualt(result)
 
     }
 
@@ -108,5 +97,5 @@ class MainActivityViewModel @Inject constructor(
         withContext(Dispatchers.IO) { cancelAssignedJobInteractor.asResult().invoke(userAndShiftIdArray) }
     }
     }
-}
+
 

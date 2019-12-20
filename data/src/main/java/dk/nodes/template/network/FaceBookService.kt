@@ -15,7 +15,7 @@ interface FaceBookService {
                          @Query("address") address : String?,
                          @Query("city") city : String?,
                          @Query("phoneNumber") phoneNumber: Long?,
-                         @Query("postCode") postCode: Integer,
+                         @Query("postCode") postCode: Int,
                          @Query("fcmtoken") fcmToken : String?): Call<String>
 
     @POST("/saveUserRequestedJob")

@@ -24,10 +24,15 @@ import com.facebook.AccessToken
 import com.facebook.FacebookActivity
 
 
-class EditUserFragment : BaseFragment() {
+class EditUserFragment : BaseFragment(), View.OnClickListener {
+
+
     private val viewModel by viewModel<MainActivityViewModel>()
     private var listener: JobFragment.OnFragmentInteractionListener? = null
     private lateinit var maincontext : Context
+    private var fcbUcer :FacebookUser?=null
+
+
     companion object {
         fun newInstance() = EditUserFragment()
     }
@@ -41,7 +46,6 @@ class EditUserFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.fetchUser(isLoggedIn())
 
 
@@ -50,7 +54,10 @@ class EditUserFragment : BaseFragment() {
             handleUser(state)
 
         }
-        }
+
+        update_btn.setOnClickListener(this)
+
+    }
     fun isLoggedIn(): String {
         val accessToken = AccessToken.getCurrentAccessToken()
         if(accessToken != null) {
@@ -73,8 +80,15 @@ class EditUserFragment : BaseFragment() {
         city_edittext.setText(user.city)
         phoneNumb_edittext.setText(user.phoneNumber.toString())
         postCode_edittext.setText(user.postCode?.postCode.toString())
+        fcbUcer = user
 
+        }
+    }
 
+    override fun onClick(v: View?) {
+
+        if(fcbUcer != null) {
+            viewModel.saveUser(fcbUcer!!)
         }
     }
 
