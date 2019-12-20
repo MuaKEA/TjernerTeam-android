@@ -6,17 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dk.nodes.template.models.Shift
 
 import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.ui.base.BaseFragment
 
+private const val shiftArg = "shift"
 
-class CompletedShiftFragment : Fragment() {
+class ActiveShiftsFragment : BaseFragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_completed_shifts, container, false)
+        return inflater.inflate(R.layout.fragment_active_shifts, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -41,7 +44,7 @@ class CompletedShiftFragment : Fragment() {
 
         @JvmStatic
         fun newInstance() =
-                CompletedShiftFragment().apply {
+                ActiveShiftsFragment().apply {
 
 
                 }

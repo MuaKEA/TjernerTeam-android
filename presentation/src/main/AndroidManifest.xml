@@ -6,6 +6,7 @@
     <application>
         <activity android:name=".ui.shift.ShiftOverviewFragment"></activity>
         <activity android:name=".ui.options.UserOptionsFragment"></activity>
+        <activity android:name=".ui.shift.ShiftEndFragment"></activity>
         <activity
             android:name=".ui.main.MainActivity"
             android:configChanges="orientation"
@@ -15,6 +16,7 @@
 
         <activity android:name=".ui.login.AuthenticatedActivity"></activity>
         <activity android:name=".ui.shift.ShiftDetailsActivity"></activity>
+        <activity android:name=".ui.shift.UserShiftAdapter"></activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

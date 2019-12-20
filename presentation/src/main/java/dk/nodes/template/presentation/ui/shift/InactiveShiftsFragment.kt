@@ -8,22 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 
 import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.ui.base.BaseFragment
 
 
-class UpcomingShiftFragment : Fragment() {
+class InactiveShiftsFragment : BaseFragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_end_shift_upcoming, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_inactive_shifts, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
-
 
 
     override fun onDetach() {
@@ -41,7 +40,7 @@ class UpcomingShiftFragment : Fragment() {
 
         @JvmStatic
         fun newInstance() =
-                UpcomingShiftFragment().apply {
+                InactiveShiftsFragment().apply {
 
 
                 }

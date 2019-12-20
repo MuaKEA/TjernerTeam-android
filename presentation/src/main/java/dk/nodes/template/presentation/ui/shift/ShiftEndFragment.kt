@@ -31,7 +31,9 @@ class ShiftEndFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //adapter = mainContext?.let { ShiftOverviewAdapter(it, R.layout.fragment_shift_end) }
+        //adapter = mainContext?.let { UserShiftActivity(it, R.layout.shift_recyclerview_row) }
+
+        addItemOnclick()
 
         viewModel.viewState.observeNonNull(this){
             //state-> handleShift(state)
@@ -58,6 +60,13 @@ class ShiftEndFragment : BaseFragment() {
     }
 
 
+    private fun addItemOnclick() {
+        adapter?.onItemClickedListener = {shift ->
+            shiftDetailsActivityIntent = Intent(mainContext, UserShiftActivity::class.java)
+            shiftDetailsActivityIntent.putExtra("shift", shift)
+            startActivity(shiftDetailsActivityIntent)
+        }
+    }
 
 
 

@@ -5,12 +5,12 @@
 
 
         <item
-            android:id="@+id/navigation_upcoming_shift"
+            android:id="@+id/navigation_active_shifts"
             android:title="@string/upcoming_shifts"
             />
 
         <item
-            android:id="@+id/navigation_completed_shift"
+            android:id="@+id/navigation_inactive_shifts"
             android:title="@string/completed_shifts"
             />
 

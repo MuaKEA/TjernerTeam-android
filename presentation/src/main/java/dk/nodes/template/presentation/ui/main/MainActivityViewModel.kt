@@ -20,7 +20,9 @@ class MainActivityViewModel @Inject constructor(
         private val fetchShiftsInteractor: FetchShiftsInteractor,
         private val saveUserProfileInteractor: SaveUserProfileInteractor,
         private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
-        private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor
+        private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
+        private val fetchActiveShiftsInteractor: FetchActiveShiftsInteractor
+        //private val fetchInactiveShiftsInteractor: FetchInactiveShiftsInteractor
 
 
 
@@ -42,10 +44,50 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
+    private fun fetchActiveShiftsResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
+        return when (result) {
+            is Success -> state.copy(userActiveAssignShifts = result.data)
+            is Loading<*> -> state.copy(isLoading = true)
+            is Fail -> state.copy(
+                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
+                    isLoading = false
+            )
+            else -> (MainActivityViewState())
+        }
+
+    }
+
+    private fun fetchInactiveShiftsResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
+        return when (result) {
+            is Success -> state.copy(userInactiveAssignShifts = result.data)
+            is Loading<*> -> state.copy(isLoading = true)
+            is Fail -> state.copy(
+                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
+                    isLoading = false
+            )
+            else -> (MainActivityViewState())
+        }
+
+    }
+
     fun fetchShifts() =  viewModelScope.launch {
         val userId = AccessToken.getCurrentAccessToken().userId.toLong()
         val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke(userId) }
         state = fetchShiftResult(result)
+
+    }
+
+    fun fetchActiveShifts() =  viewModelScope.launch {
+        val userId = AccessToken.getCurrentAccessToken().userId.toLong()
+        val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke(userId) }
+        state = fetchActiveShiftsResult(result)
+
+    }
+
+    fun fetchInactiveShifts() =  viewModelScope.launch {
+        val userId = AccessToken.getCurrentAccessToken().userId.toLong()
+        val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke(userId) }
+        state = fetchInactiveShiftsResult(result)
 
     }
 
@@ -76,5 +118,5 @@ class MainActivityViewModel @Inject constructor(
         val userAndShiftIdArray = arrayOf(userId, shiftId)
         withContext(Dispatchers.IO) { cancelAssignedJobInteractor.asResult().invoke(userAndShiftIdArray) }
     }
-    }
+}
 

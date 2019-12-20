@@ -15,11 +15,11 @@ import dk.nodes.template.presentation.ui.main.MainActivityViewState
 import kotlinx.android.synthetic.main.activity_shift_details.*
 import timber.log.Timber
 
-class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemSelectedListener {
+class UserShiftActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val viewModel by viewModel<MainActivityViewModel>()
-    lateinit var upcomingShiftFragment: Fragment
-    lateinit var completedShiftFragment: Fragment
+    lateinit var activeShiftsFragment: Fragment
+    lateinit var inactiveShiftsFragment: Fragment
     private var shownMenu: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,21 +35,20 @@ class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemS
         }
 
         val shift = intent.getParcelableExtra<Shift>("shift")
-        upcomingShiftFragment = ShiftFragment.newInstance(shift)
+        activeShiftsFragment = ActiveShiftsFragment.newInstance()
 
         viewModel.viewState.observeNonNull(this) { state ->
             handleErrors(state)
         }
 
         top_shiftoverview_menu.setOnNavigationItemSelectedListener(this)
-        completedShiftFragment = MessageFragment.newInstance()
+        inactiveShiftsFragment = InactiveShiftsFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.shift_frame, upcomingShiftFragment, "1")
-                .add(R.id.shift_frame,completedShiftFragment,"2")
-                .show(upcomingShiftFragment)
-                .hide(completedShiftFragment)
-                .commit()
+                .add(R.id.shift_frame, activeShiftsFragment, "1")
+                .add(R.id.shift_frame,inactiveShiftsFragment,"2")
+                .show(activeShiftsFragment)
+                .hide(inactiveShiftsFragment).commit()
 
     }
 
@@ -57,19 +56,17 @@ class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemS
 
         if(shownMenu == item.itemId) return false
         when (item.itemId) {
-            R.id.navigation_upcoming_shift -> {
+            R.id.navigation_active_shifts -> {
                 supportFragmentManager.beginTransaction()
-                        .show(upcomingShiftFragment)
-                        .hide(completedShiftFragment)
-                        .commit()
+                        .show(activeShiftsFragment)
+                        .hide(inactiveShiftsFragment).commit()
             }
 
 
-            R.id.navigation_completed_shift-> {
+            R.id.navigation_inactive_shifts-> {
                 supportFragmentManager.beginTransaction()
-                        .hide(upcomingShiftFragment)
-                        .show(completedShiftFragment)
-                        .commit()
+                        .hide(activeShiftsFragment)
+                        .show(inactiveShiftsFragment).commit()
             }
         }
         shownMenu = item.itemId
@@ -84,4 +81,3 @@ class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemS
         }
     }
 }
-
