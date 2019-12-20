@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.fragment_job.view.*
 import kotlinx.android.synthetic.main.shift_recyclerview_row.view.*
 import timber.log.Timber
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -28,15 +30,17 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val date = LocalDate.parse(shifts[position].eventDate)
+        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/LLL/YYYY", Locale("da-DK"))
+        val date = LocalDate.parse(shifts[position].eventDate).format(eventDateFormatter)
+        val dayOfMonth = LocalDate.parse(shifts[position].eventDate).dayOfMonth.toString()
 
-        val dateWeekDay = date.dayOfWeek.toString().substring(0, 3).toUpperCase()
-        val dateMonth = date.month.toString().substring(0, 3).toUpperCase()
-        val dateMonthDay = date.dayOfMonth.toString()
+
+        val dateWeekDay = date.toString().substring(0, 3).toUpperCase()
+        val dateMonth = date.toString().substring(5, 8).toUpperCase()
 
         holder.customerName?.text = shifts[position].customerName
         holder.eventDateWeekDay?.text = dateWeekDay
-        holder.eventDateMonthDay?.text = dateMonthDay
+        holder.eventDateMonthDay?.text = dayOfMonth
         holder.eventDateMonth?.text = dateMonth
 
         holder.salary?.text = "DKK " + shifts[position].salary?.toBigDecimal()?.setScale(2).toString()
@@ -50,7 +54,7 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
 
         holder.eventDuration?.text = shifts[position].startTime + " - " + shifts[position].endTime
         holder.address?.text = shifts[position].address
-        holder.eventDescription?.text = shifts[position].eventDescription
+        holder.eventDescription?.text = shifts[position].eventName
         holder.root.setOnClickListener {
             onItemClickedListener?.invoke(shifts.get(position))
         }

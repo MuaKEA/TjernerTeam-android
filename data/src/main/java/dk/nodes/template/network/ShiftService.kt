@@ -12,5 +12,5 @@ import javax.inject.Inject
 
 interface ShiftService {
          @GET("/getAllShifts")
-         fun getActiveShifts() : Call<GetShiftsWrapper>
+         fun getActiveShifts(@Query("facebook_id") userId: Long?) : Call<GetShiftsWrapper>
 }

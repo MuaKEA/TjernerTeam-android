@@ -6,18 +6,18 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
+        android:id="@+id/shift_cardview"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="1dp"
         android:clickable="true"
-        android:id="@+id/shift_cardview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/row_border">
 
             <TextView
                 android:id="@+id/employee_type_field"
@@ -29,6 +29,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:textColor="#FFFFFF"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/address"
@@ -36,11 +37,11 @@
 
             <TextView
                 android:id="@+id/salary"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="15dp"
                 android:layout_gravity="end"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center|start"
                 app:layout_constraintStart_toEndOf="@+id/salary_icon"
@@ -88,9 +89,9 @@
             <TextView
                 android:id="@+id/event_duration"
                 android:layout_width="wrap_content"
-                android:layout_height="17dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center_horizontal|top"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center|start"
                 android:textStyle="bold"
@@ -99,7 +100,7 @@
 
             <TextView
                 android:id="@+id/address"
-                android:layout_width="302dp"
+                android:layout_width="wrap_content"
                 android:layout_height="19dp"
                 android:layout_gravity="center_horizontal|bottom"
                 android:fontFamily="sans-serif"
@@ -122,8 +123,9 @@
 
             <TextView
                 android:id="@+id/customer_name"
-                android:layout_width="302dp"
+                android:layout_width="wrap_content"
                 android:layout_height="19dp"
+                android:layout_marginEnd="3dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center|start"
                 android:textSize="15sp"
@@ -133,7 +135,6 @@
                 app:layout_constraintStart_toEndOf="@+id/event_date_weekday"
                 app:layout_constraintTop_toBottomOf="@+id/salary" />
 
-            <!--Credits: <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
             <ImageView
                 android:id="@+id/salary_icon"
                 android:layout_width="24dp"
@@ -143,7 +144,7 @@
                 android:contentDescription="@string/moneybagicon"
                 app:layout_constraintStart_toEndOf="@+id/event_duration"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/money_bag" />
+                app:srcCompat="@drawable/ic_monetization_on_black_24dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

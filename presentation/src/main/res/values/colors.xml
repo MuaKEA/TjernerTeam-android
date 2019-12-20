@@ -8,5 +8,5 @@
         <color name="colorAccent">#FF4081</color>
         <color name="bgBottomNavigation">#fe485a</color>
     <color name="custom_gold">#a58f60</color>
-    <color name="custom_darkgray">#414142</color>
+    <color name="custom_darkgray">#414141</color>
 </resources>

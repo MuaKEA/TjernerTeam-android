@@ -1,3 +1,5 @@
+@file:JvmName("ShiftEndFragmentKt")
+
 package dk.nodes.template.presentation.ui.facebookUser
 
 import android.content.Context
@@ -8,17 +10,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dk.nodes.template.models.FacebookUser
+import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_shift_end.*
 
 import java.time.LocalDate
 
-private const val shiftArg = "FacebookUser"
+private const val shiftArg = "shift"
 
 
-class ShiftFragment : Fragment() {
+class ShiftFragment : BaseFragment() {
 
-    var facebookUser: FacebookUser? = null
+    var shift: Shift? = null
 
     private var listener: OnFragmentInteractionListener? = null
 
@@ -35,45 +39,14 @@ class ShiftFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            facebookUser = it.getParcelable(shiftArg)
+            shift = it.getParcelable(shiftArg)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        user_name.text = facebookUser?.fullName
-        //edit_icon.text = facebookUser?.picture
-
-        //val date = LocalDate.parse(shift?.eventDate)
-
-        //val dateWeekDay = date.dayOfWeek.toString().substring(0, 3) + "."
-        //val dateMonth = date.monthValue.toString()
-        //val dateMonthDay = date.dayOfMonth.toString()
-
-
-        //costumer_name_txt?.text = shift?.customerName
-        //address_city_txt?.text = shift?.city
-        //event_date_month_txt?.text = dateMonth
-        //event_date_monthday_txt?.text = dateMonthDay
-        //event_date_weekday_txt?.text = dateWeekDay
-        // salary_txt?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
-        //payment_date_txt?.text = shift?.paymentDate
-        //event_type_txt?.text = shift?.eventName
-        //employee_type_txt?.text = shift?.employeeType
-        //event_description_txt?.text = shift?.eventDescription
-        //address_txt?.text = shift?.address
-        //dress_code_txt?.text = shift?.dressCode
-        //staff_food_txt?.text = shift?.staffFood
-        //overtime_txt?.text = shift?.overtime
-        //event_duration_txt?.text = shift?.startTime + " - " + shift?.endTime
-
-        //transport_txt?.text = shift?.transportSupplements.toString()
-        //if (transport_txt.text == "true"){
-        //    transport_txt.text = getString(R.string.tillaeg)
-        //} else {
-        //    transport_txt.text = getString(R.string.intet_tillaeg)
-        //}
+        //user_name?.text = shift?.fullName
 
 
     }
@@ -91,10 +64,10 @@ class ShiftFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(facebookUser: FacebookUser) =
+        fun newInstance(shift: Shift) =
                 ShiftFragment().apply {
                     arguments = Bundle().apply {
-                        putParcelable(shiftArg, facebookUser)
+                        putParcelable(shiftArg, shift)
 
                     }
 

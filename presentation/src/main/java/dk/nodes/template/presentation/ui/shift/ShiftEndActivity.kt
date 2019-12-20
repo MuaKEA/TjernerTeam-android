@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.nodes.template.models.FacebookUser
+import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
@@ -17,7 +18,7 @@ import timber.log.Timber
 class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val viewModel by viewModel<MainActivityViewModel>()
-    lateinit var shiftFragment: Fragment
+    lateinit var upcomingShiftFragment: Fragment
     lateinit var completedShiftFragment: Fragment
     private var shownMenu: Int = 0
 
@@ -33,8 +34,8 @@ class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemS
             user?.let { viewModel.saveUser(it) }
         }
 
-        val facebookUser = intent.getParcelableExtra<FacebookUser>("facebookUser")
-        shiftFragment = ShiftFragment.newInstance(facebookUser)
+        val shift = intent.getParcelableExtra<Shift>("shift")
+        upcomingShiftFragment = ShiftFragment.newInstance(shift)
 
         viewModel.viewState.observeNonNull(this) { state ->
             handleErrors(state)
@@ -44,9 +45,9 @@ class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemS
         completedShiftFragment = MessageFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.shift_frame, shiftFragment, "1")
+                .add(R.id.shift_frame, upcomingShiftFragment, "1")
                 .add(R.id.shift_frame,completedShiftFragment,"2")
-                .show(shiftFragment)
+                .show(upcomingShiftFragment)
                 .hide(completedShiftFragment)
                 .commit()
 
@@ -58,7 +59,7 @@ class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemS
         when (item.itemId) {
             R.id.navigation_upcoming_shift -> {
                 supportFragmentManager.beginTransaction()
-                        .show(shiftFragment)
+                        .show(upcomingShiftFragment)
                         .hide(completedShiftFragment)
                         .commit()
             }
@@ -66,7 +67,7 @@ class ShiftEndActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemS
 
             R.id.navigation_completed_shift-> {
                 supportFragmentManager.beginTransaction()
-                        .hide(shiftFragment)
+                        .hide(upcomingShiftFragment)
                         .show(completedShiftFragment)
                         .commit()
             }

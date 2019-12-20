@@ -55,7 +55,6 @@ private val viewModel by viewModel<MainActivityViewModel>()
 
 
 
-
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)

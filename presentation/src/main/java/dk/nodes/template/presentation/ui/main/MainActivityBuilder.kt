@@ -8,9 +8,7 @@ import dagger.multibindings.IntoMap
 import dk.nodes.template.presentation.injection.ViewModelKey
 import dk.nodes.template.presentation.ui.options.UserOptionsFragment
 import dk.nodes.template.presentation.ui.sample.SampleBuilder
-import dk.nodes.template.presentation.ui.shift.ShiftOverviewFragment
-import dk.nodes.template.presentation.ui.shift.ShiftDetailsActivity
-import dk.nodes.template.presentation.ui.shift.ShiftEndFragment
+import dk.nodes.template.presentation.ui.shift.*
 
 
 @Module
@@ -38,9 +36,12 @@ internal abstract class MainActivityBuilder {
     abstract fun UserOptionsFragment(): UserOptionsFragment
 
     @ContributesAndroidInjector
+    abstract fun JobFragment(): JobFragment
+
+    @ContributesAndroidInjector
     abstract fun ShiftEndFragment(): ShiftEndFragment
 
-
-
+    @ContributesAndroidInjector
+    abstract fun CompletedShiftFragment(): CompletedShiftFragment
 
 }

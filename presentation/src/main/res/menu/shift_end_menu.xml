@@ -7,13 +7,11 @@
         <item
             android:id="@+id/navigation_upcoming_shift"
             android:title="@string/upcoming_shifts"
-            android:icon="@drawable/ic_star_black_24dp"
             />
 
         <item
             android:id="@+id/navigation_completed_shift"
             android:title="@string/completed_shifts"
-            android:icon="@drawable/ic_chat_black_24dp"
             />
 
 
