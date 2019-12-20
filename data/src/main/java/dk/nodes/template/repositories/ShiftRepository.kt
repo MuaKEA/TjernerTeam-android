@@ -11,26 +11,19 @@ class ShiftRepository @Inject constructor(
         private val api: ShiftService,
         private val gson: Gson) {
 
-   suspend fun getShifts(): ArrayList<Shift> {
+   suspend fun getShifts(userId: Long): ArrayList<Shift> {
         val shiftsArrayList =ArrayList<Shift>()
-        Log.d("tupac", "shakur")
+        val response = api.getActiveShifts(userId).execute()
 
-        val response = api.getActiveShifts().execute()
-
-        Log.d("tupac", response.body().toString())
-
-
+       Log.d("Shifts: ", response.message())
 
         if (response.isSuccessful) {
            val shiftResponse = response.body()
-
             if (shiftResponse != null){
                 shiftsArrayList.addAll(shiftResponse.shiftsWrapper)
-                Log.d("tupac", "shakur3")
                 return shiftsArrayList
             }
         }
-
         return shiftsArrayList
     }
 }
