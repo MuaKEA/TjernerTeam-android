@@ -5,14 +5,12 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.nodes.template.models.FacebookUser
-import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseActivity
-import dk.nodes.template.presentation.ui.facebookUser.ShiftFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
-import kotlinx.android.synthetic.main.activity_shift_details.*
+import kotlinx.android.synthetic.main.activity_user_shifts.*
 import timber.log.Timber
 
 class UserShiftActivity : BaseActivity(),  BottomNavigationView.OnNavigationItemSelectedListener {
@@ -34,19 +32,19 @@ class UserShiftActivity : BaseActivity(),  BottomNavigationView.OnNavigationItem
             user?.let { viewModel.saveUser(it) }
         }
 
-        val shift = intent.getParcelableExtra<Shift>("shift")
+        //val shift = intent.getParcelableExtra<Shift>("shift")
         activeShiftsFragment = ActiveShiftsFragment.newInstance()
 
         viewModel.viewState.observeNonNull(this) { state ->
             handleErrors(state)
         }
 
-        top_shiftoverview_menu.setOnNavigationItemSelectedListener(this)
+        top_user_shiftoverview_menu.setOnNavigationItemSelectedListener(this)
         inactiveShiftsFragment = InactiveShiftsFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.shift_frame, activeShiftsFragment, "1")
-                .add(R.id.shift_frame,inactiveShiftsFragment,"2")
+                .add(R.id.user_shift_frame, activeShiftsFragment, "1")
+                .add(R.id.user_shift_frame,inactiveShiftsFragment,"2")
                 .show(activeShiftsFragment)
                 .hide(inactiveShiftsFragment).commit()
 

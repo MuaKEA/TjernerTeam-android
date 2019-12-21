@@ -16,7 +16,7 @@
 
         <activity android:name=".ui.login.AuthenticatedActivity"></activity>
         <activity android:name=".ui.shift.ShiftDetailsActivity"></activity>
-        <activity android:name=".ui.shift.UserShiftAdapter"></activity>
+        <activity android:name=".ui.shift.UserShiftActivity"></activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

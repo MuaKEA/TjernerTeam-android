@@ -7,36 +7,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
-import dk.nodes.template.presentation.ui.main.MainActivityViewState
-import kotlinx.android.synthetic.main.fragment_job.*
-import kotlinx.android.synthetic.main.fragment_shift_overview.*
-import java.time.LocalDate
+import kotlinx.android.synthetic.main.fragment_active_shifts.*
+
 
 
 class ShiftEndFragment : BaseFragment() {
 
     private val viewModel by viewModel<MainActivityViewModel>()
     private var mainContext: Context? = null
-    private var adapter: ShiftOverviewAdapter? = null
-    lateinit var shiftDetailsActivityIntent: Intent
+    private var adapter: UserShiftAdapter? = null
+    lateinit var UserShiftActivityIntent: Intent
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //adapter = mainContext?.let { UserShiftActivity(it, R.layout.shift_recyclerview_row) }
-
+        //refreshShifts()
         addItemOnclick()
 
         viewModel.viewState.observeNonNull(this){
-            //state-> handleShift(state)
+            state->
+            //handleShift(state)
         }
 
         //val swipeLayout = swiperefresh as SwipeRefreshLayout
@@ -62,12 +58,18 @@ class ShiftEndFragment : BaseFragment() {
 
     private fun addItemOnclick() {
         adapter?.onItemClickedListener = {shift ->
-            shiftDetailsActivityIntent = Intent(mainContext, UserShiftActivity::class.java)
-            shiftDetailsActivityIntent.putExtra("shift", shift)
-            startActivity(shiftDetailsActivityIntent)
+            UserShiftActivityIntent = Intent(mainContext, UserShiftActivity::class.java)
+            UserShiftActivityIntent.putExtra("shift", shift)
+            startActivity(UserShiftActivityIntent)
         }
     }
 
+    /*private fun refreshShifts() {
+        viewModel.fetchActiveShifts()
+        if (swiperefresh.isRefreshing) {
+            swiperefresh.isRefreshing = false
+        }
+    }*/
 
 
     companion object {
@@ -78,5 +80,10 @@ class ShiftEndFragment : BaseFragment() {
                 }
     }
 
+    fun updateRecyclerView(){
+        rv_user_shift_overview.layoutManager = LinearLayoutManager(mainContext,LinearLayoutManager.VERTICAL,false)
+        rv_user_shift_overview.adapter = adapter
+        adapter?.notifyDataSetChanged()
+    }
 
 }

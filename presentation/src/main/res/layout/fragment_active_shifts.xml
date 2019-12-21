@@ -88,7 +88,7 @@
         android:layout_marginEnd="32dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_shift_overview"
+            android:id="@+id/rv_user_shift_overview"
             android:layout_width="350dp"
             android:layout_height="0dp"
             android:layout_marginStart="1dp"

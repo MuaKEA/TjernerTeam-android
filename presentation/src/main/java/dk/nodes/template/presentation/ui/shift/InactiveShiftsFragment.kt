@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.ui.base.BaseFragment
 
 
-class InactiveShiftsFragment : BaseFragment() {
+class InactiveShiftsFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 
@@ -41,7 +39,6 @@ class InactiveShiftsFragment : BaseFragment() {
         @JvmStatic
         fun newInstance() =
                 InactiveShiftsFragment().apply {
-
 
                 }
     }
