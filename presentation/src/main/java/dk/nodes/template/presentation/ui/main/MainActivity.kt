@@ -1,6 +1,7 @@
 package dk.nodes.template.presentation.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -94,7 +95,8 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                 supportFragmentManager.beginTransaction()
                         .show(shiftEndFragment)
                         .hide(shiftOverviewFragment)
-                        .hide(userOptionsFragment).commit()
+                        .hide(userOptionsFragment)
+                        .hide(editUserFragment).commit()
             }
         }
             shownMenu = item.itemId

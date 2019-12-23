@@ -23,13 +23,8 @@ class MainActivityViewModel @Inject constructor(
        private val saveUserInteractor: SaveUserInteractor,
         private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
         private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
-        private val fetchActiveShiftsInteractor: FetchActiveShiftsInteractor
+        private val fetchActiveShiftsInteractor: FetchActiveShiftsInteractor,
         //private val fetchInactiveShiftsInteractor: FetchInactiveShiftsInteractor
-
-
-
-
-        private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
         private val deleteUserInteractor: DeleteUserInteractor
 ) : BaseViewModel<MainActivityViewState>() {
     override val initState: MainActivityViewState = MainActivityViewState()
@@ -152,15 +147,12 @@ class MainActivityViewModel @Inject constructor(
         val userAndShiftIdArray = arrayOf(userId, shiftId)
         withContext(Dispatchers.IO) { cancelAssignedJobInteractor.asResult().invoke(userAndShiftIdArray) }
     }
+
+
+fun deleteUser(facebookid: Long) =  viewModelScope.launch {
+    withContext(Dispatchers.IO) { deleteUserInteractor.asResult().invoke(facebookid) }
+
 }
-
-    fun deleteUser(facebookid: Long) =  viewModelScope.launch {
-        withContext(Dispatchers.IO) { deleteUserInteractor.asResult().invoke(facebookid) }
-
-    }
-
-
-
     }
 
 

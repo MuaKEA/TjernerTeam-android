@@ -5,49 +5,81 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_active_shifts.*
+import kotlinx.android.synthetic.main.fragment_shift_end.*
 
 
+class ShiftEndFragment : BaseFragment(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-class ShiftEndFragment : BaseFragment() {
 
     private val viewModel by viewModel<MainActivityViewModel>()
     private var mainContext: Context? = null
     private var adapter: UserShiftAdapter? = null
     lateinit var UserShiftActivityIntent: Intent
+    lateinit var inactiveShiftsFragment : Fragment
+    lateinit var upcomingjobFragment: Fragment
+    private var menutab: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        inactiveShiftsFragment = InactiveShiftsFragment.newInstance()
+        upcomingjobFragment = Upcomingjob_Fragment.newInstance()
+        bottomnavigation_main.setOnNavigationItemSelectedListener(this)
 
-        //adapter = mainContext?.let { UserShiftActivity(it, R.layout.shift_recyclerview_row) }
-        //refreshShifts()
-        addItemOnclick()
 
-        viewModel.viewState.observeNonNull(this){
-            state->
-            //handleShift(state)
-        }
+        childFragmentManager.beginTransaction()
+                .add(R.id.shifts_container, inactiveShiftsFragment, "1")
+                .add(R.id.shifts_container, upcomingjobFragment, "2")
+                .show(upcomingjobFragment)
+                .hide(inactiveShiftsFragment)
+                .commit()
 
-        //val swipeLayout = swiperefresh as SwipeRefreshLayout
-        //swipeLayout.setOnRefreshListener {
-        //}
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        if (menutab == item.itemId) return false
+        when (item.itemId) {
+            R.id.navigation_active_shifts -> {
+                childFragmentManager.beginTransaction()
+                        .show(upcomingjobFragment)
+                        .hide(inactiveShiftsFragment)
+                        .commit()
+            }
+            R.id.navigation_inactive_shifts -> {
+                childFragmentManager.beginTransaction()
+                        .show(inactiveShiftsFragment)
+                        .hide(upcomingjobFragment)
+                        .commit()
+            }
+        }
+            menutab = item.itemId
+
+
+        return true
+
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_shift_end, container, false)
+
+
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainContext = context
     }
+
+
 
 
     interface OnFragmentInteractionListener {
@@ -64,12 +96,7 @@ class ShiftEndFragment : BaseFragment() {
         }
     }
 
-    /*private fun refreshShifts() {
-        viewModel.fetchActiveShifts()
-        if (swiperefresh.isRefreshing) {
-            swiperefresh.isRefreshing = false
-        }
-    }*/
+
 
 
     companion object {
@@ -80,10 +107,6 @@ class ShiftEndFragment : BaseFragment() {
                 }
     }
 
-    fun updateRecyclerView(){
-        rv_user_shift_overview.layoutManager = LinearLayoutManager(mainContext,LinearLayoutManager.VERTICAL,false)
-        rv_user_shift_overview.adapter = adapter
-        adapter?.notifyDataSetChanged()
-    }
+
 
 }

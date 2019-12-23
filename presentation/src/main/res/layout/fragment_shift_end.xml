@@ -302,7 +302,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                 app:menu="@menu/shift_end_menu" />
 
+            <FrameLayout
+                android:id="@+id/shifts_container"
+                android:layout_width="409dp"
+                android:layout_height="960dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bottomnavigation_main">
+
+            </FrameLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
     </androidx.cardview.widget.CardView>
 
 </ScrollView>
