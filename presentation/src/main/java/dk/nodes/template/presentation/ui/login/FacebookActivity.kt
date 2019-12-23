@@ -87,7 +87,7 @@ class FacebookActivity : AppCompatActivity() {
                 Log.d("facebooktest", "4")
 
                 mainActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
-                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null, null, null, null,fcmToken))
+                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null,null,null,null,fcmToken,null, null, null, null,null))
 
                 startActivity(mainActivityIntent)
                 finish()

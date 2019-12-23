@@ -9,10 +9,10 @@ class FacebookRespository @Inject constructor(
         private val api: FaceBookService) {
 
     suspend fun saveUser(User: FacebookUser) {
-        val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken, User.city,
-                User.phoneNumber, User.postCode?.postCode!!.toInt(), User.address).execute()
+        val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
 
         if (!response.isSuccessful) {
+            Log.d("saveUser", response.body())
         }
     }
 
@@ -30,7 +30,7 @@ class FacebookRespository @Inject constructor(
         }
     }
 
-    fun getFacebookUser(facebookUser: String): FacebookUser {
+   suspend fun getFacebookUser(facebookUser: String): FacebookUser {
         var user: FacebookUser? = null
 
         val response = api.getFacebookUser(facebookUser).execute()
@@ -46,5 +46,30 @@ class FacebookRespository @Inject constructor(
 
         return user!!
 
+    }
+
+    suspend fun deleteUser(facebookId : Long){
+
+        val response = api.deleteUser(facebookId).execute()
+
+        if (!response.isSuccessful ){
+
+
+        }
+
+
+    }
+
+
+    suspend fun updateUser(user: FacebookUser) {
+
+        val response =api.updateUSer(user.facebookId, user.fullName, user.email,user.address,user.city,user.phoneNumber, user.postCode?.postCode, user.cprNumber,user.regNumber,user.accountNumber,user.dateOfBirth,user.gender).execute()
+
+        if (response != null) {
+            if (!response.isSuccessful) {
+                Log.d("saveUser", response.body())
+
+            }
+        }
     }
 }
