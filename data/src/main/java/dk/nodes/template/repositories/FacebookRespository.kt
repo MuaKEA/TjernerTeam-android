@@ -43,7 +43,6 @@ class FacebookRespository @Inject constructor(
                 return user
             }
         }
-        Log.d("shadush", user.toString())
 
         return user!!
 

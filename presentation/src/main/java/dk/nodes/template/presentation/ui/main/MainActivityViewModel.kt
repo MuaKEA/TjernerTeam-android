@@ -26,6 +26,10 @@ class MainActivityViewModel @Inject constructor(
     override val initState: MainActivityViewState = MainActivityViewState()
 
 
+
+
+
+
     private fun fetchShiftResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
         return when (result) {
             is Success -> state.copy(shiftOverviewList = result.data)

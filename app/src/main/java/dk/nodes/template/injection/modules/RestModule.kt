@@ -47,7 +47,7 @@ class RestModule {
     @Provides
     @Named("NAME_BASE_URL")
     fun provideBaseUrlString(): String {
-        return "http://ec2-54-196-99-44.compute-1.amazonaws.com:5000"
+        return "http://ec2-3-208-9-18.compute-1.amazonaws.com:5000"
     }
     @Provides
     @Named("NAME_Weather_BASE_URL")
