@@ -50,4 +50,10 @@ internal abstract class MainActivityBuilder {
     //@ContributesAndroidInjector
     //abstract fun ActiveShiftsFragment(): ActiveShiftsFragment
 
+   @ContributesAndroidInjector
+    abstract fun EditUserFragment(): EditUserFragment
+
+
+
+
 }

@@ -17,10 +17,23 @@ class FacebookUser(
         var city : String?,
         @SerializedName("phoneNumber")
         var phoneNumber : Long?,
-        @SerializedName("postCode")
-        var postCode: Int?,
+        @SerializedName("postCodes")
+        var postCode: PostCode?,
         @SerializedName("fcmToken")
-        var fcmToken : String?
+        var fcmToken : String?,
+        @SerializedName("cprNumber")
+        var cprNumber : String?,
+        @SerializedName("regNumber")
+        var regNumber : Int?,
+        @SerializedName("accountNumber")
+        var accountNumber : Long?,
+        @SerializedName("dateOfBirth")
+        var dateOfBirth : String?,
+        @SerializedName("gender")
+        var gender : String?
+
+
+
 
 ) : Parcelable {
         constructor(parcel: Parcel) : this(
@@ -30,7 +43,12 @@ class FacebookUser(
                 parcel.readString(),
                 parcel.readString(),
                 parcel.readValue(Long::class.java.classLoader) as? Long,
+                parcel.readParcelable(PostCode::class.java.classLoader),
+                parcel.readString(),
+                parcel.readString(),
                 parcel.readValue(Int::class.java.classLoader) as? Int,
+                parcel.readValue(Long::class.java.classLoader) as? Long,
+                parcel.readString(),
                 parcel.readString()) {
         }
 
@@ -41,13 +59,23 @@ class FacebookUser(
                 parcel.writeString(address)
                 parcel.writeString(city)
                 parcel.writeValue(phoneNumber)
-                parcel.writeValue(postCode)
+                parcel.writeParcelable(postCode, flags)
                 parcel.writeString(fcmToken)
+                parcel.writeString(cprNumber)
+                parcel.writeValue(regNumber)
+                parcel.writeValue(accountNumber)
+                parcel.writeString(dateOfBirth)
+                parcel.writeString(gender)
         }
 
         override fun describeContents(): Int {
                 return 0
         }
+
+        override fun toString(): String {
+                return "FacebookUser(facebookId=$facebookId, fullName=$fullName, email=$email, address=$address, city=$city, phoneNumber=$phoneNumber, postCode=$postCode, fcmToken=$fcmToken, cprNumber=$cprNumber, regNumber=$regNumber, accountNumber=$accountNumber, dateOfBirth=$dateOfBirth, gender=$gender)"
+        }
+
 
         companion object CREATOR : Parcelable.Creator<FacebookUser> {
                 override fun createFromParcel(parcel: Parcel): FacebookUser {
@@ -58,4 +86,7 @@ class FacebookUser(
                         return arrayOfNulls(size)
                 }
         }
+
+
+
 }

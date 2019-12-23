@@ -4,11 +4,9 @@ import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.repositories.FacebookRespository
 import javax.inject.Inject
 
-class SaveUserProfileInteractor @Inject constructor(private val FacebookRespository : FacebookRespository)
-    :  BaseInputAsyncInteractor<FacebookUser,Unit> {
+class SaveUserInteractor @Inject constructor(private val FacebookRespository : FacebookRespository)
+:  BaseInputAsyncInteractor<FacebookUser,Unit> {
     override suspend fun invoke(input: FacebookUser) {
-        return FacebookRespository.updateUser(input)
+        return FacebookRespository.saveUser(input)
     }
 }
-
-

@@ -16,7 +16,10 @@ data class MainActivityViewState(
         val nstackUpdate: AppUpdate? = null,
         val viewError: SingleEvent<ViewError>? = null,
         val Shift: Shift? = null,
-        val shiftOverviewList : ArrayList<Shift>? = null,
         val userActiveAssignShifts: ArrayList<Shift>? = null,
         val userInactiveAssignShifts: ArrayList<Shift>? = null
+        val shiftOverviewList : ArrayList<Shift>? = null,
+        val facebookUser: FacebookUser?=null
+
+
         )

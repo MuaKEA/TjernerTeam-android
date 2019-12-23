@@ -1,0 +1,164 @@
+package dk.nodes.template.presentation.ui.main
+
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.facebook.AccessToken
+import com.facebook.FacebookActivity
+import com.facebook.GraphRequest
+import com.facebook.HttpMethod
+import dk.nodes.template.models.FacebookUser
+import dk.nodes.template.models.PostCode
+import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.extensions.observeNonNull
+import dk.nodes.template.presentation.ui.base.BaseFragment
+import dk.nodes.template.presentation.ui.shift.JobFragment
+import kotlinx.android.synthetic.main.edit_user_fragment.*
+import timber.log.Timber
+
+
+class EditUserFragment : BaseFragment(), View.OnClickListener {
+
+
+    private val viewModel by viewModel<MainActivityViewModel>()
+    private var listener: JobFragment.OnFragmentInteractionListener? = null
+    private lateinit var maincontext: Context
+    private var fcbUcer: FacebookUser? = null
+
+
+    companion object {
+        fun newInstance() = EditUserFragment()
+    }
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.edit_user_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.fetchUser(isLoggedIn())
+        update_btn.setOnClickListener(this)
+        delete_btn.setOnClickListener(this)
+        viewModel.viewState.observeNonNull(this) { state ->
+            handleUser(state)
+
+        }
+
+
+    }
+
+    fun isLoggedIn(): String {
+        val accessToken = AccessToken.getCurrentAccessToken()
+        if (accessToken != null) {
+
+            return accessToken.userId
+        }
+        var intent = Intent(maincontext, FacebookActivity::class.java)
+        startActivity(intent)
+        return ""
+    }
+
+        fun getAccesToken(): AccessToken {
+            val accessToken = AccessToken.getCurrentAccessToken()
+
+                return accessToken
+
+
+        }
+
+    private fun handleUser(state: MainActivityViewState) {
+        state.facebookUser?.let { user ->
+            Log.d("shadush", user.toString())
+
+            Timber.e(user.toString())
+            name_edittext.setText(user.fullName.toString())
+            adress_edittext.setText(user.email)
+            city_edittext.setText(user.city)
+            phoneNumb_edittext.setText(user.phoneNumber.toString())
+            postCode_edittext.setText(user.postCode?.postCode.toString())
+            cpr_edit.setText(user.cprNumber)
+            regNumber_edittext.setText(user.regNumber.toString())
+            accountnr_edittext.setText(user.accountNumber.toString())
+            dateofbirth_edittext.setText(user.dateOfBirth)
+
+            when (user.gender) {
+
+                "Male" -> radioM.isChecked = true
+                "Female" -> radioF.isChecked = true
+            }
+
+            fcbUcer = user
+
+        }
+
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+
+            update_btn.id-> {
+                fcbUcer?.address = adress_edittext.text.toString()
+                fcbUcer?.fullName = name_edittext.text.toString()
+                fcbUcer?.city = city_edittext.text.toString()
+                fcbUcer?.phoneNumber = phoneNumb_edittext.text.toString().toLong()
+                val postCode = PostCode(postCode_edittext.text.toString().toInt())
+                fcbUcer?.postCode = postCode
+                fcbUcer?.regNumber = regNumber_edittext.text.toString().toInt()
+                fcbUcer?.accountNumber = accountnr_edittext.text.toString().toLong()
+                fcbUcer?.dateOfBirth = dateofbirth_edittext.text.toString()
+                fcbUcer?.cprNumber = cpr_edit.text.toString()
+                if (radioF.isChecked) {
+                    fcbUcer?.gender = radioF.text.toString()
+
+                } else {
+
+                    fcbUcer?.gender = radioM.text.toString()
+
+                }
+
+
+                Log.d("saveUser", fcbUcer.toString())
+
+                viewModel.updateUser(fcbUcer!!)
+            }
+
+            delete_btn.id->{
+
+                fcbUcer?.facebookId?.let { viewModel.deleteUser(it) }
+                GraphRequest(getAccesToken(), "/me/permissions", null, HttpMethod.DELETE).executeAsync()
+
+                startActivity(Intent(maincontext,FacebookActivity::class.java))
+
+            }
+        }
+        }
+
+
+
+    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }
+
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+
+    interface OnFragmentInteractionLitener {
+        fun onFragmentInteraction(uri: Uri)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        maincontext = context
+    }
+}

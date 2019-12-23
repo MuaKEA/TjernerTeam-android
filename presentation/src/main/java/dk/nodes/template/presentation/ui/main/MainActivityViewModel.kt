@@ -18,7 +18,9 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
         private val nStackPresenter: NStackPresenter,
         private val fetchShiftsInteractor: FetchShiftsInteractor,
+        private val fetchFacebookUserInteractor: FetchFacebookUserInteractor,
         private val saveUserProfileInteractor: SaveUserProfileInteractor,
+       private val saveUserInteractor: SaveUserInteractor,
         private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
         private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
         private val fetchActiveShiftsInteractor: FetchActiveShiftsInteractor
@@ -27,6 +29,8 @@ class MainActivityViewModel @Inject constructor(
 
 
 
+        private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
+        private val deleteUserInteractor: DeleteUserInteractor
 ) : BaseViewModel<MainActivityViewState>() {
     override val initState: MainActivityViewState = MainActivityViewState()
 
@@ -93,7 +97,14 @@ class MainActivityViewModel @Inject constructor(
 
     fun saveUser(facebookUser: FacebookUser) =  viewModelScope.launch {
 
-        val result = withContext(Dispatchers.IO) { saveUserProfileInteractor.asResult().invoke(facebookUser)}
+        val result = withContext(Dispatchers.IO) { saveUserInteractor.asResult().invoke(facebookUser)}
+        state = saveFacebookUserResult(result)
+
+    }
+
+    fun updateUser(facebookUser: FacebookUser) =  viewModelScope.launch {
+
+        val result = withContext(Dispatchers.IO) {saveUserProfileInteractor.asResult().invoke(facebookUser)}
         state = saveFacebookUserResult(result)
 
     }
@@ -108,6 +119,29 @@ class MainActivityViewModel @Inject constructor(
         }
 
     }
+    fun fetchUser(facebookId : String) =  viewModelScope.launch {
+
+        val result = withContext(Dispatchers.IO) { fetchFacebookUserInteractor.asResult().invoke(facebookId)}
+        state = fetchUsers(result)
+
+    }
+
+
+    private fun fetchUsers(result: CompleteResult<FacebookUser>): MainActivityViewState {
+        return when (result) {
+
+            is Success -> state.copy(facebookUser = result.data)
+            is Loading<*> -> state.copy(isLoading = true)
+            is Fail -> state.copy(
+                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
+                    isLoading = false
+            )
+            else -> (MainActivityViewState())
+
+        }
+
+    }
+
 
     fun saveUserRequestedJob(userId: Long, shiftId: Long?) =  viewModelScope.launch {
         val userAndShiftIdArray = arrayOf(userId, shiftId)
@@ -119,4 +153,14 @@ class MainActivityViewModel @Inject constructor(
         withContext(Dispatchers.IO) { cancelAssignedJobInteractor.asResult().invoke(userAndShiftIdArray) }
     }
 }
+
+    fun deleteUser(facebookid: Long) =  viewModelScope.launch {
+        withContext(Dispatchers.IO) { deleteUserInteractor.asResult().invoke(facebookid) }
+
+    }
+
+
+
+    }
+
 
