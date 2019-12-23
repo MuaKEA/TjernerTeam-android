@@ -1,5 +1,6 @@
 package dk.nodes.template.repositories
 
+import android.media.FaceDetector
 import android.util.Log
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.network.FaceBookService
@@ -7,6 +8,7 @@ import javax.inject.Inject
 
 class FacebookRespository @Inject constructor(
         private val api: FaceBookService) {
+        private val facebookRespository: FacebookRespository? = null
 
     suspend fun saveUser(User: FacebookUser) {
         val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken, User.city,
@@ -48,4 +50,17 @@ class FacebookRespository @Inject constructor(
         return user!!
 
     }
+
+    suspend fun deleteUser(facebookID: Long) {
+        var fUser: FacebookUser? = null
+        if(fUser != null){
+            facebookRespository?.deleteUser(facebookID)
+
+            val response = api.deleteUser(facebookID).execute()
+
+        }
+
+    }
+
+
 }

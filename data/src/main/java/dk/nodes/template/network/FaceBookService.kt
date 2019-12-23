@@ -29,7 +29,8 @@ interface FaceBookService {
     @GET("/getUser")
     fun getFacebookUser(@Query("facebook_id") userName :String?): Call<FacebookUser>
 
-
+    @POST("/deleteUser")
+    fun deleteUser(@Query("facebook_id") facebookID : Long?): Call<Void>
 
 
 }
