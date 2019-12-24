@@ -43,7 +43,7 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
-    private fun fetchActiveShiftsResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
+    internal fun fetchActiveShiftsResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
         return when (result) {
             is Success -> state.copy(userActiveAssignShifts = result.data)
             is Loading<*> -> state.copy(isLoading = true)
@@ -78,7 +78,7 @@ class MainActivityViewModel @Inject constructor(
 
     fun fetchActiveShifts() =  viewModelScope.launch {
         val userId = AccessToken.getCurrentAccessToken().userId.toLong()
-        val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke(userId) }
+        val result = withContext(Dispatchers.IO) { fetchActiveShiftsInteractor.asResult().invoke(userId) }
         state = fetchActiveShiftsResult(result)
 
     }

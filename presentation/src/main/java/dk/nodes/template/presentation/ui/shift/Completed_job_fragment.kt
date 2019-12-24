@@ -3,24 +3,23 @@ package dk.nodes.template.presentation.ui.shift
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
+import kotlinx.android.synthetic.main.fragment_completed_job.*
 import kotlinx.android.synthetic.main.fragment_shift_overview.*
-import kotlinx.android.synthetic.main.fragment_upcomingjob.*
 
 
-class Upcomingjob_Fragment : BaseFragment() {
+class Completed_job_fragment : BaseFragment() {
 
+    private var listener: InactiveShiftsFragment.OnFragmentInteractionListener? = null
     private var adapter: ShiftOverviewAdapter? = null
     private var mainContext: Context? = null
     private val viewModel by viewModel<MainActivityViewModel>()
@@ -34,12 +33,11 @@ class Upcomingjob_Fragment : BaseFragment() {
         adapter = mainContext?.let { ShiftOverviewAdapter(it, R.layout.shift_recyclerview_row) }
         refreshShifts()
 
-        viewModel.viewState.observeNonNull(this) {
-            state ->
+        viewModel.viewState.observeNonNull(this) { state ->
             handleShift(state)
         }
 
-        val swipeLayout = swiperefresh_upcoming_job as SwipeRefreshLayout
+        val swipeLayout = swiperefresh_completed_jobs as SwipeRefreshLayout
         swipeLayout.setOnRefreshListener {
             refreshShifts()
         }
@@ -54,13 +52,13 @@ class Upcomingjob_Fragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_upcomingjob, container, false)
+        return inflater.inflate(R.layout.fragment_completed_job, container, false)
 
     }
 
-    //fun onButtonPressed(uri: Uri) {
-    //    listener?.onFragmentInteraction(uri)
-    //}
+    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -76,30 +74,30 @@ class Upcomingjob_Fragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance() =
-                Upcomingjob_Fragment().apply {
+                Completed_job_fragment().apply {
 
                 }
     }
 
     private fun refreshShifts() {
-        viewModel.fetchActiveShifts()
-        if (swiperefresh_upcoming_job.isRefreshing) {
-            swiperefresh_upcoming_job.isRefreshing = false
+        viewModel.fetchInactiveShifts()
+        if (swiperefresh_completed_jobs.isRefreshing) {
+            swiperefresh_completed_jobs.isRefreshing = false
         }
     }
 
-    //fun updateRecyclerView(){
-     //   rv_upcoming_job.layoutManager = LinearLayoutManager(mainContext, LinearLayoutManager.VERTICAL,false)
-    //    rv_upcoming_job.adapter = adapter
-    //    adapter?.notifyDataSetChanged()
-    //}
+    fun updateRecyclerView(){
+        rv_completed_jobs.layoutManager = LinearLayoutManager(mainContext, LinearLayoutManager.VERTICAL,false)
+        rv_completed_jobs.adapter = adapter
+        adapter?.notifyDataSetChanged()
+    }
 
     private fun handleShift(state: MainActivityViewState) {
         state.let {
 
-            state.userActiveAssignShifts?.let { upcomingShiftOverview -> adapter?.addShifts(upcomingShiftOverview) }
+            state.userInactiveAssignShifts?.let { completedShiftOverview -> adapter?.addShifts(completedShiftOverview) }
             adapter?.notifyDataSetChanged()
-            //updateRecyclerView()
+            updateRecyclerView()
         }
     }
 }

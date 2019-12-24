@@ -15,17 +15,14 @@ import javax.inject.Inject
 
 data class ShiftViewModel @Inject constructor(
 private val nStackPresenter: NStackPresenter,
-private val fetchShiftsInteractor: FetchShiftsInteractor
+private val fetchShiftsInteractor: FetchShiftsInteractor,
+private val fetchActiveShiftsInteractor: FetchActiveShiftsInteractor
+
+
 
 
 ): BaseViewModel<ShiftViewState>(){
     override val initState: ShiftViewState = ShiftViewState()
-
-
-
-
-
-
 
 
 }
