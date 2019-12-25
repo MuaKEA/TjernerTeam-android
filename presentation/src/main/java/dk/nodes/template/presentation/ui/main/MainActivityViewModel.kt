@@ -24,7 +24,7 @@ class MainActivityViewModel @Inject constructor(
         private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
         private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
         private val fetchActiveShiftsInteractor: FetchActiveShiftsInteractor,
-        //private val fetchInactiveShiftsInteractor: FetchInactiveShiftsInteractor
+        private val fetchInactiveShiftsInteractor: FetchInactiveShiftsInteractor,
         private val deleteUserInteractor: DeleteUserInteractor
 ) : BaseViewModel<MainActivityViewState>() {
     override val initState: MainActivityViewState = MainActivityViewState()
@@ -85,7 +85,7 @@ class MainActivityViewModel @Inject constructor(
 
     fun fetchInactiveShifts() =  viewModelScope.launch {
         val userId = AccessToken.getCurrentAccessToken().userId.toLong()
-        val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke(userId) }
+        val result = withContext(Dispatchers.IO) { fetchInactiveShiftsInteractor.asResult().invoke(userId) }
         state = fetchInactiveShiftsResult(result)
 
     }

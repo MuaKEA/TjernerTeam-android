@@ -4,9 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application>
-        <activity android:name=".ui.shift.ShiftOverviewFragment"></activity>
-        <activity android:name=".ui.options.UserOptionsFragment"></activity>
-        <activity android:name=".ui.shift.ShiftEndFragment"></activity>
+        <activity android:name=".ui.shift.ShiftOverviewFragment" />
+        <activity android:name=".ui.shift.Upcomingjob_Fragment" />
+        <activity android:name=".ui.options.UserOptionsFragment"/>
+        <activity android:name=".ui.shift.ShiftEndFragment"/>
         <activity
             android:name=".ui.main.MainActivity"
             android:configChanges="orientation"

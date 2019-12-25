@@ -1,6 +1,7 @@
 package dk.nodes.template.presentation.ui.shift
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,9 +22,11 @@ import kotlinx.android.synthetic.main.fragment_upcomingjob.*
 
 class Upcomingjob_Fragment : BaseFragment() {
 
-    private var adapter: ShiftOverviewAdapter? = null
+    private var listener: ActiveShiftsFragment.OnFragmentInteractionListener? = null
+    private var adapter: UserShiftAdapter? = null
     private var mainContext: Context? = null
     private val viewModel by viewModel<MainActivityViewModel>()
+    lateinit var shiftDetailsActivityIntent: Intent
 
 
 
@@ -31,7 +34,7 @@ class Upcomingjob_Fragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = mainContext?.let { ShiftOverviewAdapter(it, R.layout.shift_recyclerview_row) }
+        adapter = mainContext?.let { UserShiftAdapter(it, R.layout.shift_recyclerview_row) }
         refreshShifts()
 
         viewModel.viewState.observeNonNull(this) {
@@ -46,10 +49,6 @@ class Upcomingjob_Fragment : BaseFragment() {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -58,20 +57,20 @@ class Upcomingjob_Fragment : BaseFragment() {
 
     }
 
-    //fun onButtonPressed(uri: Uri) {
-    //    listener?.onFragmentInteraction(uri)
-    //}
+    interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        fun onFragmentInteraction(uri: Uri)
+    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainContext = context
     }
 
-
-    //interface OnFragmentInteractionListener {
-    // TODO: Update argument type and name
-    //    fun onFragmentInteraction(uri: Uri)
-    //}
+    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }
 
     companion object {
         @JvmStatic
@@ -88,18 +87,18 @@ class Upcomingjob_Fragment : BaseFragment() {
         }
     }
 
-    //fun updateRecyclerView(){
-     //   rv_upcoming_job.layoutManager = LinearLayoutManager(mainContext, LinearLayoutManager.VERTICAL,false)
-    //    rv_upcoming_job.adapter = adapter
-    //    adapter?.notifyDataSetChanged()
-    //}
+    fun updateRecyclerView(){
+        rv_upcoming_job.layoutManager = LinearLayoutManager(mainContext, LinearLayoutManager.VERTICAL,false)
+        rv_upcoming_job.adapter = adapter
+        adapter?.notifyDataSetChanged()
+    }
 
     private fun handleShift(state: MainActivityViewState) {
         state.let {
 
             state.userActiveAssignShifts?.let { upcomingShiftOverview -> adapter?.addShifts(upcomingShiftOverview) }
             adapter?.notifyDataSetChanged()
-            //updateRecyclerView()
+            updateRecyclerView()
         }
     }
 }
