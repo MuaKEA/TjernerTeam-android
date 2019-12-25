@@ -63,7 +63,7 @@ class JobFragment : BaseFragment() {
         event_date_monthday_txt?.text = dateMonthDay
         event_date_weekday_txt?.text = dateWeekDay
         salary_txt?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
-        payment_date_txt?.text = LocalDate.parse(shift?.paymentDate).format(paymentDateFormatter).toString()
+//        payment_date_txt?.text = LocalDate.parse(shift?.paymentDate).format(paymentDateFormatter).toString()
         event_type_txt?.text = shift?.eventName
         employee_type_txt?.text = shift?.employeeType.toString().toUpperCase()
         event_description_txt?.text = shift?.eventDescription
