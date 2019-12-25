@@ -11,9 +11,7 @@ import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.base.BaseFragment
 
-private const val shiftArg = "shift"
-
-class ActiveShiftsFragment : BaseFragment() {
+class ActiveShiftsFragment : Fragment() {
 
     private var listener: OnFragmentInteractionListener? = null
 

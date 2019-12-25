@@ -45,15 +45,16 @@ internal abstract class MainActivityBuilder {
     abstract fun ShiftEndActivity(): UserShiftActivity
 
     //@ContributesAndroidInjector
-    //abstract fun InactiveShiftsFragment(): InactiveShiftsFragment
-
-    //@ContributesAndroidInjector
     //abstract fun ActiveShiftsFragment(): ActiveShiftsFragment
 
    @ContributesAndroidInjector
     abstract fun EditUserFragment(): EditUserFragment
 
+    @ContributesAndroidInjector
+    abstract fun Upcomingjob_Fragment(): Upcomingjob_Fragment
 
+    @ContributesAndroidInjector
+    abstract fun Completed_job_fragment(): Completed_job_fragment
 
 
 }

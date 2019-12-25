@@ -49,7 +49,7 @@ class JobFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/MM/YYYY", Locale("da-DK"))
+        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/LLL/YYYY", Locale("da-DK"))
         val paymentDateFormatter = DateTimeFormatter.ofPattern("DD/MM/YYYY")
         val dateInDanish = LocalDate.parse(shift?.eventDate).format(eventDateFormatter)
 

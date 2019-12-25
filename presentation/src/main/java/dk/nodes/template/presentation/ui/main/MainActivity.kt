@@ -57,7 +57,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                 .add(R.id.main_frame, shiftOverviewFragment, "1")
                 .add(R.id.main_frame, userOptionsFragment, "2")
                 .add(R.id.main_frame, shiftEndFragment, "3")
-                .add(R.id.main_frame, editUserFragment, "3")
+                .add(R.id.main_frame, editUserFragment, "4")
                 .show(shiftOverviewFragment)
                 .hide(userOptionsFragment)
                 .hide(shiftEndFragment)
@@ -81,7 +81,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                         .show(userOptionsFragment)
                         .hide(shiftOverviewFragment)
                         .hide(editUserFragment)
-                        .commit()
+                        .hide(shiftEndFragment).commit()
             }
 
             R.id.navigation_profile -> {
