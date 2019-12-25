@@ -1,13 +1,17 @@
 package dk.nodes.template.presentation.ui.main
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.FacebookActivity
 import com.facebook.GraphRequest
@@ -22,6 +26,7 @@ import kotlinx.android.synthetic.main.edit_user_fragment.*
 import timber.log.Timber
 
 import com.facebook.login.LoginManager
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class EditUserFragment : BaseFragment(), View.OnClickListener {
@@ -67,13 +72,13 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
         return ""
     }
 
-        fun getAccesToken(): AccessToken {
-            val accessToken = AccessToken.getCurrentAccessToken()
+    fun getAccesToken(): AccessToken {
+        val accessToken = AccessToken.getCurrentAccessToken()
 
-                return accessToken
+        return accessToken
 
 
-        }
+    }
 
     private fun handleUser(state: MainActivityViewState) {
         state.facebookUser?.let { user ->
@@ -103,9 +108,9 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id) {
+        when (v?.id) {
 
-            update_btn.id-> {
+            update_btn.id -> {
                 fcbUcer?.address = adress_edittext.text.toString()
                 fcbUcer?.fullName = name_edittext.text.toString()
                 fcbUcer?.city = city_edittext.text.toString()
@@ -126,22 +131,43 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
                 }
 
 
-                Log.d("saveUser", fcbUcer.toString())
 
                 viewModel.updateUser(fcbUcer!!)
             }
 
-            delete_btn.id->{
+            delete_btn.id -> {
+                val builder = AlertDialog.Builder(maincontext)
 
-                fcbUcer?.facebookId?.let { viewModel.deleteUser(it) }
-                GraphRequest(getAccesToken(), "/me/permissions", null, HttpMethod.DELETE).executeAsync()
-                disconnectFromFacebook()
-                getActivity()?.finish()
-                System.exit(0)
+                builder.setTitle("Slet din konto")
+
+                builder.setMessage("er du sikker på at du ville slette din konto")
+
+                builder.setPositiveButton("JA") { dialog, which ->
+                    fcbUcer?.facebookId?.let { viewModel.deleteUser(it) }
+                    GraphRequest(getAccesToken(), "/me/permissions", null, HttpMethod.DELETE).executeAsync()
+                    disconnectFromFacebook()
+                    getActivity()?.finish()
+                    System.exit(0)
+                }
+
+
+                builder.setNegativeButton("NEJ") { dialog, which ->
+                dialog.dismiss()
+
+                }
+
+
+                builder.setNeutralButton("annullere") { _, _ ->
+                }
+
+                val dialog: AlertDialog = builder.create()
+
+                dialog.show()
+
 
             }
         }
-        }
+    }
 
     fun disconnectFromFacebook() {
 
@@ -172,3 +198,4 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
         maincontext = context
     }
 }
+
