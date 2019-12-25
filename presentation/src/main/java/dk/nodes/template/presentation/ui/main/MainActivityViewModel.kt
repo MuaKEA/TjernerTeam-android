@@ -1,6 +1,5 @@
 package dk.nodes.template.presentation.ui.main
 
-import androidx.lifecycle.viewModelScope
 import com.facebook.AccessToken
 import dk.nodes.template.domain.interactors.*
 import dk.nodes.template.models.FacebookUser
@@ -11,7 +10,6 @@ import dk.nodes.template.presentation.ui.base.BaseViewModel
 import dk.nodes.template.presentation.util.SingleEvent
 import dk.nodes.template.presentation.util.ViewErrorController
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -21,7 +19,8 @@ class MainActivityViewModel @Inject constructor(
         private val saveUserProfileInteractor: SaveUserProfileInteractor,
         private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
         private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
-        private val fetchFacebookUserInteractor: FetchFacebookUserInteractor
+        private val fetchFacebookUserInteractor: FetchFacebookUserInteractor,
+        private val saveUserSnoozeRequestInteractor: SaveUserSnoozeRequestInteractor
 
 
 ) : BaseViewModel<MainActivityViewState>() {
@@ -98,6 +97,10 @@ class MainActivityViewModel @Inject constructor(
     fun cancelAssignedJob(userId: Long, shiftId: Long?) = viewModelScope.launch {
         val userAndShiftIdArray = arrayOf(userId, shiftId)
         withContext(Dispatchers.IO) { cancelAssignedJobInteractor.asResult().invoke(userAndShiftIdArray) }
+    }
+
+    fun saveUserSnoozeRequest(userIdAndSnoozeValue: Array<String>) = viewModelScope.launch {
+        withContext(Dispatchers.IO) { saveUserSnoozeRequestInteractor.asResult().invoke(userIdAndSnoozeValue) }
     }
 }
 

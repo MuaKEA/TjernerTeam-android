@@ -20,6 +20,11 @@ interface FaceBookService {
     @POST("/cancelAssignedJob")
     fun cancelAssignedJob(@Query("user_id") user_id: Long?,
                              @Query("shift_id") shift_id: Long?): Call<String>
+
+    @POST("/saveUserSnoozeRequest")
+    fun saveUserSnoozeRequest(@Query("user_id") user_id: String?,
+                          @Query("snooze_value") snooze_value: String?): Call<String>
+
     @GET("/getUser")
     fun getFacebookUser(@Query("facebook_id") userName :String?): Call<FacebookUser>
 

@@ -29,6 +29,12 @@ class FacebookRespository @Inject constructor(
         }
     }
 
+    suspend fun saveUserSnoozeRequest(userIdAndSnoozeValue: Array<String>) {
+        val response = api.saveUserSnoozeRequest(userIdAndSnoozeValue[0], userIdAndSnoozeValue[1]).execute()
+        if (!response.isSuccessful) {
+        }
+    }
+
     fun getFacebookUser(facebookUser: String): FacebookUser {
         var user: FacebookUser? = null
 

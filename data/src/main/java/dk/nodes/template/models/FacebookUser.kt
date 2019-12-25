@@ -20,7 +20,9 @@ class FacebookUser(
         @SerializedName("postCodes")
         var postCode: PostCode?,
         @SerializedName("fcmToken")
-        var fcmToken : String?
+        var fcmToken : String?,
+        @SerializedName("notificationSnoozeEndDate")
+        var notificationSnoozeEndDate: String?
 
 ) : Parcelable {
         constructor(parcel: Parcel) : this(
@@ -31,7 +33,8 @@ class FacebookUser(
                 parcel.readString(),
                 parcel.readValue(Long::class.java.classLoader) as? Long,
                 parcel.readParcelable(PostCode::class.java.classLoader),
-                parcel.readString()) {
+                parcel.readString(),
+                parcel.readString()){
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -43,10 +46,15 @@ class FacebookUser(
                 parcel.writeValue(phoneNumber)
                 parcel.writeParcelable(postCode, flags)
                 parcel.writeString(fcmToken)
+                parcel.writeString(notificationSnoozeEndDate)
         }
 
         override fun describeContents(): Int {
                 return 0
+        }
+
+        override fun toString(): String {
+                return "FacebookUser(facebookId=$facebookId, fullName=$fullName, email=$email, address=$address, city=$city, phoneNumber=$phoneNumber, postCode=$postCode, fcmToken=$fcmToken, notificationSnoozeEndDate=$notificationSnoozeEndDate)"
         }
 
         companion object CREATOR : Parcelable.Creator<FacebookUser> {
