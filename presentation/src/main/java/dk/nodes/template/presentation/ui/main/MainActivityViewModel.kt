@@ -1,5 +1,6 @@
 package dk.nodes.template.presentation.ui.main
 
+import androidx.lifecycle.viewModelScope
 import com.facebook.AccessToken
 import dk.nodes.template.domain.interactors.*
 import dk.nodes.template.models.FacebookUser
@@ -10,6 +11,7 @@ import dk.nodes.template.presentation.ui.base.BaseViewModel
 import dk.nodes.template.presentation.util.SingleEvent
 import dk.nodes.template.presentation.util.ViewErrorController
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
