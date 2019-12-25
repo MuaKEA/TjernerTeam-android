@@ -21,6 +21,8 @@ import dk.nodes.template.presentation.ui.shift.JobFragment
 import kotlinx.android.synthetic.main.edit_user_fragment.*
 import timber.log.Timber
 
+import com.facebook.login.LoginManager
+
 
 class EditUserFragment : BaseFragment(), View.OnClickListener {
 
@@ -133,14 +135,22 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
 
                 fcbUcer?.facebookId?.let { viewModel.deleteUser(it) }
                 GraphRequest(getAccesToken(), "/me/permissions", null, HttpMethod.DELETE).executeAsync()
-
-                startActivity(Intent(maincontext,FacebookActivity::class.java))
+                disconnectFromFacebook()
+                getActivity()?.finish()
+                System.exit(0)
 
             }
         }
         }
 
+    fun disconnectFromFacebook() {
 
+        if (AccessToken.getCurrentAccessToken() == null) {
+            return  // already logged out
+        }
+
+        GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback { LoginManager.getInstance().logOut() }).executeAsync()
+    }
 
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
