@@ -56,5 +56,4 @@ internal abstract class MainActivityBuilder {
     @ContributesAndroidInjector
     abstract fun Completed_job_fragment(): Completed_job_fragment
 
-
 }

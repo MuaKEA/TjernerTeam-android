@@ -49,8 +49,8 @@ class JobFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/LLL/YYYY", Locale("da-DK"))
-        val paymentDateFormatter = DateTimeFormatter.ofPattern("EEE/MM/YYYY")
+        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/MM/YYYY", Locale("da-DK"))
+        val paymentDateFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY")
         val dateInDanish = LocalDate.parse(shift?.eventDate).format(eventDateFormatter)
 
         val dateWeekDay = dateInDanish.substring(0,1).toUpperCase() + dateInDanish.toString().substring(1, 3) + "."
@@ -63,9 +63,7 @@ class JobFragment : BaseFragment() {
         event_date_monthday_txt?.text = dateMonthDay
         event_date_weekday_txt?.text = dateWeekDay
         salary_txt?.text = "DKK " + shift?.salary?.toBigDecimal()?.setScale(2).toString()
-
-        Timber.e(LocalDate.parse(shift?.paymentDate).format(paymentDateFormatter).toString())
-//        payment_date_txt?.text = LocalDate.parse(shift?.paymentDate).format(paymentDateFormatter).toString()
+        payment_date_txt?.text = LocalDate.parse(shift?.paymentDate).format(paymentDateFormatter).toString()
         event_type_txt?.text = shift?.eventName
         employee_type_txt?.text = shift?.employeeType.toString().toUpperCase()
         event_description_txt?.text = shift?.eventDescription

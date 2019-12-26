@@ -19,6 +19,8 @@ class FacebookUser(
         var phoneNumber : Long?,
         @SerializedName("postCodes")
         var postCode: PostCode?,
+        @SerializedName("notificationSnoozeEndDate")
+        var notificationSnoozeEndDate: String?,
         @SerializedName("fcmToken")
         var fcmToken : String?,
         @SerializedName("cprNumber")
@@ -46,6 +48,7 @@ class FacebookUser(
                 parcel.readParcelable(PostCode::class.java.classLoader),
                 parcel.readString(),
                 parcel.readString(),
+                parcel.readString(),
                 parcel.readValue(Int::class.java.classLoader) as? Int,
                 parcel.readValue(Long::class.java.classLoader) as? Long,
                 parcel.readString(),
@@ -61,6 +64,7 @@ class FacebookUser(
                 parcel.writeValue(phoneNumber)
                 parcel.writeParcelable(postCode, flags)
                 parcel.writeString(fcmToken)
+                parcel.writeString(notificationSnoozeEndDate)
                 parcel.writeString(cprNumber)
                 parcel.writeValue(regNumber)
                 parcel.writeValue(accountNumber)

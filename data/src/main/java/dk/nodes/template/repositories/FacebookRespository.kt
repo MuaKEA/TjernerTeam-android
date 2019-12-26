@@ -3,6 +3,8 @@ package dk.nodes.template.repositories
 import android.util.Log
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.network.FaceBookService
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import javax.inject.Inject
 
 class FacebookRespository @Inject constructor(
@@ -12,7 +14,6 @@ class FacebookRespository @Inject constructor(
         val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
 
         if (!response.isSuccessful) {
-            Log.d("saveUser", response.body())
         }
     }
 
@@ -23,6 +24,14 @@ class FacebookRespository @Inject constructor(
         }
     }
 
+    suspend fun saveUserCheckout(userCheckoutShift: Array<String?>) {
+        val response = api.saveUserCheckout(userCheckoutShift[0],userCheckoutShift[1],userCheckoutShift[2],userCheckoutShift[3]).execute()
+
+        if (!response.isSuccessful) {
+        }
+    }
+
+
     suspend fun cancelAssignedJob(userAndShiftId: Array<Long?>) {
         val response = api.cancelAssignedJob(userAndShiftId[0], userAndShiftId[1]).execute()
 
@@ -30,7 +39,13 @@ class FacebookRespository @Inject constructor(
         }
     }
 
-   suspend fun getFacebookUser(facebookUser: String): FacebookUser {
+    suspend fun saveUserSnoozeRequest(userIdAndSnoozeValue: Array<String>) {
+        val response = api.saveUserSnoozeRequest(userIdAndSnoozeValue[0], userIdAndSnoozeValue[1]).execute()
+        if (!response.isSuccessful) {
+        }
+    }
+
+    fun getFacebookUser(facebookUser: String): FacebookUser {
         var user: FacebookUser? = null
 
         val response = api.getFacebookUser(facebookUser).execute()
@@ -43,9 +58,30 @@ class FacebookRespository @Inject constructor(
                 return user
             }
         }
+        Log.d("shadush", user.toString())
 
         return user!!
 
+    }
+
+    fun checkUserSnoozeStatus(user: FacebookUser?): Array<Any> {
+        var snoozeDaysLeft = ""
+        val snoozeEndDate = user?.notificationSnoozeEndDate
+        val currentDate = LocalDate.now()
+        val userIsSnoozed: Boolean
+
+        if (snoozeEndDate == null) {
+            snoozeDaysLeft = "Sluk"
+            userIsSnoozed = true
+        }
+        else if (LocalDate.parse(snoozeEndDate).isAfter(currentDate)) {
+            snoozeDaysLeft = currentDate.until(LocalDate.parse(snoozeEndDate), ChronoUnit.DAYS).toString()
+            userIsSnoozed = true
+        }else {
+            userIsSnoozed = false
+        }
+        Log.d("snoozeDays", snoozeDaysLeft)
+        return arrayOf(userIsSnoozed, snoozeDaysLeft)
     }
 
     suspend fun deleteUser(facebookId : Long){

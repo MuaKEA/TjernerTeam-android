@@ -19,7 +19,8 @@ data class MainActivityViewState(
         val userActiveAssignShifts: ArrayList<Shift>? = null,
         val userInactiveAssignShifts: ArrayList<Shift>? = null,
         val shiftOverviewList : ArrayList<Shift>? = null,
-        val facebookUser: FacebookUser?=null
+        val facebookUser: FacebookUser?=null,
+        val snoozeStatusAndDaysLeft: Array<Any>? = null
 
 
         )

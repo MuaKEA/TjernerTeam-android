@@ -66,10 +66,10 @@ class Completed_job_fragment : BaseFragment() {
     }
 
 
-    //interface OnFragmentInteractionListener {
-    // TODO: Update argument type and name
-    //    fun onFragmentInteraction(uri: Uri)
-    //}
+    interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        fun onFragmentInteraction(uri: Uri)
+    }
 
     companion object {
         @JvmStatic

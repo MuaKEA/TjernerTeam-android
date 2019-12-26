@@ -30,7 +30,7 @@ class UserShiftAdapter(val context: Context, val recyclerviewRow: Int) : Recycle
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
 
-        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/LLL/YYYY", Locale("da-DK"))
+        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE-LLL-YYYY", Locale("da-DK"))
         val date = LocalDate.parse(shifts[position].eventDate).format(eventDateFormatter)
         val dayOfMonth = LocalDate.parse(shifts[position].eventDate).dayOfMonth.toString()
 
