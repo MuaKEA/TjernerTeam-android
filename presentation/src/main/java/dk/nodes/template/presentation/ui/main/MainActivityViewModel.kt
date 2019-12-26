@@ -22,10 +22,11 @@ class MainActivityViewModel @Inject constructor(
         private val saveUserRequestedJobInteractor: SaveUserRequestedJobInteractor,
         private val cancelAssignedJobInteractor: SaveUserRequestedJobInteractor,
         private val fetchFacebookUserInteractor: FetchFacebookUserInteractor,
-        private val saveUserSnoozeRequestInteractor: SaveUserSnoozeRequestInteractor
+        private val saveUserSnoozeRequestInteractor: SaveUserSnoozeRequestInteractor,
+        private val GetSnoozeStatusInteractor: GetSnoozeStatusInteractor
 
 
-) : BaseViewModel<MainActivityViewState>() {
+        ) : BaseViewModel<MainActivityViewState>() {
     override val initState: MainActivityViewState = MainActivityViewState()
 
 
@@ -103,6 +104,26 @@ class MainActivityViewModel @Inject constructor(
 
     fun saveUserSnoozeRequest(userIdAndSnoozeValue: Array<String>) = viewModelScope.launch {
         withContext(Dispatchers.IO) { saveUserSnoozeRequestInteractor.asResult().invoke(userIdAndSnoozeValue) }
+    }
+
+    fun getSnoozeStatus(user: FacebookUser?) = viewModelScope.launch {
+        val result = withContext(Dispatchers.IO) { GetSnoozeStatusInteractor.asResult().invoke(user) }
+        getSnoozeStatusResult(result)
+    }
+
+    private fun getSnoozeStatusResult(result: CompleteResult<Array<Any>>): MainActivityViewState {
+        return when (result) {
+
+            is Success -> state.copy(snoozeStatusAndDaysLeft = result.data)
+            is Loading<*> -> state.copy(isLoading = true)
+            is Fail -> state.copy(
+                    viewError = SingleEvent(ViewErrorController.mapThrowable(result.throwable)),
+                    isLoading = false
+            )
+            else -> (MainActivityViewState())
+
+        }
+
     }
 }
 

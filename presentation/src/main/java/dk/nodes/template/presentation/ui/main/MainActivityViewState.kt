@@ -17,7 +17,8 @@ data class MainActivityViewState(
         val viewError: SingleEvent<ViewError>? = null,
         val Shift: Shift? = null,
         val shiftOverviewList : ArrayList<Shift>? = null,
-        val facebookUser: FacebookUser?=null
+        val facebookUser: FacebookUser?=null,
+        val snoozeStatusAndDaysLeft: Array<Any>? = null
 
 
         )

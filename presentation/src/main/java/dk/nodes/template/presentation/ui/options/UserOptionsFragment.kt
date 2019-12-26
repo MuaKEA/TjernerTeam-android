@@ -10,10 +10,12 @@ import androidx.browser.customtabs.CustomTabsIntent
 import com.facebook.AccessToken
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
+import dk.nodes.template.presentation.extensions.observe
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
+import dk.nodes.template.repositories.FacebookRespository
 import kotlinx.android.synthetic.main.fragment_user_options.*
 import timber.log.Timber
 import java.time.LocalDate
@@ -24,6 +26,7 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
     private var mainContext: Context? = null
     private var userIsSnoozed: Boolean = false
     private var snoozeDaysLeft: String = ""
+    private var facebookUser: FacebookUser? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +34,7 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
         viewModel.fetchUser(isLoggedIn())
         viewModel.viewState.observeNonNull(this) { state ->
             handleUser(state)
+            handleStatus(state)
         }
 
         chat_btn.setOnClickListener {
@@ -72,32 +76,24 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
         return "-1"
     }
 
-    private fun handleUser(state: MainActivityViewState) {
-        state.facebookUser?.let { user ->
-            viewModel.fetchUser(isLoggedIn())
-            userIsSnoozed = checkUserSnoozeStatus(user)
+    private fun handleUser(state: MainActivityViewState?) {
+        state?.facebookUser?.let { user ->
+            facebookUser = user
         }
     }
 
-    fun checkUserSnoozeStatus(user: FacebookUser): Boolean {
-        val snoozeEndDate = user.notificationSnoozeEndDate
-        val currentDate = LocalDate.now()
-        if (snoozeEndDate == null) {
-            Timber.e("null")
-            snoozeDaysLeft = "Sluk"
-            return true
-        }
-        else if (LocalDate.parse(snoozeEndDate).isAfter(currentDate)) {
-            Timber.e("after current date")
-            snoozeDaysLeft = currentDate.until(LocalDate.parse(snoozeEndDate),ChronoUnit.DAYS).toString()
-            return true
-        }else {
-            Timber.e("before or at current date")
-            return false
+    private fun handleStatus(state: MainActivityViewState?) {
+        state?.snoozeStatusAndDaysLeft?.let { snoozeArray ->
+            userIsSnoozed = snoozeArray[0] as Boolean
+            snoozeDaysLeft = snoozeArray[1] as String
+            Timber.e("array: " + snoozeArray.toString())
         }
     }
 
     override fun onClick(v: View) {
+        viewModel.fetchUser(isLoggedIn())
+        Timber.e("Facebookuser: " + facebookUser + " snoozeDaysLeft: " + snoozeDaysLeft)
+        viewModel.getSnoozeStatus(facebookUser)
         if (userIsSnoozed) {
             val cancelSnoozePopup = CancelSnoozeNotificationPopUpFragment()
             cancelSnoozePopup.showPopupWindow(v, viewModel, snoozeDaysLeft)

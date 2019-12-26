@@ -3,6 +3,8 @@ package dk.nodes.template.repositories
 import android.util.Log
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.network.FaceBookService
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import javax.inject.Inject
 
 class FacebookRespository @Inject constructor(
@@ -52,5 +54,25 @@ class FacebookRespository @Inject constructor(
 
         return user!!
 
+    }
+
+    fun checkUserSnoozeStatus(user: FacebookUser?): Array<Any> {
+        var snoozeDaysLeft = ""
+        val snoozeEndDate = user?.notificationSnoozeEndDate
+        val currentDate = LocalDate.now()
+        val userIsSnoozed: Boolean
+
+        if (snoozeEndDate == null) {
+            snoozeDaysLeft = "Sluk"
+            userIsSnoozed = true
+        }
+        else if (LocalDate.parse(snoozeEndDate).isAfter(currentDate)) {
+            snoozeDaysLeft = currentDate.until(LocalDate.parse(snoozeEndDate), ChronoUnit.DAYS).toString()
+            userIsSnoozed = true
+        }else {
+            userIsSnoozed = false
+        }
+        Log.d("snoozeDays", snoozeDaysLeft)
+        return arrayOf(userIsSnoozed, snoozeDaysLeft)
     }
 }
