@@ -29,7 +29,7 @@ class ShiftRepository @Inject constructor(
 
     suspend fun getActiveShifts(userId: Long): ArrayList<Shift> {
         val shiftsArrayList =ArrayList<Shift>()
-        val response = api.getUserActiveShifts(userId).execute()
+        val response = api.getAllUserActiveShifts(userId).execute()
 
         Log.d("Shifts: ", response.message())
 
@@ -45,7 +45,7 @@ class ShiftRepository @Inject constructor(
 
     suspend fun getInActiveShifts(userId: Long): ArrayList<Shift> {
         val shiftsArrayList =ArrayList<Shift>()
-        val response = api.getUserInactiveShifts(userId).execute()
+        val response = api.getAllUserInactiveShifts(userId).execute()
 
         Log.d("Shifts: ", response.message())
 
