@@ -27,6 +27,10 @@ import timber.log.Timber
 
 import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.activity_main.*
+import com.facebook.GraphResponse
+import kotlin.system.exitProcess
+
+
 
 
 class EditUserFragment : BaseFragment(), View.OnClickListener {
@@ -53,6 +57,8 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
         viewModel.fetchUser(isLoggedIn())
         update_btn.setOnClickListener(this)
         delete_btn.setOnClickListener(this)
+
+
         viewModel.viewState.observeNonNull(this) { state ->
             handleUser(state)
 
@@ -84,9 +90,15 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
         state.facebookUser?.let { user ->
             Log.d("shadush", user.toString())
 
+            if(user.fullName == null){
+                viewModel.fetchUser(isLoggedIn())
+
+            }
+
             Timber.e(user.toString())
             name_edittext.setText(user.fullName.toString())
-            adress_edittext.setText(user.email)
+            email_edittext.setText(user.email)
+            adress_edittext.setText(user.address)
             city_edittext.setText(user.city)
             phoneNumb_edittext.setText(user.phoneNumber.toString())
             postCode_edittext.setText(user.postCode?.postCode.toString())
@@ -147,7 +159,6 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
                     GraphRequest(getAccesToken(), "/me/permissions", null, HttpMethod.DELETE).executeAsync()
                     disconnectFromFacebook()
                     getActivity()?.finish()
-                    System.exit(0)
                 }
 
 
@@ -170,12 +181,13 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
     }
 
     fun disconnectFromFacebook() {
+        GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback { LoginManager.getInstance().logOut() }).executeAsync()
 
         if (AccessToken.getCurrentAccessToken() == null) {
+            Timber.e("logged out")
             return  // already logged out
         }
 
-        GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback { LoginManager.getInstance().logOut() }).executeAsync()
     }
 
     fun onButtonPressed(uri: Uri) {
