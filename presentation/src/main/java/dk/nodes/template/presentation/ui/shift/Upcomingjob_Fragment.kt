@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_upcomingjob.*
 class Upcomingjob_Fragment : BaseFragment() {
 
     private var listener: ActiveShiftsFragment.OnFragmentInteractionListener? = null
-    private var adapter: UserShiftAdapter? = null
+    private var adapter: ShiftOverviewAdapter? = null
     private var mainContext: Context? = null
     private val viewModel by viewModel<MainActivityViewModel>()
     lateinit var shiftDetailsActivityIntent: Intent
@@ -34,7 +34,7 @@ class Upcomingjob_Fragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = mainContext?.let { UserShiftAdapter(it, R.layout.shift_recyclerview_row) }
+        adapter = mainContext?.let { ShiftOverviewAdapter(it, R.layout.shift_recyclerview_row) }
         refreshShifts()
 
         viewModel.viewState.observeNonNull(this) {

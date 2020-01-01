@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="1604dp"
+            android:layout_height="wrap_content"
             android:scrollbarThumbHorizontal="@drawable/bartender_rounded_corners"
             android:scrollbarThumbVertical="@drawable/bartender_rounded_corners">
 
@@ -305,11 +305,10 @@
             <FrameLayout
                 android:id="@+id/shifts_container"
                 android:layout_width="409dp"
-                android:layout_height="960dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bottomnavigation_main">

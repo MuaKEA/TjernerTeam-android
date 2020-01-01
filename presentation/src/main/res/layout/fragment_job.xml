@@ -202,7 +202,7 @@
                 android:layout_width="80dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/p_kl_dning"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/address_txt" />
@@ -223,7 +223,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_marginStart="250dp"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/personalemad"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/address_txt" />
@@ -258,7 +258,7 @@
                 android:layout_width="80dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/overarbejde"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dress_code_txt"
@@ -269,7 +269,7 @@
                 android:layout_width="119dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="250dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/transport_tillaeg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dress_code_txt" />
@@ -313,10 +313,12 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="22dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/request_job_btn_rounded_corners"
                 android:drawableStart="@drawable/ic_send_black_24dp"
                 android:text="@string/ans_g_job"
                 android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/transport_txt" />
 
