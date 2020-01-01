@@ -152,7 +152,7 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
 
                 builder.setTitle("Slet din konto")
 
-                builder.setMessage("er du sikker på at du ville slette din konto")
+                builder.setMessage("Er du sikker på at du ville slette din konto?")
 
                 builder.setPositiveButton("JA") { dialog, which ->
                     fcbUcer?.facebookId?.let { viewModel.deleteUser(it) }
@@ -162,13 +162,8 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
                 }
 
 
-                builder.setNegativeButton("NEJ") { dialog, which ->
+                builder.setNegativeButton("ANNULLER") { dialog, which ->
                 dialog.dismiss()
-
-                }
-
-
-                builder.setNeutralButton("annullere") { _, _ ->
                 }
 
                 val dialog: AlertDialog = builder.create()

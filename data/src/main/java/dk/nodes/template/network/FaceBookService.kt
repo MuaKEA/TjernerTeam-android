@@ -19,6 +19,13 @@ interface FaceBookService {
     fun saveUserRequestedJob(@Query("user_id") user_id: Long?,
                              @Query("shift_id") shift_id: Long?): Call<String>
 
+    @POST("/saveUserCheckout")
+    fun saveUserCheckout(@Query("user_id") user_id: String?,
+                         @Query("employee_checkin_time") employee_checkin_time: String?,
+                         @Query("employee_checkout_time") employee_checkout_time: String?,
+                         @Query("shift_id") shift_id: String?): Call<String>
+
+
     @POST("/cancelAssignedJob")
     fun cancelAssignedJob(@Query("user_id") user_id: Long?,
                              @Query("shift_id") shift_id: Long?): Call<String>

@@ -30,11 +30,10 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/LLL/YYYY", Locale("da-DK"))
+        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE-LLL-YYYY", Locale("da-DK"))
         val date = LocalDate.parse(shifts[position].eventDate).format(eventDateFormatter)
+
         val dayOfMonth = LocalDate.parse(shifts[position].eventDate).dayOfMonth.toString()
-
-
         val dateWeekDay = date.toString().substring(0, 3).toUpperCase()
         val dateMonth = date.toString().substring(5, 8).toUpperCase()
 

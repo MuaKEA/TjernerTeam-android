@@ -30,7 +30,8 @@ class MainActivityViewModel @Inject constructor(
         private val GetSnoozeStatusInteractor: GetSnoozeStatusInteractor,
         private val fetchActiveShiftsInteractor: FetchActiveShiftsInteractor,
         private val fetchInactiveShiftsInteractor: FetchInactiveShiftsInteractor,
-        private val deleteUserInteractor: DeleteUserInteractor
+        private val deleteUserInteractor: DeleteUserInteractor,
+        private val saveUserCheckoutInteractor: SaveUserCheckoutInteractor
 ) : BaseViewModel<MainActivityViewState>() {
     override val initState: MainActivityViewState = MainActivityViewState()
 
@@ -48,7 +49,7 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
-    internal fun fetchActiveShiftsResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
+    private fun fetchActiveShiftsResult(result: CompleteResult<ArrayList<Shift>>): MainActivityViewState {
         return when (result) {
             is Success -> state.copy(userActiveAssignShifts = result.data)
             is Loading<*> -> state.copy(isLoading = true)
@@ -78,7 +79,6 @@ class MainActivityViewModel @Inject constructor(
         val userId = AccessToken.getCurrentAccessToken().userId.toLong()
         val result = withContext(Dispatchers.IO) { fetchShiftsInteractor.asResult().invoke(userId) }
         state = fetchShiftResult(result)
-
     }
 
     fun fetchActiveShifts() = viewModelScope.launch {
@@ -143,6 +143,11 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
+    fun saveUserCheckout(userId: String?, checkin: String, checkout: String, shiftId: String?) = viewModelScope.launch {
+        val userCheckoutShift = arrayOf(userId, checkin, checkout, shiftId)
+        withContext(Dispatchers.IO) { saveUserCheckoutInteractor.asResult().invoke(userCheckoutShift) }
+    }
+
 
     fun saveUserRequestedJob(userId: Long, shiftId: Long?) = viewModelScope.launch {
         val userAndShiftIdArray = arrayOf(userId, shiftId)
@@ -191,6 +196,3 @@ class MainActivityViewModel @Inject constructor(
 
 
 }
-
-
-

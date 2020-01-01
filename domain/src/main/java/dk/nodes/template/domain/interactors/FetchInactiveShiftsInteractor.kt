@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class FetchInactiveShiftsInteractor  @Inject constructor (private val shiftRepository : ShiftRepository) :  BaseInputAsyncInteractor<Long, ArrayList<Shift>> {
     override suspend fun invoke(input: Long): ArrayList<Shift> {
-        return shiftRepository.getInActiveShifts(input)
+        return shiftRepository.getInactiveShifts(input)
     }
 }

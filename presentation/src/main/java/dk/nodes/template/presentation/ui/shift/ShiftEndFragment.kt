@@ -37,7 +37,7 @@ class ShiftEndFragment : BaseFragment(), BottomNavigationView.OnNavigationItemSe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        inactiveShiftsFragment = InactiveShiftsFragment.newInstance()
+        inactiveShiftsFragment = Completed_job_fragment.newInstance()
         upcomingjobFragment = Upcomingjob_Fragment.newInstance()
         bottomnavigation_main.setOnNavigationItemSelectedListener(this)
 

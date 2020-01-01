@@ -26,6 +26,14 @@ class FacebookRespository @Inject constructor(
         }
     }
 
+    suspend fun saveUserCheckout(userCheckoutShift: Array<String?>) {
+        val response = api.saveUserCheckout(userCheckoutShift[0],userCheckoutShift[1],userCheckoutShift[2],userCheckoutShift[3]).execute()
+
+        if (!response.isSuccessful) {
+        }
+    }
+
+
     suspend fun cancelAssignedJob(userAndShiftId: Array<Long?>) {
         val response = api.cancelAssignedJob(userAndShiftId[0], userAndShiftId[1]).execute()
 
