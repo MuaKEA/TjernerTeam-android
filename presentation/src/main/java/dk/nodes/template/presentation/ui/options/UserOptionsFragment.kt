@@ -85,6 +85,9 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
 
                 if (isSnozed) {
                     val cancelSnoozePopup = CancelSnoozeNotificationPopUpFragment()
+                    if(snoozeobj.snoozeDate ==null){
+                        snoozeobj.snoozeDate = "Sluk"
+                    }
                     view?.let { cancelSnoozePopup.showPopupWindow(it, viewModel, snoozeobj.snoozeDate!!) }
                 } else {
                     val snoozePopup = SnoozeNotificationPopUpFragment()

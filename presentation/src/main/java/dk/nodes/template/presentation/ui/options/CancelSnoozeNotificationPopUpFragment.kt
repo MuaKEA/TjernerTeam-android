@@ -8,6 +8,9 @@ import android.widget.*
 import com.facebook.AccessToken
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class CancelSnoozeNotificationPopUpFragment {
     fun showPopupWindow(view: View, viewModel: MainActivityViewModel, snoozeDaysLeft: String){
@@ -28,8 +31,11 @@ class CancelSnoozeNotificationPopUpFragment {
             snoozeDaysAmountLeftText.text = view.context.getString(R.string.notifikationer_slukket)
         }else {
 
-            
-            snoozeDaysAmountLeftText.text = "$snoozeDaysLeft dage tilbage af snooze"
+
+            val dateFormatter= DateTimeFormatter.ofPattern("dd/MM/YYYY")
+
+
+            snoozeDaysAmountLeftText.text = "Notificationer er slukket til d." + dateFormatter.format(LocalDate.parse(snoozeDaysLeft))
         }
 
         cancelCurrentSnoozeBtn.setOnClickListener {
