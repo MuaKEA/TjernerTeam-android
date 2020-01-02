@@ -237,6 +237,7 @@
                 android:id="@+id/email_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:inputType="none"
                 android:hint="Email" />
         </com.google.android.material.textfield.TextInputLayout>
 

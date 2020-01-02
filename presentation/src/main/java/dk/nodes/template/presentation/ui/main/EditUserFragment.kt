@@ -102,7 +102,7 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
             city_edittext.setText(user.city)
             phoneNumb_edittext.setText(user.phoneNumber.toString())
             postCode_edittext.setText(user.postCode?.postCode.toString())
-            cpr_edit.setText(user.cprNumber)
+            cpr_edit.setText(user.cprNumber + "-XXXX")
             regNumber_edittext.setText(user.regNumber.toString())
             accountnr_edittext.setText(user.accountNumber.toString())
             dateofbirth_edittext.setText(user.dateOfBirth)
@@ -127,6 +127,11 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
                 fcbUcer?.fullName = name_edittext.text.toString()
                 fcbUcer?.city = city_edittext.text.toString()
                 fcbUcer?.phoneNumber = phoneNumb_edittext.text.toString().toLong()
+                if(postCode_edittext.text?.contains("[dlksfml]")!!){
+
+
+
+                }
                 val postCode = PostCode(postCode_edittext.text.toString().toInt())
                 fcbUcer?.postCode = postCode
                 fcbUcer?.regNumber = regNumber_edittext.text.toString().toInt()

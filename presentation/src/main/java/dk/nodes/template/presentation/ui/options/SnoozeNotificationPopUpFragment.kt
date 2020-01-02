@@ -59,8 +59,8 @@ class SnoozeNotificationPopUpFragment : BaseFragment() {
         }
 
         popupView.setOnTouchListener {v: View, m: MotionEvent ->
-            popupWindow.dismiss()
-            true
+         //   popupWindow.dismiss()
+            false
         }
     }
 

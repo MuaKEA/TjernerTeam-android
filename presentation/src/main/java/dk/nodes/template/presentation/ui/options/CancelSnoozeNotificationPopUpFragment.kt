@@ -48,7 +48,7 @@ class CancelSnoozeNotificationPopUpFragment {
         }
 
         popupView.setOnTouchListener { v: View, m: MotionEvent ->
-            popupWindow.dismiss()
+           // popupWindow.dismiss()
             true
         }
     }
@@ -60,4 +60,7 @@ class CancelSnoozeNotificationPopUpFragment {
         }
         return "-1"
     }
+
+
+
 }
