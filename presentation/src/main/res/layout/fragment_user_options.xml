@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -132,7 +131,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/ss"
+        android:id="@+id/snooze_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
@@ -149,33 +148,29 @@
 
             <ImageView
                 android:id="@+id/settings_icon"
-                android:layout_width="0dp"
-                android:layout_height="29dp"
-                android:layout_marginStart="39dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:contentDescription="@string/faq"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/settings_txt"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_settings_white_24dp" />
 
             <TextView
                 android:id="@+id/settings_txt"
                 android:layout_width="wrap_content"
-                android:layout_height="29dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="73dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center"
-                android:text="@string/snooze_notificationer"
+                android:text="@string/snooze_notifikationer"
                 android:textColor="@color/hockeyapp_text_white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/settings_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -184,12 +179,12 @@
         android:id="@+id/notification_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="7dp"
-        android:text="@string/notifications_indstillinger"
-        app:layout_constraintBottom_toTopOf="@+id/ss"
-        app:layout_constraintEnd_toEndOf="@+id/chat_title_txt"
-        app:layout_constraintStart_toStartOf="@+id/faq_title_txt" />
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/notifikation_indstillinger"
+        app:layout_constraintBottom_toTopOf="@+id/snooze_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

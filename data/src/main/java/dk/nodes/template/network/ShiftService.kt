@@ -15,5 +15,8 @@ interface ShiftService {
          fun getActiveShifts(@Query("facebook_id") userId: Long?) : Call<GetShiftsWrapper>
 
         @GET("/getUserActiveShifts")
-        fun getUserActiveShifts(@Query("facebook_id") userId: Long?) : Call<GetShiftsWrapper>
+        fun getAllUserActiveShifts(@Query("facebook_id") userId: Long?) : Call<GetShiftsWrapper>
+
+        @GET("/getUserInactiveShifts")
+        fun getAllUserInactiveShifts(@Query("facebook_id") userId: Long?) : Call<GetShiftsWrapper>
 }

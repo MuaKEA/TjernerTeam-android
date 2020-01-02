@@ -11,12 +11,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_active_shifts.*
+import kotlinx.android.synthetic.main.fragment_job.*
 import kotlinx.android.synthetic.main.fragment_shift_end.*
+private const val shiftArg = "shift"
 
 
 class ShiftEndFragment : BaseFragment(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -29,10 +32,12 @@ class ShiftEndFragment : BaseFragment(), BottomNavigationView.OnNavigationItemSe
     lateinit var inactiveShiftsFragment : Fragment
     lateinit var upcomingjobFragment: Fragment
     private var menutab: Int = 0
+    var shift: Shift? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        inactiveShiftsFragment = InactiveShiftsFragment.newInstance()
+        inactiveShiftsFragment = Completed_job_fragment.newInstance()
         upcomingjobFragment = Upcomingjob_Fragment.newInstance()
         bottomnavigation_main.setOnNavigationItemSelectedListener(this)
 
@@ -43,6 +48,8 @@ class ShiftEndFragment : BaseFragment(), BottomNavigationView.OnNavigationItemSe
                 .show(upcomingjobFragment)
                 .hide(inactiveShiftsFragment)
                 .commit()
+
+        user_name?.text = shift?.customerName
 
     }
 
@@ -72,6 +79,14 @@ class ShiftEndFragment : BaseFragment(), BottomNavigationView.OnNavigationItemSe
         return inflater.inflate(R.layout.fragment_shift_end, container, false)
 
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            shift = it.getParcelable(shiftArg)
+        }
     }
 
     override fun onAttach(context: Context) {

@@ -50,7 +50,7 @@ class JobFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/MM/YYYY", Locale("da-DK"))
-        val paymentDateFormatter = DateTimeFormatter.ofPattern("DD/MM/YYYY")
+        val paymentDateFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY")
         val dateInDanish = LocalDate.parse(shift?.eventDate).format(eventDateFormatter)
 
         val dateWeekDay = dateInDanish.substring(0,1).toUpperCase() + dateInDanish.toString().substring(1, 3) + "."

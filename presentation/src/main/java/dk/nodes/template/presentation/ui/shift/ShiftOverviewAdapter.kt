@@ -30,11 +30,10 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE/LLL/YYYY", Locale("da-DK"))
+        val eventDateFormatter = DateTimeFormatter.ofPattern("EEE-LLL-YYYY", Locale("da-DK"))
         val date = LocalDate.parse(shifts[position].eventDate).format(eventDateFormatter)
+
         val dayOfMonth = LocalDate.parse(shifts[position].eventDate).dayOfMonth.toString()
-
-
         val dateWeekDay = date.toString().substring(0, 3).toUpperCase()
         val dateMonth = date.toString().substring(5, 8).toUpperCase()
 
@@ -44,12 +43,12 @@ class ShiftOverviewAdapter(val context: Context, val recyclerviewRow: Int) : Rec
         holder.eventDateMonth?.text = dateMonth
 
         holder.salary?.text = "DKK " + shifts[position].salary?.toBigDecimal()?.setScale(2).toString()
-        holder.employee_type?.text = shifts[position].employeeType?.toUpperCase()
+        holder.employeeType?.text = shifts[position].employeeType?.toUpperCase()
 
-        if (holder.employee_type.text == "TJENER") {
-            holder.employee_type?.setBackgroundResource(R.drawable.waiter_rounded_corners)
+        if (holder.employeeType.text == "TJENER") {
+            holder.employeeType?.setBackgroundResource(R.drawable.waiter_rounded_corners)
         } else {
-            holder.employee_type?.setBackgroundResource(R.drawable.bartender_rounded_corners)
+            holder.employeeType?.setBackgroundResource(R.drawable.bartender_rounded_corners)
         }
 
         holder.eventDuration?.text = shifts[position].startTime + " - " + shifts[position].endTime
@@ -76,8 +75,8 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val eventDateMonthDay = view.event_date_monthday
     val eventDateMonth = view.event_date_month
     val salary = view.salary
-    val employee_type = view.employee_type_field
-    val eventDuration = view.costumer_name_txt
-    val address = view.address_txt
+    val employeeType = view.employee_type_field
+    val eventDuration = view.event_duration
+    val address = view.address
     val eventDescription = view.event_description_field
 }

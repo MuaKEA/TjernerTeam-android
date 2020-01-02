@@ -29,14 +29,28 @@ class ShiftRepository @Inject constructor(
 
     suspend fun getActiveShifts(userId: Long): ArrayList<Shift> {
         val shiftsArrayList =ArrayList<Shift>()
-        val response = api.getUserActiveShifts(userId).execute()
-
-        Log.d("Shifts: ", response.message())
+        val response = api.getAllUserActiveShifts(userId).execute()
 
         if (response.isSuccessful) {
             val shiftResponse = response.body()
             if (shiftResponse != null){
                 shiftsArrayList.addAll(shiftResponse.shiftsWrapper)
+                Log.d("activeshifts", shiftsArrayList.toString())
+                return shiftsArrayList
+            }
+        }
+        return shiftsArrayList
+    }
+
+    suspend fun getInactiveShifts(userId: Long): ArrayList<Shift> {
+        val shiftsArrayList =ArrayList<Shift>()
+        val response = api.getAllUserInactiveShifts(userId).execute()
+        Log.d("fetchinginactiveshifts", shiftsArrayList.toString())
+        if (response.isSuccessful) {
+            val shiftResponse = response.body()
+            if (shiftResponse != null){
+                shiftsArrayList.addAll(shiftResponse.shiftsWrapper)
+                Log.d("inactiveshifts", shiftsArrayList.toString())
                 return shiftsArrayList
             }
         }
