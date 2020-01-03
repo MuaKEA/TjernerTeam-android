@@ -17,7 +17,7 @@ Vi har i gruppen valgt at bruge AWS ECS2 til at hoste vores server, en prøve pe
 # Installering
 For at kunne det mest nødvendige værktøj nemlig Android Studio bedes du trykke på dette link https://developer.android.com/studio. Her finder man knappen Download Android Studio. Den trykker man på, og Android Studio skulle gerne være i gang med at downloade. Når computeren har downloadet færdig så er Android Studio klar til at blive installeret, alt efter hvilke typer Anti virus programmer man har på sine enheder, så vil man blive spurgt om man har tiltro til udgiveren, hvorefter man trykker på ja eller ok. Efter alt det så er Android Studio klar til brug, inde i settings under Filer finder du NDK plugins som man skal bruge alt efter hvilke preferencer man har af programmeringssprog.
 
-
+Herudover skal en emulator installeres, og når det er gjort kan applikationen startes. Applikationen er forbundet til vores online database, så serveren behøver ikke at blive startet for at kunne hente oplysninger.
 
 
 
