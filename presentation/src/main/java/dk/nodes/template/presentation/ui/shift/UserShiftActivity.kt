@@ -32,7 +32,6 @@ class UserShiftActivity : BaseActivity(),  BottomNavigationView.OnNavigationItem
             user?.let { viewModel.saveUser(it) }
         }
 
-        //val shift = intent.getParcelableExtra<Shift>("shift")
         activeShiftsFragment = ActiveShiftsFragment.newInstance()
 
         viewModel.viewState.observeNonNull(this) { state ->
@@ -75,7 +74,6 @@ class UserShiftActivity : BaseActivity(),  BottomNavigationView.OnNavigationItem
 
     private fun handleErrors(state: MainActivityViewState) {
         state.viewError?.let {
-            Timber.e("Something went wrong")
         }
     }
 }

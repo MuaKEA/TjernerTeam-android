@@ -1,11 +1,9 @@
 package dk.nodes.template.repositories
 
-import android.util.Log
 import com.google.gson.Gson
 import dk.nodes.template.models.Shift
 import dk.nodes.template.network.ShiftService
 import javax.inject.Inject
-
 
 class ShiftRepository @Inject constructor(
         private val api: ShiftService,
@@ -14,8 +12,6 @@ class ShiftRepository @Inject constructor(
    suspend fun getShifts(userId: Long): ArrayList<Shift> {
         val shiftsArrayList =ArrayList<Shift>()
         val response = api.getActiveShifts(userId).execute()
-
-       Log.d("Shifts: ", response.message())
 
         if (response.isSuccessful) {
            val shiftResponse = response.body()
@@ -35,7 +31,6 @@ class ShiftRepository @Inject constructor(
             val shiftResponse = response.body()
             if (shiftResponse != null){
                 shiftsArrayList.addAll(shiftResponse.shiftsWrapper)
-                Log.d("activeshifts", shiftsArrayList.toString())
                 return shiftsArrayList
             }
         }
@@ -45,12 +40,10 @@ class ShiftRepository @Inject constructor(
     suspend fun getInactiveShifts(userId: Long): ArrayList<Shift> {
         val shiftsArrayList =ArrayList<Shift>()
         val response = api.getAllUserInactiveShifts(userId).execute()
-        Log.d("fetchinginactiveshifts", shiftsArrayList.toString())
         if (response.isSuccessful) {
             val shiftResponse = response.body()
             if (shiftResponse != null){
                 shiftsArrayList.addAll(shiftResponse.shiftsWrapper)
-                Log.d("inactiveshifts", shiftsArrayList.toString())
                 return shiftsArrayList
             }
         }

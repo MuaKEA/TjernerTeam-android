@@ -1,7 +1,6 @@
 package dk.nodes.template.presentation.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -107,7 +106,6 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
 private fun handleErrors(state: MainActivityViewState) {
     state.viewError?.let { error->
-        Log.d("facebooktest", error.toString())
 
     }
 }

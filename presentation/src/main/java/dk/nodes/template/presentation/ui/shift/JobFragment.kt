@@ -12,8 +12,6 @@ import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_job.*
-import kotlinx.android.synthetic.main.shift_recyclerview_row.*
-import timber.log.Timber
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*

@@ -22,7 +22,6 @@ class Upcomingjob_Fragment : BaseFragment() {
     private var adapter: ShiftOverviewAdapter? = null
     private var mainContext: Context? = null
     private val viewModel by viewModel<MainActivityViewModel>()
-    lateinit var shiftDetailsActivityIntent: Intent
 
 
 

@@ -1,6 +1,5 @@
 package dk.nodes.template.presentation.ui.main
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.facebook.AccessToken
 import dk.nodes.template.domain.interactors.*
@@ -15,7 +14,6 @@ import dk.nodes.template.presentation.util.ViewErrorController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.StringBuilder
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(

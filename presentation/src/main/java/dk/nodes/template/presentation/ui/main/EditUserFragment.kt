@@ -23,12 +23,7 @@ import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.shift.JobFragment
 import kotlinx.android.synthetic.main.edit_user_fragment.*
-import timber.log.Timber
-
 import com.facebook.login.LoginManager
-import kotlinx.android.synthetic.main.activity_main.*
-import com.facebook.GraphResponse
-import kotlin.system.exitProcess
 
 
 
@@ -88,12 +83,7 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
 
     private fun handleUser(state: MainActivityViewState) {
         state.facebookUser?.let { user ->
-            Timber.e("EditUser user: " + user)
-            if(user.fullName == null){
-                viewModel.fetchUser(isLoggedIn())
-            }
 
-            Timber.e(user.toString())
             name_edittext.setText(user.fullName.toString())
             email_edittext.setText(user.email)
             adress_edittext.setText(user.address)
@@ -182,7 +172,6 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
         GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback { LoginManager.getInstance().logOut() }).executeAsync()
 
         if (AccessToken.getCurrentAccessToken() == null) {
-            Timber.e("logged out")
             return  // already logged out
         }
 

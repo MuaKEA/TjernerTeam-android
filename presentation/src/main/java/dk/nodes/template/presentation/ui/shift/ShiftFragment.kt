@@ -2,20 +2,14 @@
 
 package dk.nodes.template.presentation.ui.facebookUser
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.models.Shift
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_shift_end.*
-
-import java.time.LocalDate
 
 private const val shiftArg = "shift"
 
@@ -45,10 +39,6 @@ class ShiftFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //user_name?.text = shift?.fullName
-
-
     }
 
     override fun onDetach() {

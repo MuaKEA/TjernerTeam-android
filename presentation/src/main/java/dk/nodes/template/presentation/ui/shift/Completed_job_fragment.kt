@@ -14,9 +14,6 @@ import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
 import kotlinx.android.synthetic.main.fragment_completed_job.*
-import kotlinx.android.synthetic.main.fragment_shift_overview.*
-import timber.log.Timber
-
 
 class Completed_job_fragment : BaseFragment() {
 
@@ -89,7 +86,6 @@ class Completed_job_fragment : BaseFragment() {
 
     private fun handleShift(state: MainActivityViewState) {
         state.let {
-            Timber.e("Fetching completed jobs")
             state.userInactiveAssignShifts?.let { completedShiftOverview -> adapter?.addShifts(completedShiftOverview) }
             adapter?.notifyDataSetChanged()
             updateRecyclerView()
