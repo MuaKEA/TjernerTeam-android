@@ -9,7 +9,6 @@ I denne readme fil vil vi belyse nogle ting som er beskrevet nedenunder.
 
   - Forudsætninger
   - Installering
-  - Deployment
 
 # Forudsætninger
 Vi har i gruppen valgt at bruge AWS ECS2 til at hoste vores server, en prøve periode af AWS ECS2 er gratis, og efter perioden ophøre vil det så koste penge at benytte sig af. Vi anbefaler, at TjenerTeamet opretter sig en Amazon AWS konto af den årsag. En anden forudsætning er valg af værktøj, Android Studio er det værktøj kunden skal bruge og for at kunne komme i gang skal han downloade og installere NDK og så burde det være lige til.
