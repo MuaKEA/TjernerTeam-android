@@ -1,6 +1,6 @@
 # KEA Datamatiker Uddannelsen 2020
 
-[![N|Solid](https://kea.dk/images/DA/Presse/Downloads/KEA_logo_DK_Web.jpg)
+![N|Solid](https://kea.dk/images/DA/Presse/Downloads/KEA_logo_DK_Web.jpg)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
