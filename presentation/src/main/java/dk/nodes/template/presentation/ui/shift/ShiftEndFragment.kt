@@ -48,9 +48,6 @@ class ShiftEndFragment : BaseFragment(), BottomNavigationView.OnNavigationItemSe
                 .show(upcomingjobFragment)
                 .hide(inactiveShiftsFragment)
                 .commit()
-
-        user_name?.text = shift?.customerName
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

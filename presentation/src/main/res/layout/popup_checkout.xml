@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
@@ -68,17 +67,41 @@
 
             <TextView
                 android:id="@+id/checkin_txt"
-                android:layout_width="70dp"
+                android:layout_width="87dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="50dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:background="@drawable/input_border_box"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkin_title" />
+
+            <TextView
+                android:id="@+id/checkout_txt"
+                android:layout_width="87dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/input_border_box"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/checkin_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="66dp"
+                android:text="Tjek ind:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkout_title" />
 
             <TextView
-                android:id="@+id/checkout_txt"
-                android:layout_width="70dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="50dp"
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="70dp"
+                android:text="Tjek ud:"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkout_title" />
 
