@@ -88,11 +88,9 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
 
     private fun handleUser(state: MainActivityViewState) {
         state.facebookUser?.let { user ->
-            Log.d("shadush", user.toString())
-
+            Timber.e("EditUser user: " + user)
             if(user.fullName == null){
                 viewModel.fetchUser(isLoggedIn())
-
             }
 
             Timber.e(user.toString())
