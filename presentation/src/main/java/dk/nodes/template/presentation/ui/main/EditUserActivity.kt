@@ -1,12 +1,15 @@
 package dk.nodes.template.presentation.ui.main
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,45 +25,38 @@ import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.shift.JobFragment
-import kotlinx.android.synthetic.main.edit_user_fragment.*
+import kotlinx.android.synthetic.main.edit_user_activity.*
 import com.facebook.login.LoginManager
+import dk.nodes.template.presentation.ui.base.BaseActivity
+import timber.log.Timber
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
-
-
-class EditUserFragment : BaseFragment(), View.OnClickListener {
+class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
 
 
     private val viewModel by viewModel<MainActivityViewModel>()
-    private var listener: JobFragment.OnFragmentInteractionListener? = null
-    private lateinit var maincontext: Context
     private var fcbUcer: FacebookUser? = null
 
 
-    companion object {
-        fun newInstance() = EditUserFragment()
-    }
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.edit_user_fragment, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.edit_user_activity)
         viewModel.fetchUser(isLoggedIn())
-        update_btn.setOnClickListener(this)
-        delete_btn.setOnClickListener(this)
-
-
+        cpr_edit.addTextChangedListener(this)
+        dateofbirth_edittext.setOnClickListener(this)
         viewModel.viewState.observeNonNull(this) { state ->
             handleUser(state)
 
         }
+        update_btn.setOnClickListener(this)
+        delete_btn.setOnClickListener(this)
 
 
     }
+
 
     fun isLoggedIn(): String {
         val accessToken = AccessToken.getCurrentAccessToken()
@@ -68,7 +64,7 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
 
             return accessToken.userId
         }
-        var intent = Intent(maincontext, FacebookActivity::class.java)
+        val intent = Intent(this, FacebookActivity::class.java)
         startActivity(intent)
         return ""
     }
@@ -115,11 +111,7 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
                 fcbUcer?.fullName = name_edittext.text.toString()
                 fcbUcer?.city = city_edittext.text.toString()
                 fcbUcer?.phoneNumber = phoneNumb_edittext.text.toString().toLong()
-                if(postCode_edittext.text?.contains("[dlksfml]")!!){
 
-
-
-                }
                 val postCode = PostCode(postCode_edittext.text.toString().toInt())
                 fcbUcer?.postCode = postCode
                 fcbUcer?.regNumber = regNumber_edittext.text.toString().toInt()
@@ -141,7 +133,7 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
             }
 
             delete_btn.id -> {
-                val builder = AlertDialog.Builder(maincontext)
+                val builder = AlertDialog.Builder(this)
 
                 builder.setTitle("Slet din konto")
 
@@ -151,12 +143,11 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
                     fcbUcer?.facebookId?.let { viewModel.deleteUser(it) }
                     GraphRequest(getAccesToken(), "/me/permissions", null, HttpMethod.DELETE).executeAsync()
                     disconnectFromFacebook()
-                    getActivity()?.finish()
                 }
 
 
                 builder.setNegativeButton("ANNULLER") { dialog, which ->
-                dialog.dismiss()
+                    dialog.dismiss()
                 }
 
                 val dialog: AlertDialog = builder.create()
@@ -165,8 +156,32 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
 
 
             }
+            dateofbirth_edittext.id -> {
+
+                calenderFuntion()
+            }
+
         }
     }
+
+    private fun calenderFuntion() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY")
+
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+            val dateformat = dateFormatter.format(LocalDate.of(year, monthOfYear + 1, dayOfMonth))
+            dateofbirth_edittext.setText(dateformat)
+
+
+        }, year, month, day)
+        dpd.show()
+
+    }
+
 
     fun disconnectFromFacebook() {
         GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback { LoginManager.getInstance().logOut() }).executeAsync()
@@ -177,24 +192,28 @@ class EditUserFragment : BaseFragment(), View.OnClickListener {
 
     }
 
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        Timber.e(count.toString())
+        Timber.e("start " + start + " count " + count + " before " + before)
+
+        if (start + count == 6) {
+            cpr_edit.setText(s.toString() + "-")
+            cpr_edit.setSelection(cpr_edit.getText().toString().length);
+        }
+
     }
 
+    override fun afterTextChanged(s: Editable?) {
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
+
     }
 
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        Timber.e("start " + start + " count " + count + " after " + after)
 
-    interface OnFragmentInteractionLitener {
-        fun onFragmentInteraction(uri: Uri)
+
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        maincontext = context
-    }
 }
 

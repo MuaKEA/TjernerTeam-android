@@ -89,6 +89,8 @@
     <string name="stop_snooze">Stop Snooze</string>
     <string name="snooze_title">Snooze</string>
     <string name="notifikationer_slukket">Notifikationer er slukket</string>
+    <string name="update_profile">Opdater din profil</string>
+    <string name="update_profile_txt">Her kan du opdatere din profil</string>
 
 
 </resources>
