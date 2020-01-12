@@ -80,16 +80,68 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
     private fun handleUser(state: MainActivityViewState) {
         state.facebookUser?.let { user ->
 
-            name_edittext.setText(user.fullName.toString())
-            email_edittext.setText(user.email)
-            adress_edittext.setText(user.address)
-            city_edittext.setText(user.city)
-            phoneNumb_edittext.setText(user.phoneNumber.toString())
-            postCode_edittext.setText(user.postCode?.postCode.toString())
-            cpr_edit.setText(user.cprNumber + "-XXXX")
-            regNumber_edittext.setText(user.regNumber.toString())
-            accountnr_edittext.setText(user.accountNumber.toString())
-            dateofbirth_edittext.setText(user.dateOfBirth)
+            user.fullName.let {
+                name_edittext.setText(it.toString())
+            }
+
+            user.email.let {
+                email_edittext.setText(it)
+            }
+
+            user.address.let {
+                adress_edittext.setText(it)
+            }
+
+            user.city.let {
+                city_edittext.setText(it)
+
+            }
+
+            user.phoneNumber.let {
+
+                if(it != 0L){
+                    phoneNumb_edittext.setText(it.toString())
+
+                }
+
+            }
+
+            user.postCode?.postCode.let {
+                if(it !=0) {
+
+                    postCode_edittext.setText(it.toString())
+                }
+            }
+
+            user.cprNumber.let {
+
+                if(it !=null || it !="") {
+                    Log.d("notnull", it)
+                    cpr_edit.setText(it.toString() + "-XXXX")
+                }
+            }
+
+            user.regNumber.let {
+                if(it !=0) {
+
+                    regNumber_edittext.setText(it.toString())
+                }
+            }
+
+            user.accountNumber.let {
+                if(it !=null) {
+
+                    accountnr_edittext.setText(it.toString())
+                }
+
+            }
+
+            user.dateOfBirth.let {
+
+                dateofbirth_edittext.setText(it)
+
+            }
+
 
             when (user.gender) {
 
@@ -110,14 +162,45 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
                 fcbUcer?.address = adress_edittext.text.toString()
                 fcbUcer?.fullName = name_edittext.text.toString()
                 fcbUcer?.city = city_edittext.text.toString()
-                fcbUcer?.phoneNumber = phoneNumb_edittext.text.toString().toLong()
 
-                val postCode = PostCode(postCode_edittext.text.toString().toInt())
-                fcbUcer?.postCode = postCode
-                fcbUcer?.regNumber = regNumber_edittext.text.toString().toInt()
-                fcbUcer?.accountNumber = accountnr_edittext.text.toString().toLong()
-                fcbUcer?.dateOfBirth = dateofbirth_edittext.text.toString()
+                phoneNumb_edittext.text.let {
+                   if (it.toString() != ""){
+                       fcbUcer?.phoneNumber = it.toString().toLong()
+
+                   }
+                }
+
+                postCode_edittext.text.let {
+                    if (it.toString() != ""){
+                        fcbUcer?.postCode = PostCode(it.toString().toInt())
+
+                    }
+
+
+                }
+                regNumber_edittext.text.let {
+                    if (it.toString() != ""){
+                        fcbUcer?.regNumber = it.toString().toInt()
+                    }
+
+                }
+
+
+                accountnr_edittext.text.let {
+                    if (it.toString() != ""){
+                        fcbUcer?.accountNumber = it.toString().toLong()
+                    }
+                }
+
+                dateofbirth_edittext.text.let {
+
+                    if (it.toString() != ""){
+                        fcbUcer?.dateOfBirth =it.toString()
+                    }
+                }
+
                 fcbUcer?.cprNumber = cpr_edit.text.toString()
+
                 if (radioF.isChecked) {
                     fcbUcer?.gender = radioF.text.toString()
 
@@ -130,6 +213,7 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
 
 
                 viewModel.updateUser(fcbUcer!!)
+                finishActivity(0)
             }
 
             delete_btn.id -> {
