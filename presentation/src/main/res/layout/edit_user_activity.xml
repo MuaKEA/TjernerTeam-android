@@ -148,7 +148,9 @@
                 android:id="@+id/cpr_edit"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="Cpr" />
+                android:maxLength="11"
+                android:hint="Cpr"
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -245,6 +247,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:clickable="false"
+            android:focusable="false"
             android:textColor="@color/custom_darkgray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -254,8 +258,10 @@
                 android:id="@+id/dateofbirth_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:clickable="false"
+                android:focusable="false"
                 android:hint="Fødselsdato"
-                android:inputType="date" />
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

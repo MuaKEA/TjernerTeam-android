@@ -27,6 +27,7 @@ class ShiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shift_details)
 
+
         val bundle: Bundle? = intent.extras
 
         if (bundle?.getParcelable<FacebookUser?>("user") != null) {

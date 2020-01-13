@@ -21,7 +21,6 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     lateinit var shiftOverviewFragment: Fragment
     lateinit var userOptionsFragment : Fragment
     lateinit var shiftEndFragment : Fragment
-    lateinit var editUserFragment: EditUserFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,17 +49,14 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         userOptionsFragment = UserOptionsFragment.newInstance()
         shiftEndFragment = ShiftEndFragment.newInstance()
 
-        editUserFragment = EditUserFragment.newInstance()
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.main_frame, shiftOverviewFragment, "1")
                 .add(R.id.main_frame, userOptionsFragment, "2")
                 .add(R.id.main_frame, shiftEndFragment, "3")
-                .add(R.id.main_frame, editUserFragment, "4")
                 .show(shiftOverviewFragment)
                 .hide(userOptionsFragment)
                 .hide(shiftEndFragment)
-                .hide(editUserFragment)
                 .commit()
     }
 
@@ -71,7 +67,6 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                 supportFragmentManager.beginTransaction()
                         .show(shiftOverviewFragment)
                         .hide(userOptionsFragment)
-                        .hide(editUserFragment)
                         .hide(userOptionsFragment)
                         .hide(shiftEndFragment).commit()
             }
@@ -79,23 +74,15 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
                 supportFragmentManager.beginTransaction()
                         .show(userOptionsFragment)
                         .hide(shiftOverviewFragment)
-                        .hide(editUserFragment)
                         .hide(shiftEndFragment).commit()
             }
 
-            R.id.navigation_profile -> {
-                supportFragmentManager.beginTransaction()
-                        .show(editUserFragment)
-                        .hide(shiftOverviewFragment)
-                        .hide(userOptionsFragment)
-                        .hide(shiftEndFragment).commit()
-            }
             R.id.navigation_endjob -> {
                 supportFragmentManager.beginTransaction()
                         .show(shiftEndFragment)
                         .hide(shiftOverviewFragment)
                         .hide(userOptionsFragment)
-                        .hide(editUserFragment).commit()
+                        .commit()
             }
         }
             shownMenu = item.itemId
