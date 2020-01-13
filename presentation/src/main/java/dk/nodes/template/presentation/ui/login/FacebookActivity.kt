@@ -2,6 +2,7 @@ package dk.nodes.template.presentation.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.facebook.login.LoginResult
@@ -74,6 +75,8 @@ class FacebookActivity : AppCompatActivity() {
     }
 
     private fun useLoginInformation(accessToken: AccessToken) {
+        login_status_progress.visibility = View.VISIBLE
+        welcome_txt.text = "Checker login status"
         val request = GraphRequest.newMeRequest(accessToken) { `object`, response ->
             try {
                 val name = `object`.getString("name")

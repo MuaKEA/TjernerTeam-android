@@ -79,11 +79,11 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
     fun handleStatus(state: MainActivityViewState?) {
 
         state?.snoozeStatusAndDaysLeft?.let { snoozeobj ->
-            val isSnozed = snoozeobj.userIsSnoozed
+            val isSnoozed = snoozeobj.userIsSnoozed
 
-            if (isSnozed != null) {
+            if (isSnoozed != null) {
 
-                if (isSnozed) {
+                if (isSnoozed) {
                     val cancelSnoozePopup = CancelSnoozeNotificationPopUpFragment()
                     if(snoozeobj.snoozeDate ==null){
                         snoozeobj.snoozeDate = "Sluk"

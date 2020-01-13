@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.ui.login.FacebookActivity
 import dk.nodes.template.presentation.ui.base.BaseFragment
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState

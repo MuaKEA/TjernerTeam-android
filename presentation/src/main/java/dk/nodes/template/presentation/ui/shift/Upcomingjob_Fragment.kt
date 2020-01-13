@@ -96,8 +96,6 @@ class Upcomingjob_Fragment : BaseFragment() {
     }
 
     private fun userEndShiftOnClick(v: View) {
-        //alertbox
-
         adapter?.onItemClickedListener = {
 
             val checkoutFragment = CheckoutFragment()
