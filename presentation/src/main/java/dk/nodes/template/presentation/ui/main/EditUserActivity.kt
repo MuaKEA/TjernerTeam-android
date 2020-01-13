@@ -116,7 +116,7 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
             user.cprNumber.let {
 
                 if(it !=null || it !="") {
-                    Log.d("notnull", it)
+                    //Log.d("notnull", it)
                     cpr_edit.setText(it.toString() + "-XXXX")
                 }
             }
