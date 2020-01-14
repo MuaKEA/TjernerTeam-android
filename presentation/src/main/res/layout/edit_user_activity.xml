@@ -33,40 +33,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_profile_title">
 
-            <RadioGroup
-                android:id="@+id/radioGrp"
-                android:layout_width="331dp"
-                android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
-
-                <RadioButton
-                    android:id="@+id/radioM"
-                    android:layout_width="168dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="start"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="Mand"
-                    android:textColor="@color/custom_darkgray"
-                    android:textSize="14dp" />
-
-                <RadioButton
-                    android:id="@+id/radioF"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:layout_weight="1"
-                    android:checked="false"
-                    android:text="Kvinde"
-                    android:textColor="@color/custom_darkgray"
-                    android:textSize="14dp" />
-            </RadioGroup>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout2"
                 android:layout_width="0dp"
