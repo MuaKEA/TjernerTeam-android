@@ -80,24 +80,24 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
     private fun handleUser(state: MainActivityViewState) {
         state.facebookUser?.let { user ->
 
-            user.fullName.let {
+            user.fullName?.let {
                 name_edittext.setText(it.toString())
             }
 
-            user.email.let {
+            user.email?.let {
                 email_edittext.setText(it)
             }
 
-            user.address.let {
+            user.address?.let {
                 adress_edittext.setText(it)
             }
 
-            user.city.let {
+            user.city?.let {
                 city_edittext.setText(it)
 
             }
 
-            user.phoneNumber.let {
+            user.phoneNumber?.let {
 
                 if(it != 0L){
                     phoneNumb_edittext.setText(it.toString())
@@ -106,37 +106,36 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
 
             }
 
-            user.postCode?.postCode.let {
+            user.postCode?.postCode?.let {
                 if(it !=0) {
 
                     postCode_edittext.setText(it.toString())
                 }
             }
 
-            user.cprNumber.let {
+            user.cprNumber?.let {
 
-                if(it !=null || it !="") {
+                if( it !="") {
                     //Log.d("notnull", it)
                     cpr_edit.setText(it.toString() + "-XXXX")
                 }
             }
 
-            user.regNumber.let {
+            user.regNumber?.let {
                 if(it !=0) {
 
                     regNumber_edittext.setText(it.toString())
                 }
             }
 
-            user.accountNumber.let {
-                if(it !=null) {
+            user.accountNumber?.let {
 
                     accountnr_edittext.setText(it.toString())
                 }
 
-            }
 
-            user.dateOfBirth.let {
+
+            user.dateOfBirth?.let {
 
                 dateofbirth_edittext.setText(it)
 
@@ -156,14 +155,14 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
                 fcbUcer?.fullName = name_edittext.text.toString()
                 fcbUcer?.city = city_edittext.text.toString()
 
-                phoneNumb_edittext.text.let {
+                phoneNumb_edittext?.text.let {
                    if (it.toString() != ""){
                        fcbUcer?.phoneNumber = it.toString().toLong()
 
                    }
                 }
 
-                postCode_edittext.text.let {
+                postCode_edittext?.text.let {
                     if (it.toString() != ""){
                         fcbUcer?.postCode = PostCode(it.toString().toInt())
 
@@ -171,7 +170,7 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
 
 
                 }
-                regNumber_edittext.text.let {
+                regNumber_edittext?.text.let {
                     if (it.toString() != ""){
                         fcbUcer?.regNumber = it.toString().toInt()
                     }
@@ -179,13 +178,13 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
                 }
 
 
-                accountnr_edittext.text.let {
+                accountnr_edittext?.text.let {
                     if (it.toString() != ""){
                         fcbUcer?.accountNumber = it.toString().toLong()
                     }
                 }
 
-                dateofbirth_edittext.text.let {
+                dateofbirth_edittext?.text.let {
 
                     if (it.toString() != ""){
                         fcbUcer?.dateOfBirth =it.toString()
