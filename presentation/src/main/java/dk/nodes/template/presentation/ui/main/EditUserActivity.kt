@@ -2,32 +2,24 @@ package dk.nodes.template.presentation.ui.main
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.FacebookActivity
 import com.facebook.GraphRequest
 import com.facebook.HttpMethod
+import com.facebook.login.LoginManager
+import com.google.android.material.internal.ContextUtils.getActivity
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.models.PostCode
 import dk.nodes.template.presentation.R
 import dk.nodes.template.presentation.extensions.observeNonNull
-import dk.nodes.template.presentation.ui.base.BaseFragment
-import dk.nodes.template.presentation.ui.shift.JobFragment
-import kotlinx.android.synthetic.main.edit_user_activity.*
-import com.facebook.login.LoginManager
 import dk.nodes.template.presentation.ui.base.BaseActivity
+import dk.nodes.template.presentation.ui.login.LoginActivity
+import kotlinx.android.synthetic.main.edit_user_activity.*
 import timber.log.Timber
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -194,7 +186,7 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
                 fcbUcer?.cprNumber = cpr_edit.text.toString()
 
                 viewModel.updateUser(fcbUcer!!)
-                finishActivity(0)
+                finish()
             }
 
             delete_btn.id -> {
@@ -206,8 +198,9 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
 
                 builder.setPositiveButton("JA") { dialog, which ->
                     fcbUcer?.facebookId?.let { viewModel.deleteUser(it) }
-                    GraphRequest(getAccesToken(), "/me/permissions", null, HttpMethod.DELETE).executeAsync()
                     disconnectFromFacebook()
+                    finishAffinity()
+
                 }
 
 
@@ -229,6 +222,17 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
         }
     }
 
+    fun disconnectFromFacebook() {
+        GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback { LoginManager.getInstance().logOut() }).executeAsync()
+
+        if (AccessToken.getCurrentAccessToken() == null) {
+
+
+            return  // already logged out
+        }
+
+    }
+
     private fun calenderFuntion() {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -248,14 +252,10 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
     }
 
 
-    fun disconnectFromFacebook() {
-        GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, GraphRequest.Callback { LoginManager.getInstance().logOut() }).executeAsync()
 
-        if (AccessToken.getCurrentAccessToken() == null) {
-            return  // already logged out
-        }
 
-    }
+
+
 
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
