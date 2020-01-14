@@ -51,8 +51,7 @@ interface FaceBookService {
                          @Query("cprNumber") cprNumber: String?,
                          @Query("regNumber") regNumber: Int?,
                          @Query("accountNumber") accountNumber: Long?,
-                         @Query("dateOfBirth") dateOfBirth: String?,
-                         @Query("gender") gender: String?): Call<String>
+                         @Query("dateOfBirth") dateOfBirth: String?): Call<String>
 
     @DELETE("/deleteUser")
     fun deleteUser(@Query("facebook_id") facebook_id: Long?): Call<String>

@@ -142,13 +142,6 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
 
             }
 
-
-            when (user.gender) {
-
-                "Male" -> radioM.isChecked = true
-                "Female" -> radioF.isChecked = true
-            }
-
             fcbUcer = user
 
         }
@@ -200,17 +193,6 @@ class EditUserActivity : BaseActivity(), View.OnClickListener, TextWatcher {
                 }
 
                 fcbUcer?.cprNumber = cpr_edit.text.toString()
-
-                if (radioF.isChecked) {
-                    fcbUcer?.gender = radioF.text.toString()
-
-                } else {
-
-                    fcbUcer?.gender = radioM.text.toString()
-
-                }
-
-
 
                 viewModel.updateUser(fcbUcer!!)
                 finishActivity(0)

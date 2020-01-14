@@ -84,7 +84,7 @@ class FacebookActivity : AppCompatActivity() {
                 val id = `object`.getString("id")
 
                 mainActivityIntent.putExtra("shift", intent.getParcelableExtra<Shift>("shift"))
-                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null,null,null,null, fcmToken,null,null, null,null, null,null))
+                mainActivityIntent.putExtra("user", FacebookUser(id.toLong(), name, emails, null,null,null,null, fcmToken,null,null, null,null, null))
 
                 startActivity(mainActivityIntent)
                 finish()

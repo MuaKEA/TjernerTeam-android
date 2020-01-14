@@ -79,7 +79,7 @@ class FacebookRespository @Inject constructor(
 
         suspend fun updateUser(user: FacebookUser) {
 
-            val response = api.updateUSer(user.facebookId, user.fullName, user.email, user.address, user.city, user.phoneNumber, user.postCode?.postCode, user.cprNumber, user.regNumber, user.accountNumber, user.dateOfBirth, user.gender).execute()
+            val response = api.updateUSer(user.facebookId, user.fullName, user.email, user.address, user.city, user.phoneNumber, user.postCode?.postCode, user.cprNumber, user.regNumber, user.accountNumber, user.dateOfBirth).execute()
 
             if (response != null) {
                 if (!response.isSuccessful) {
