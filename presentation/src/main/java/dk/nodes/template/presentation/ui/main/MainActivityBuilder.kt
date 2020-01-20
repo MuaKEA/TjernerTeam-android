@@ -49,7 +49,7 @@ internal abstract class MainActivityBuilder {
     abstract fun ActiveShiftsFragment(): ActiveShiftsFragment
 
    @ContributesAndroidInjector
-    abstract fun EditUserFragment(): EditUserFragment
+    abstract fun EditUserActivity(): EditUserActivity
 
     @ContributesAndroidInjector
     abstract fun Upcomingjob_Fragment(): Upcomingjob_Fragment

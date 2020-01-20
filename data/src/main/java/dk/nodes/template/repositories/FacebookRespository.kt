@@ -1,6 +1,5 @@
 package dk.nodes.template.repositories
 
-import android.util.Log
 import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.models.SnoozeStatusAndDaysLeft
 import dk.nodes.template.network.FaceBookService
@@ -15,7 +14,6 @@ class FacebookRespository @Inject constructor(
         val response = api.saveFacebookUser(User.facebookId, User.fullName, User.email, User.fcmToken).execute()
 
         if (!response.isSuccessful) {
-            Log.d("saveUser", response.body())
         }
     }
 
@@ -81,12 +79,10 @@ class FacebookRespository @Inject constructor(
 
         suspend fun updateUser(user: FacebookUser) {
 
-            val response = api.updateUSer(user.facebookId, user.fullName, user.email, user.address, user.city, user.phoneNumber, user.postCode?.postCode, user.cprNumber, user.regNumber, user.accountNumber, user.dateOfBirth, user.gender).execute()
+            val response = api.updateUSer(user.facebookId, user.fullName, user.email, user.address, user.city, user.phoneNumber, user.postCode?.postCode, user.cprNumber, user.regNumber, user.accountNumber, user.dateOfBirth).execute()
 
             if (response != null) {
                 if (!response.isSuccessful) {
-                    Log.d("saveUser", response.body())
-
                 }
             }
         }
@@ -110,8 +106,6 @@ class FacebookRespository @Inject constructor(
                 userIsSnoozed = false
 
             }
-            Log.d("snoozeDays", snoozeDaysLeft)
-
             return SnoozeStatusAndDaysLeft(snoozeEndDate, userIsSnoozed)
         }
 

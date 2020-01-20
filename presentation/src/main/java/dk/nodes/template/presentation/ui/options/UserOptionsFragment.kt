@@ -1,32 +1,25 @@
 package dk.nodes.template.presentation.ui.options
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import androidx.browser.customtabs.CustomTabsIntent
 import com.facebook.AccessToken
-import dk.nodes.template.models.FacebookUser
 import dk.nodes.template.presentation.R
-import dk.nodes.template.presentation.extensions.observe
 import dk.nodes.template.presentation.extensions.observeNonNull
 import dk.nodes.template.presentation.ui.base.BaseFragment
+import dk.nodes.template.presentation.ui.main.EditUserActivity
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
-import dk.nodes.template.repositories.FacebookRespository
 import kotlinx.android.synthetic.main.fragment_user_options.*
-import timber.log.Timber
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
 class UserOptionsFragment : BaseFragment(), View.OnClickListener {
     private val viewModel by viewModel<MainActivityViewModel>()
     private var mainContext: Context? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -49,6 +42,7 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
         }
 
         snooze_btn.setOnClickListener(this)
+        profile_btn.setOnClickListener(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -79,11 +73,11 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
     fun handleStatus(state: MainActivityViewState?) {
 
         state?.snoozeStatusAndDaysLeft?.let { snoozeobj ->
-            val isSnozed = snoozeobj.userIsSnoozed
+            val isSnoozed = snoozeobj.userIsSnoozed
 
-            if (isSnozed != null) {
+            if (isSnoozed != null) {
 
-                if (isSnozed) {
+                if (isSnoozed) {
                     val cancelSnoozePopup = CancelSnoozeNotificationPopUpFragment()
                     if(snoozeobj.snoozeDate ==null){
                         snoozeobj.snoozeDate = "Sluk"
@@ -100,8 +94,27 @@ class UserOptionsFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        viewModel.getSnoozeStatus(isLoggedIn())
+
+        when(v.id){
+
+            snooze_btn.id-> {
+                viewModel.getSnoozeStatus(isLoggedIn())
+
+
+            }
+
+            profile_btn.id ->{
+                startActivity(Intent(mainContext, EditUserActivity::class.java))
+
+            }
+
+
+
+        }
+
 
 
     }
+
+
 }

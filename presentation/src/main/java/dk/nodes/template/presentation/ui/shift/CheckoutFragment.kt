@@ -73,7 +73,7 @@ class CheckoutFragment : BaseFragment() {
         }
 
         popupView.setOnTouchListener { v: View, m: MotionEvent ->
-            popupWindow.dismiss()
+           // popupWindow.dismiss()
             true
         }
     }

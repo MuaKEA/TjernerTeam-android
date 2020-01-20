@@ -12,7 +12,6 @@ import dk.nodes.template.presentation.ui.base.BaseActivity
 import dk.nodes.template.presentation.ui.main.MainActivityViewModel
 import dk.nodes.template.presentation.ui.main.MainActivityViewState
 import kotlinx.android.synthetic.main.activity_shift_details.*
-import timber.log.Timber
 
 class ShiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private val viewModel by viewModel<MainActivityViewModel>()
@@ -27,6 +26,7 @@ class ShiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shift_details)
+
 
         val bundle: Bundle? = intent.extras
 
@@ -81,7 +81,6 @@ class ShiftDetailsActivity : BaseActivity(), BottomNavigationView.OnNavigationIt
 
     private fun handleErrors(state: MainActivityViewState) {
         state.viewError?.let {
-            Timber.e("Something went wrong")
         }
     }
 
